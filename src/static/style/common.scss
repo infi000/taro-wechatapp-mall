@@ -1,0 +1,31 @@
+@mixin text2line($line) {
+    white-space: pre-line;
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /*! autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+  }
+  
+  @mixin con {
+    padding: 25px 40px;
+    background-color: #fff;
+  }
+
+  @mixin  balance {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // 颜色
+  $text-grey-color: #c0c0c0;
+  $bg-grey-color: #f5f5f5;
+  $primary-color: #cd8537;
+
+  // 字号
+  $normal-fontsize: 30px;
+  $sm-fontsize: 26px;
+  

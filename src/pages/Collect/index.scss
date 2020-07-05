@@ -1,0 +1,22 @@
+.nomore-line-con{
+    width:60%;
+    margin:0 auto;
+}
+.edit-con{
+    position: fixed;
+    bottom: 0;
+    height:120px;
+    line-height: 120px;
+    width: 100%;
+    text-align: center;
+    .edit-btn{
+        background:yellow;
+    }
+    .cancel-btn{
+        background:yellow;
+    }
+    .del-btn{
+        background:#ccc;
+        color:#fff;
+    }
+}

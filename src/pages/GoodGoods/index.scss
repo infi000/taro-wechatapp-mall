@@ -1,0 +1,44 @@
+@import '~taro-ui/dist/style/components/flex.scss';
+@import '../../static/style/common';
+
+@mixin base-con {
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+.goodgoods-wrap {
+  background-color: $bg-grey-color;
+}
+.area-wrap {
+  @include base-con;
+  .area-l {
+    height: 200px;
+  }
+  .area-r-top,
+  .area-r-bottom {
+    height: 100px;
+  }
+}
+.banner-wrap {
+  @include con;
+  @include base-con;
+  .banner-con {
+    height: 300px;
+    .swiper-con {
+      height: 100%;
+      width: 100%;
+      border-radius: 6px;
+      text-align: center;
+    }
+  }
+  .banner-grid {
+    font-size: $sm-fontsize;
+  }
+}
+
+.list-wrap {
+  @include con;
+  @include base-con;
+}
+.tagbar-wrap {
+  @include base-con;
+}
