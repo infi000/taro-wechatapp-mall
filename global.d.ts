@@ -18,7 +18,7 @@ declare const process: {
 };
 
 declare type TObj<T> = {[key: string]: T};
-
+declare type StringNumber = string | number;
 declare  type TModalType = 'edit' | 'create' | 'view';
 
 declare interface IModal {

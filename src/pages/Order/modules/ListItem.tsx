@@ -1,41 +1,45 @@
 import Taro, { useEffect } from '@tarojs/taro';
 import { View, Checkbox, Block } from '@tarojs/components';
 import { AtList, AtListItem } from 'taro-ui';
+import { isArray } from 'lodash';
+import { ImgError } from '../../../static/images/index';
+
 import '../index.scss';
 
+
 interface IProps {
-  info: [
+  list: [
     {
-      id: Array<object>;
+      id: Array<TObj<any>>;
       [key: string]: any;
     }
   ];
+  status: string | number ;
+  handleDelOrder: (id: StringNumber, status:StringNumber  ) => any;
 }
 
 const ListItem = (props: IProps) => {
-  const { info } = props;
-  console.log('info', info);
+  const { list ,status, handleDelOrder } = props;
+  console.log('list==========status', status,list);
   return (
     <View className='list-group-wrap'>
-      {(!info || !info[0]) && <View> 暂无信息</View>}
+      {(!list || !list[0]) && <View> 暂无信息</View>}
       <AtList hasBorder={false}>
-        {info &&
-          info[0] &&
-          info[0].id &&
-          info[0].id.map((item) => {
-            const { title, price, fpath, id } = item;
+        {
+          isArray(list) &&
+          list.map((item) => {
+            const { id:ids, total, orderid } = item;
+            const {title,fpath} = ids[0];
             return (
-              <View className='list-item-wrap' key={id}>
-       
+              <View className='list-item-wrap' key={orderid}>
                   <AtListItem
-                    title={title}
-                    note={`¥${price}`}
-                    thumb={fpath}
-                    onClick={() => {
-                      console.log('点击了');
-                    }}
+                    title={title || '-'}
+                    note={`¥${total}`}
+                    thumb={fpath || ImgError}
                   ></AtListItem>
-        
+                  <View className='list-item-btn-con'>
+                    <View className='btn-default' onClick={()=>handleDelOrder(orderid,status)}>删除订单</View>
+                  </View>
               </View>
             );
           })}

@@ -1,5 +1,18 @@
 @import '../../static/style/common.scss';
 
+.order-wrap {
+  .at-list__item--thumb .item-thumb {
+    width: 160px;
+    height: 160px;
+  }
+  .item-content__info-note {
+    margin-top: 40px;
+  }
+  .at-list{
+    background-color: $bg-grey-color;
+  }
+ 
+}
 .nomore-line-con {
   width: 60%;
   margin: 0 auto;
@@ -29,28 +42,14 @@
   }
 }
 
-.collect-wrap {
-  padding: 0 40px 120px;
-  .item-thumb {
-    width: 160px;
-    height: 160px;
-  }
-  .item-content__info-note {
-    margin-top: 40px;
-    color: crimson;
-  }
-}
 
 .list-group-wrap {
   .list-item-wrap {
-    background-color: red;
-    .item-thumb {
-      width: 160px;
-      height: 160px;
-    }
-    .item-content__info-note {
-      margin-top: 40px;
-      color: crimson;
-    }
+    background-color: #fff;
+    margin-bottom: 10px;
+   .list-item-btn-con{
+     padding: 10px;
+    text-align: right;
+   }
   }
 }

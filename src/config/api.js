@@ -1,6 +1,6 @@
 const MOCK = 'http://gz-cvm-ebuild-ningzhang-dev001.gz.sftcwl.com:7300/mock/5f007cea552f4047ea3d0872/lujia';
 const yjw_test = 'http://testxiaochengxu.ntof.club/index.php/MiniApi';
-const WxApiRoot = MOCK;
+const WxApiRoot = yjw_test;
 
 export default {
   searchGoods: WxApiRoot + '/Shop/searchgoods', // 1.	商品搜索（推荐、最热、最新、关键词、分类、页码）
@@ -17,6 +17,7 @@ export default {
   saveAddress: WxApiRoot + '/User/saveAddress', // 14.	添加新地址
   setDefaultAddress: WxApiRoot + '/User/defulatAddress', // 设置默认地址
   delAddress: WxApiRoot + '/User/delAddress', // 删除地址
+  delOrder: WxApiRoot + '/Order/del', // 16.	删除订单
 
 
 };
