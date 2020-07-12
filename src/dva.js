@@ -4,7 +4,8 @@ import {createLogger} from 'redux-logger';
 import immer from 'dva-immer';
 
 let app;
-let store = {};
+let store = {
+};
 let dispatch;
 
 

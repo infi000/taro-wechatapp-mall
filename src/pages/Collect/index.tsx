@@ -1,53 +1,52 @@
-import Taro from '@tarojs/taro';
+import Taro, { useEffect } from '@tarojs/taro';
 import { View, Checkbox, Block } from '@tarojs/components';
+import { useSelector, useDispatch } from '@tarojs/redux';
 import { AtList, AtListItem } from 'taro-ui';
 import { useCheckBoxList } from '@/utils/hooks';
 import './index.scss';
+import { isArray } from 'lodash';
 
-const { useState } = Taro;
+const { useState, useEffect } = Taro;
 
 const Collect = () => {
-  const LIST = [
-    {
-      desc: '123',
-      price: '100',
-      thumb: 'http://img10.360buyimg.com/jdphoto/s72x72_jfs/t5872/209/5240187906/2872/8fa98cd/595c3b2aN4155b931.png',
-    },
-    {
-      desc: '456',
-      price: '200',
-      thumb: 'http://img10.360buyimg.com/jdphoto/s72x72_jfs/t5872/209/5240187906/2872/8fa98cd/595c3b2aN4155b931.png',
-    },
-    {
-      desc: '34234',
-      price: '300',
-      thumb: 'http://img10.360buyimg.com/jdphoto/s72x72_jfs/t5872/209/5240187906/2872/8fa98cd/595c3b2aN4155b931.png',
-    },
-  ];
-
-  const { handleSelectedAll, handleSelected, isSelectedAll, checkBoxList, checkedItem } = useCheckBoxList(LIST);
+  const { favoriteList = { total: 0, list: [] } } = useSelector((state) => state.collect);
+  const dispatch = useDispatch();
+  const { handleSelectedAll, handleSelected, isSelectedAll, checkBoxList, checkedItem } = useCheckBoxList(favoriteList.list);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const handleEdit = (params) => {
     setIsEdit(params);
   };
   const handleDel = () => {
-    console.log('删除');
+    console.log('删除', checkedItem);
+    let res = [];
+    if(checkedItem.length>0 && isArray(checkedItem)){
+      res = checkedItem.map((item) => item.goodid)
+    }
+    dispatch({ type: 'collect/delFav', params: { gid: res.join(",") } });
+    handleEdit(false);
+    handleSelectedAll(false);
   };
   const handleGoto = (item) => {
-    console.log('翻页', item);
+    const { gid } = item;
+    
+    Taro.navigateTo({ url: '/pages/GoodsShow/index?gid=' + gid });
   };
+  useEffect(() => {
+    dispatch({ type: 'collect/init' });
+    dispatch({ type: 'collect/geFavorite' });
+  }, []);
   return (
-    <View>
+    <View className='collect-wrap'>
       <AtList hasBorder={false}>
         {checkBoxList.map((item, index: number) => {
-          const { desc, price, thumb, checked } = item;
+          const { title, price, fpath, checked, id } = item;
           return (
-            <View className='at-row  at-row__align--center' key={desc}>
+            <View className='at-row  at-row__align--center' key={id}>
               {isEdit && (
                 <View className='at-col at-col-1 at-col--auto'>
                   <Checkbox
                     className='radio-list__radio'
-                    value={desc}
+                    value={id}
                     checked={checked}
                     onClick={() => {
                       handleSelected(index);
@@ -57,9 +56,9 @@ const Collect = () => {
               )}
               <View className='at-col'>
                 <AtListItem
-                  title={desc}
-                  note={price}
-                  thumb={thumb}
+                  title={title}
+                  note={`¥${price}`}
+                  thumb={fpath}
                   onClick={() => {
                     if (isEdit) {
                       handleSelected(index);
@@ -76,7 +75,7 @@ const Collect = () => {
       <View className='at-row edit-con'>
         {!isEdit && (
           <View
-            className='at-col__offset-9 at-col-3 edit-btn'
+            className='at-col__offset-10 at-col-2 edit-btn'
             onClick={() => {
               handleEdit(true);
             }}
@@ -91,11 +90,11 @@ const Collect = () => {
                 全选
               </Checkbox>
             </View>
-            <View className='at-col at-col-3 at-col__offset-3 del-btn' onClick={handleDel}>
+            <View className='at-col at-col-2 at-col__offset-5 del-btn' onClick={handleDel}>
               删除
             </View>
             <View
-              className='at-col at-col-3 cancel-btn'
+              className='at-col at-col-2 cancel-btn'
               onClick={() => {
                 handleEdit(false);
                 handleSelectedAll(false);

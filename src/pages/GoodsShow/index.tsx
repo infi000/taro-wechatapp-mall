@@ -1,5 +1,5 @@
 // import Taro from '@tarojs/taro';
-import Taro, { useRouter } from '@tarojs/taro';
+import Taro, { useRouter, useMemo } from '@tarojs/taro';
 import { View, } from '@tarojs/components';
 import { useSelector, useDispatch } from '@tarojs/redux';
 import GoodsDetail from './modules/GoodsDetail';
@@ -10,10 +10,15 @@ import './index.scss';
  */
 const GoodsShow = () => {
   const { isShowBuysPage } = useSelector((state) => state.goodsShow);
+  const router = useRouter();
+ const gid = useMemo(()=>{
+    const { params } = router;
+    return params.gid;
+  },[router])
   return (
     <View>
       {
-        isShowBuysPage?<BuysRecord /> : <GoodsDetail />
+        isShowBuysPage?<BuysRecord /> : <GoodsDetail gid={gid} />
       }
     </View>
   );

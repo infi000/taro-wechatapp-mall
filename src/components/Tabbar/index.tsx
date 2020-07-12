@@ -16,8 +16,6 @@ export default () => {
       const currTab = nav[tab];
       console.log(currTab);
       dispatch({type: 'tabbar/updateCurrentNavIndex', payload: tab})
-      dispatch({type: 'tabbar/updateCurrentNav', payload: currTab})
-
     }
   }, [nav]);
   return <Block>

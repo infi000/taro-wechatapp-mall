@@ -41,11 +41,16 @@ class App extends Component {
   }
   config = {
     pages:[
-      'pages/GoodsShow/index',
+      'pages/Order/index',
       'pages/Main/index',
+      'pages/GoodsShow/index',
+  
+      // 'pages/Test/index',
+      // 'pages/SearchRes/index',
+      // 'pages/GoodsShow/index',
+      // 'pages/Address/index',
+      // 'pages/Collect/index',
     
-      'pages/Address/index',
-      'pages/Collect/index',
       
     ],
     window: {

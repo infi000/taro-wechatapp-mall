@@ -13,7 +13,6 @@ const { useState, useEffect, useMemo } = Taro;
 const GoodsDetail = () => {
   const { buysRecordList } = useSelector((state) => state.goodsShow);
   const dispatch = useDispatch();
-  const router = useRouter();
   const buysList = useMemo(() => {
     const { buys = [] } = buysRecordList;
     if (isArray(buys)) {
@@ -29,7 +28,6 @@ const GoodsDetail = () => {
     dispatch({type:'goodsShow/getPageBuysRecord'});
   }
   useEffect(() => {
-    const { params } = router;
     dispatch({ type: 'goodsShow/getPageBuysRecord', payload: { refresh: true } });
   }, []);
   return (

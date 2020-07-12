@@ -7,12 +7,16 @@ import Others from './modules/Others';
 import './index.scss';
 
 const Me = () => {
-  return <View>
-    <MyAvatar />
-    <MyOrder />
-    <MySales />
-    <Others />
-  </View>;
+  return (
+    <View className='me-wrap'>
+      <MyAvatar />
+      <View className='order-sales-con'>
+        <MyOrder />
+        <MySales />
+      </View>
+      <Others />
+    </View>
+  );
 };
 
 export default Me;

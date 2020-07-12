@@ -14,12 +14,17 @@ export const getDetail = (payload: { gid: string }) => request.get(Api.goodsDeta
  */
 export const getRelatedGoods = (payload: { gid: string }) => request.get(Api.relatedGoods, payload);
 /**
- * 获取购买记录
+ * 检测是否已收藏商品
  * @param payload
  * @param payload.gid string 商品id
- * @param payload.offset number 偏移量
- * @param payload.count number 获取数量
  */
 export const getBuysRecord = (payload: { gid: string; offset: number; count: number }) => request.get(Api.buysRecord, payload);
+
+
+export const getIsfav = (payload: { gid: string }) => request.get(Api.isfav, payload);
+export const getFav = (payload: { gid: string }) => request.get(Api.fav, payload);
+export const getUnfav = (payload: { gid: string }) => request.get(Api.unfav, payload);
+
+
 
 export default {};

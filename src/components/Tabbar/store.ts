@@ -19,20 +19,11 @@ export default {
         selectedImage: HomeSelected,
       },
     ],
-    currentNav: {
-      title: '好物',
-      type: ROUTER_NAME_MAP.goodGoods,
-      image: goods,
-      selectedImage: goodsSelected,
-    },
-    currentNavIndex: 0,
+    currentNavIndex: 1,
   },
   reducers: {
     updateNav: (state, { payload }) => {
       state.nav = payload;
-    },
-    updateCurrentNav: (state, { payload }) => {
-      state.currentNav = payload;
     },
     updateCurrentNavIndex: (state, { payload }) => {
       state.currentNavIndex = payload;

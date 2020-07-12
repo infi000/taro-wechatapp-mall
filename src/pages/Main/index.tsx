@@ -8,11 +8,12 @@ import {ROUTER_NAME_MAP} from '@/constants';
 
 
 const Main = (props) => {
-    const {currentNav} = useSelector(state => state.tabbar)
+    const {nav, currentNavIndex} = useSelector(state => state.tabbar);
+    
     return (
         <View>
-            {currentNav.type == ROUTER_NAME_MAP.me && <Me /> }
-            {currentNav.type == ROUTER_NAME_MAP.goodGoods && <GoodGoods /> }
+            {nav[currentNavIndex].type == ROUTER_NAME_MAP.me && <Me /> }
+            {nav[currentNavIndex].type == ROUTER_NAME_MAP.goodGoods && <GoodGoods /> }
         <Tabbar />
         </View>
     )
