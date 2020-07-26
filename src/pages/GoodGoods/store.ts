@@ -1,7 +1,7 @@
 import delay from '@/utils/delay';
 import { isArray, toNumber } from 'lodash';
 import { getAllCtype, getSearchGoods } from './services';
-const PAGE_LEN = 10; // 每页个数
+const PAGE_LEN = 30; // 每页个数
 
 interface IState {
   allCtypeList: Array<{ ctype: string }>;
@@ -11,14 +11,14 @@ interface IState {
     offset: number;
   };
   goodsDataParams: ISearchGoodsParams;
-
+  listScroll: boolean; // 废弃
 }
 
 const defaultState: IState = {
   allCtypeList: [],
   goodsData: { total: '0', goods: [], offset: 0 },
   goodsDataParams: {},
-
+  listScroll: false,
 };
 
 export default {
@@ -33,6 +33,9 @@ export default {
     },
     updateGoodsDataParams: (state: IState, { payload }) => {
       state.goodsDataParams = payload;
+    },
+    updateListScroll: (state: IState, { payload }) => {
+      state.listScroll = payload;
     },
   },
   effects: {

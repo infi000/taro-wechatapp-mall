@@ -12,12 +12,12 @@ interface IProps {
 const GoodsList = (props: IProps) => {
   const { list = [] } = props;
   const handleChooseGoods = (opt) => {
-    console.log(opt)
+    console.log(opt);
     const { id, issale } = opt;
     if (issale === '-1') {
       return;
     }
-    Taro.navigateTo({ url: '/pages/GoodsShow/index?gid='+id });
+    Taro.navigateTo({ url: '/pages/GoodsShow/index?gid=' + id });
   };
   return (
     <View>
@@ -27,10 +27,6 @@ const GoodsList = (props: IProps) => {
             const { id, title, sale, fpath, price, issale } = item;
             return (
               <View className='at-col at-col-6 goods-con' key={id}>
-                <View className='at-row at-row__justify--between goods-con-top'>
-                  <View className='at-col at-col-5 goods-price'>${price}</View>
-                  <View className='at-col at-col-5 goods-saler'>{sale}购买</View>
-                </View>
                 <View className='goods-con-mid' onClick={() => handleChooseGoods(item)}>
                   {issale === '-1' && (
                     <View className='soldout-con'>
@@ -39,8 +35,12 @@ const GoodsList = (props: IProps) => {
                   )}
                   <Image mode='aspectFit' style='width: 100%;height: 100%;' src={fpath} />
                 </View>
+                <View className='at-row at-row__justify--between goods-con-top'>
+                  <View className='at-col at-col-5 goods-price'>${price}</View>
+                  <View className='at-col at-col-5 goods-saler'>{sale}购买</View>
+                </View>
                 <View className='goods-con-buttom text2line' onClick={() => handleChooseGoods(item)}>
-                  {title}
+                  {title} id{id}
                 </View>
               </View>
             );

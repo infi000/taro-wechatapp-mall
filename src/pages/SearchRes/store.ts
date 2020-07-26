@@ -31,7 +31,6 @@ export default {
   },
   effects: {
     *getSearchGoods({params}, { call, put, select }) {
-        console.log("params", params);
       yield put({ type: 'updateGoodsDataParams', payload: {...params} });
       const res = yield call(getSearchGoods, { ...params, count: PAGE_LEN, offset: 0 });
       if (res.goods && isArray(res.goods) && res.goods.length > 0) {

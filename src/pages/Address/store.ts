@@ -40,8 +40,8 @@ export default {
       state.searchCondition = { ...searchCondition, ...payload };
     },
     updateAddress: (state, { payload }) => {
-      const { total, addresses } = payload;
-      state.address = { list: addresses, total: Number(total) };
+      const { total, addresses  } = payload;
+      state.address = { list: addresses || [], total: Number(total) };
     },
   },
   effects: {

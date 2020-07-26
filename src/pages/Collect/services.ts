@@ -6,7 +6,7 @@ import Api from '@/config/api';
  */
 export const getUerFavorite = () => request.get(Api.userFavorite);
 
-export const getUnfav = (payload: { gid: string }) => request.get(Api.unfav, payload);
+export const getUnfav = (payload: { gids: string }) => request.get(Api.unfav, payload);
 
 
 export default {};

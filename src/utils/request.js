@@ -1,37 +1,41 @@
 import Taro from '@tarojs/taro';
-import {showErrorToast} from '../utils/util';
-
+import { showErrorToast } from '../utils/util';
 
 /**
  * 封封微信的的request
  */
-function request(url, data = {}, method = "GET") {
+function request(url, data = {}, method = 'GET') {
+  let openid = '';
+  try {
+    var value = Taro.getStorageSync('wxUserInfo');
+    if (value) {
+      openid = value.openid;
+    }
+  } catch (e) {}
   return new Promise(function(resolve, reject) {
     Taro.request({
       url: url,
-      data: data,
+      data: { openid, ...data },
       method: method,
       header: {
         'Content-Type': 'application/json',
-        'X-Litemall-Token': Taro.getStorageSync('token')
+        'X-Litemall-Token': Taro.getStorageSync('token'),
       },
       success: function(res) {
-          console.log(res);
         if (res.statusCode == 200) {
-
           if (res.data.errno == 501) {
             // 清除登录相关内容
             try {
-              Taro.removeStorageSync('userInfo');
-              Taro.removeStorageSync('token');
+              // Taro.removeStorageSync('userInfo');
+              // Taro.removeStorageSync('token');
             } catch (e) {
               // Do something when catch error
             }
             // 切换到登录页面
-            Taro.navigateTo({
-              url: '/pages/auth/login/login'
-            });
-          } else if(res.data.res == 'succ') {
+            // Taro.navigateTo({
+            //   url: '/pages/auth/login/login'
+            // });
+          } else if (res.data.res == 'succ') {
             resolve(res.data.data);
           } else {
             // Taro.showModal({
@@ -45,21 +49,20 @@ function request(url, data = {}, method = "GET") {
         } else {
           reject(res.errdata);
         }
-
       },
       fail: function(err) {
-        reject(err)
-      }
-    })
+        reject(err);
+      },
+    });
   });
 }
 
 request.get = (url, data) => {
   return request(url, data, 'GET');
-}
+};
 
 request.post = (url, data) => {
   return request(url, data, 'POST');
-}
+};
 
 export default request;

@@ -13,7 +13,7 @@ const Banner = () => {
               const { image } = item;
               return (
                 <SwiperItem key={image}>
-                  <Image mode='aspectFit' style='width: 100%;height: 100%;' src={image} />
+                  <Image mode='aspectFill' style='width: 100%;height: 100%;' src={image} />
                 </SwiperItem>
               );
             })}

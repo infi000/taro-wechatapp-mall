@@ -9,7 +9,6 @@ const { useMemo, useEffect } = Taro;
 const SearchRes = () => {
   const { goodsData, goodsDataParams } = useSelector((state) => state.searchRes);
   const { windowHeight } = useSelector((state) => state.main);
-  console.log("useSelector((state) => state)",useSelector((state) => state));
   const dispatch = useDispatch();
   const router = useRouter();
   const formatList = useMemo(() => {
@@ -30,7 +29,6 @@ const SearchRes = () => {
     const { params } = router;
     dispatch({ type: 'searchRes/getSearchGoods', params: {key: params.key}});
   }, []);
-  console.log("goodsDataParams", goodsDataParams);
   return (
     <View className='searchres-wrap'>
       {' '}

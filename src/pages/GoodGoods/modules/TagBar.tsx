@@ -20,7 +20,8 @@ const DEFAULT_TAG = [
   },
 ];
 
-const TagBar = () => {
+const TagBar = (props) => {
+  const  { style ={} } = props;
   const [tabCurrent, SetTabCurrent] = useState(0);
   const { allCtypeList,goodsData } = useSelector((state) => state.goodGoods);
   const dispatch = useDispatch();
@@ -52,7 +53,7 @@ const TagBar = () => {
     dispatch({ type: 'goodGoods/getAllCtype' });
   }, []);
   return (
-    <View className='tagbar-wrap'>
+    <View className='tagbar-wrap' style={style}>
       <AtTabs current={tabCurrent} scroll tabList={formatList} onClick={handleClickTab}></AtTabs>
     </View>
   );

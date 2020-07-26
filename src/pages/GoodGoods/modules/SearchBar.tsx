@@ -5,7 +5,6 @@ import '../index.scss';
 
 const SearchBar = () => {
     const handleFocus = () => {
-         console.log("点解！！")
     }
     return (
 

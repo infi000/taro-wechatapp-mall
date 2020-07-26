@@ -18,7 +18,6 @@ const GoodsDetail = (props: IProps) => {
   const { gid } = props;
   const dispatch = useDispatch();
   const buysList = useMemo(() => {
-    console.log('重新生成了！！！！', buysRecordList);
     const { buys = [] } = buysRecordList;
     if (isArray(buys)) {
       return buys.length > 5 ? slice(buys, 0, 5) : buys;
@@ -44,7 +43,6 @@ const GoodsDetail = (props: IProps) => {
     dispatch({ type: 'goodsShow/getRelatedGoods' });
     dispatch({ type: 'goodsShow/getIsfav' });
   }, []);
-  console.log('buysList', buysList);
   return (
     <View className='goodsshow-wrap'>
       {/* 商品图片价格描述 */}

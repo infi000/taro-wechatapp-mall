@@ -17,12 +17,11 @@ const Collect = () => {
     setIsEdit(params);
   };
   const handleDel = () => {
-    console.log('删除', checkedItem);
     let res = [];
     if(checkedItem.length>0 && isArray(checkedItem)){
       res = checkedItem.map((item) => item.goodid)
     }
-    dispatch({ type: 'collect/delFav', params: { gid: res.join(",") } });
+    dispatch({ type: 'collect/delFav', params: { gids: res.join(",") } });
     handleEdit(false);
     handleSelectedAll(false);
   };

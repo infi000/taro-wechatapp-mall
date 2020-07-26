@@ -7,6 +7,9 @@
 }
 .goodgoods-wrap {
   background-color: $bg-grey-color;
+  // height: calc(100vh + 680px);
+  height:100vh;
+  overflow: hidden;
 }
 .area-wrap {
   @include base-con;
@@ -38,7 +41,11 @@
 .list-wrap {
   @include con;
   @include base-con;
+  width: 100%;
+  box-sizing: border-box;
+  padding:25px 10px;
 }
 .tagbar-wrap {
   @include base-con;
+  
 }

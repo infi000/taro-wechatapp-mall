@@ -4,7 +4,6 @@ import { AtList, AtListItem } from 'taro-ui';
 import { useCheckBoxList } from '@/utils/hooks';
 
 const Test = () => {
- console.log("加载了test!!!!");
   return (
     <View>
             haashfahsfhasf

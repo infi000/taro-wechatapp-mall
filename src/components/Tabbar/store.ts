@@ -19,7 +19,7 @@ export default {
         selectedImage: HomeSelected,
       },
     ],
-    currentNavIndex: 1,
+    currentNavIndex: 0,
   },
   reducers: {
     updateNav: (state, { payload }) => {

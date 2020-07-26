@@ -26,6 +26,9 @@ export default {
   namespace: 'goodsShow',
   state: defaultState,
   reducers: {
+    init:(state: IState ) => {
+      state = defaultState;
+    },
     updateIsShowBuysPaget: (state: IState, { payload }) => {
       state.isShowBuysPage = payload;
     },
@@ -81,10 +84,8 @@ export default {
       yield put({ type: 'getIsfav' });
     },
     *getUnfav({}, { all, call, put, select }) {
-      console.log(' *getUnfav({},');
       const { gid } = yield select((state) => state.goodsShow);
-      console.log(' *getUnfav({},');
-      yield call(getUnfav, { gid });
+      yield call(getUnfav, { gids:gid });
       yield put({ type: 'getIsfav' });
     },
   },

@@ -20,7 +20,6 @@ interface IProps {
 
 const ListItem = (props: IProps) => {
   const { list ,status, handleDelOrder } = props;
-  console.log('list==========status', status,list);
   return (
     <View className='list-group-wrap'>
       {(!list || !list[0]) && <View> 暂无信息</View>}

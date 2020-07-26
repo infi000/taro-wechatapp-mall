@@ -9,6 +9,7 @@ import '../index.scss';
 const { useEffect, useState } = Taro;
 const ListAddress = () => {
   const { address } = useSelector((state) => state.address);
+  console.log("address", address);
   const [alertModal, setAlertOpen] = useState({show:false,data:{}});
   const dispatch = useDispatch();
   /**
