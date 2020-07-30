@@ -47,8 +47,10 @@ class App extends Component {
   }
   config = {
     pages: [
-   
+      'pages/MyVip/index',
       'pages/Main/index',
+
+
       'pages/GoodsShow/index',
       'pages/Order/index',
       'pages/Test/index',

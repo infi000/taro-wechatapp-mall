@@ -40,7 +40,7 @@ const GoodsList = (props: IProps) => {
                   <View className='at-col at-col-5 goods-saler'>{sale}购买</View>
                 </View>
                 <View className='goods-con-buttom text2line' onClick={() => handleChooseGoods(item)}>
-                  {title} id{id}
+                  {title}
                 </View>
               </View>
             );

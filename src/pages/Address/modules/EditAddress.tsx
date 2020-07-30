@@ -40,7 +40,7 @@ const EditAddress = () => {
       });
       return;
     }
-    dispatch({ type: 'address/saveAddress', payload: form });
+    dispatch({ type: 'address/saveAddress', params: form });
   };
 
   return (

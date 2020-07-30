@@ -60,6 +60,7 @@ export default {
       yield put({ type: 'getAddress'});
     },
     *saveAddress({params}, { all, call, put }) {
+      console.log(params);
       yield call(saveAddress,{...params});
       yield put({type:'updateModal', payload: { type: 'create', show: false, data: {} } });
       yield put({ type: 'getAddress'});

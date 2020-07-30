@@ -10,7 +10,6 @@ import './index.scss';
 
 const GoodGoods = () => {
   const { listScroll } = useSelector((state) => state.goodGoods);
-  console.log('goodsData', listScroll);
   const [tagBarStyle, setTagBarStyle]: [null | object, Function] = useState(null);
   const onScroll = (e) => {
     if (e.target.scrollTop >= 360) {

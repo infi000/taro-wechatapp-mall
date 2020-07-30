@@ -6,21 +6,30 @@ import { showErrorToast } from '../utils/util';
  */
 function request(url, data = {}, method = 'GET') {
   let openid = '';
+  let header = {
+    'Content-Type': 'application/json',
+  };
   try {
     var value = Taro.getStorageSync('wxUserInfo');
     if (value) {
       openid = value.openid;
     }
   } catch (e) {}
+
+  if (method === 'FORM') {
+    data.append('openid', openid);
+    header = {
+      "Content-Type": "application/x-www-form-urlencoded"
+    }
+  } else {
+    data = { openid, ...data };
+  }
   return new Promise(function(resolve, reject) {
     Taro.request({
-      url: url,
-      data: { openid, ...data },
-      method: method,
-      header: {
-        'Content-Type': 'application/json',
-        'X-Litemall-Token': Taro.getStorageSync('token'),
-      },
+      url,
+      data,
+      method,
+      header,
       success: function(res) {
         if (res.statusCode == 200) {
           if (res.data.errno == 501) {
@@ -63,6 +72,10 @@ request.get = (url, data) => {
 
 request.post = (url, data) => {
   return request(url, data, 'POST');
+};
+
+request.form = (url, data) => {
+  return request(url, data, 'FORM');
 };
 
 export default request;

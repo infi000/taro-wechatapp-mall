@@ -6,7 +6,8 @@ import goodGoods from '@/pages/GoodGoods/store';
 import searchRes from '@/pages/SearchRes/store';
 import collect from '@/pages/Collect/store';
 import order from '@/pages/Order/store';
+import myvip from '@/pages/MyVip/store';
 
 export default [
-  main,tabbar,address,goodsShow,goodGoods,searchRes,order,collect
+  main,tabbar,address,goodsShow,goodGoods,searchRes,order,collect,myvip
 ]

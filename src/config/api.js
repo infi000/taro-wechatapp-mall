@@ -2,7 +2,7 @@ const MOCK = 'http://gz-cvm-ebuild-ningzhang-dev001.gz.sftcwl.com:7300/mock/5f00
 const yjw_test = 'http://testxiaochengxu.ntof.club/index.php/MiniApi';
 const yjw = 'https://www.tangguostore.com/index.php/MiniApi';
 const WxApiRoot = yjw;
-
+// https://www.tangguostore.com/index.php/MiniApi/CC/myowns?openid=oKDX35X2NHYdiZdb8ukgFZmqwM8M
 export default {
   searchGoods: WxApiRoot + '/Shop/searchgoods', // 1.	商品搜索（推荐、最热、最新、关键词、分类、页码）
   goodsAllCtype: WxApiRoot + '/Shop/allctype', // 3.	获取商品类型
@@ -21,4 +21,9 @@ export default {
   delOrder: WxApiRoot + '/Order/del', // 16.	删除订单
   getJscode2session:  WxApiRoot + '/User/jscode2session', //	19.	小程序登录更新session
   saveUserData:  WxApiRoot + '/User/saveuserdata', //	20.	添加/更新小程序用户信息
+  getMyowns:  WxApiRoot + '/CC/myowns', //	13.	我的藏品myowns/更新小程序用户信息
+  postChangecc:  WxApiRoot + '/CC/changecc', //	14.	变更归属（添加传承信息）changecc
+  postAdddetail:  WxApiRoot + '/CC/adddetail', //	15.	添加商品信息
+  getPricehistory:  WxApiRoot + '/CC/pricehistory', //		2.	历史价格信息
+  getBuyhistory:  WxApiRoot + '/CC/buyhistory', //		3.	成交价格信息
 };
