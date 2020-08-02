@@ -26,4 +26,9 @@ export default {
   postAdddetail:  WxApiRoot + '/CC/adddetail', //	15.	添加商品信息
   getPricehistory:  WxApiRoot + '/CC/pricehistory', //		2.	历史价格信息
   getBuyhistory:  WxApiRoot + '/CC/buyhistory', //		3.	成交价格信息
+  getSearchmsg:  WxApiRoot + '/CC/searchmsg', //		4.	留言信息接口
+  getSearchbuymsg:  WxApiRoot + '/CC/searchbuymsg', //	7.	求购信息接口
+  postAddmsg:  WxApiRoot + '/CC/addmsg', //		5.	添加留言
+  postAddbuymsg:  WxApiRoot + '/CC/addbuymsg', //		8.	添加求购信息
+  getSearchcc:  WxApiRoot + '/CC/searchcc', //		10.	商品传承信息接口
 };

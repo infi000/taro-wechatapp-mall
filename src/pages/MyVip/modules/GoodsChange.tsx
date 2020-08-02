@@ -20,7 +20,9 @@ const GoodsChange = () => {
   };
   const handleSubmit = () =>{
     console.log(form);
-    postChangecc(form);
+    postChangecc({...form}).then(d => {
+      handleCancel();
+    });
     // const formData = new FormData();
     // formData.append("phone", form.phone);
     // formData.append("bphone", form.bphone);

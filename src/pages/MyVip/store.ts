@@ -1,4 +1,4 @@
-import { getMyowns, goodsDetail, getPricehistory, getBuyhistory } from './services';
+import { getMyowns, goodsDetail, getPricehistory, getBuyhistory,getSearchmsg, getSearchbuymsg,postAddmsg , postAddbuymsg,getSearchcc} from './services';
 const COUNT = 10;
 interface IState {
   //   modal: IModal;
@@ -11,11 +11,14 @@ interface IState {
     data: { [key: string]: any };
   };
   goodsDetail: { [key: string]: any };
-  pricehistory: Array<{ [key: string]: any }>;
-  buyhistory: Array<{ [key: string]: any }>;
+  pricehistory: {total:number;list:Array<{ [key: string]: any }>};
+  buyhistory: {total:number;list:Array<{ [key: string]: any }>};
+  commentInfo: {total:number;list:Array<{ [key: string]: any }>};
+  BuyInfo: {total:number;list:Array<{ [key: string]: any }>};
+  CCInfo: {total:number;list:Array<{ [key: string]: any }>};
 }
 
-const defaultState: IState = {
+export const defaultState: IState = {
   ccowns: {
     list: [],
     total: 0,
@@ -25,22 +28,23 @@ const defaultState: IState = {
     data: {},
   },
   goodsDetail: {},
-  pricehistory:[],
-  buyhistory:[]
-  //   modal: { type: 'create', show: false, data: {} },
+  pricehistory:{list:[],total:0},
+  buyhistory:{list:[],total:0},
+  commentInfo:{list:[],total:0},
+  BuyInfo:{list:[],total:0},
+  CCInfo:{list:[],total:0}
 };
 
 export default {
   namespace: 'myvip',
-  state: defaultState,
+  state: {...defaultState},
   reducers: {
+    init: (state,{payload}) => {
+      state =payload
+    },
     updatePageInfo: (state, { payload }) => {
       state.pageInfo = payload;
     },
-    // updateSearchCondition: (state, { payload }) => {
-    //   const searchCondition = cloneDeep(state.searchCondition);
-    //   state.searchCondition = { ...searchCondition, ...payload };
-    // },
     updateMyowns: (state, { payload }) => {
       const { total, ccowns } = payload;
       state.ccowns = { list: ccowns || [], total: Number(total) };
@@ -49,12 +53,24 @@ export default {
       state.goodsDetail = payload;
     },
     updatePricehistory: (state, { payload }) => {
-      const { pricedata } = payload;
-      state.pricehistory = pricedata || [];
+      const { pricedata, total } = payload;
+      state.pricehistory = {list:pricedata, total:Number(total)};
     },
     updateBuyhistory: (state, { payload }) => {
-      const { pricedata } = payload;
-      state.buyhistory = pricedata || [];
+      const { pricedata, total } = payload;
+      state.buyhistory ={list:pricedata, total:Number(total)};
+    },
+    updateCommentInfo: (state, { payload }) => {
+      const { msgs =[], total } = payload;
+      state.commentInfo = {list:msgs, total:Number(total)};
+    },
+    updateBuyInfo: (state, { payload }) => {
+      const { buymsgs = [], total } = payload;
+      state.BuyInfo = {list:buymsgs, total:Number(total)};
+    },
+    updateCCInfo: (state, { payload }) => {
+      const { cc = [], total } = payload;
+      state.CCInfo = {list:cc, total:Number(total)};
     },
   },
   effects: {
@@ -62,21 +78,45 @@ export default {
       const res = yield call(getMyowns);
       yield put({ type: 'updateMyowns', payload: res });
     },
-
-    *getGoodsDetail({}: { payload: { gid: string } }, { all, call, put, select }) {
+    *getGoodsDetail(_, { all, call, put, select }) {
       const { pageInfo } = yield select((state) => state.myvip);
       const res = yield call(goodsDetail, { gid: pageInfo.data.gid });
       yield put({ type: 'updateGoodsDetail', payload: res });
     },
-    *getPricehistory({}: { payload: { gid: string } }, { all, call, put, select }) {
+    *getPricehistory(_, { all, call, put, select }) {
       const { pageInfo } = yield select((state) => state.myvip);
       const res = yield call(getPricehistory, { gid: pageInfo.data.gid, offset: 0, count: COUNT });
       yield put({ type: 'updatePricehistory', payload: res });
     },
-    *getBuyhistory({}: { payload: { gid: string } }, { all, call, put, select }) {
+    *getBuyhistory(_, { all, call, put, select }) {
       const { pageInfo } = yield select((state) => state.myvip);
       const res = yield call(getBuyhistory, { gid: pageInfo.data.gid, offset: 0, count: COUNT });
       yield put({ type: 'updateBuyhistory', payload: res });
+    },
+    *getSearchmsg(_, { all, call, put, select }) {
+      const { pageInfo } = yield select((state) => state.myvip);
+      const res = yield call(getSearchmsg, { gid: pageInfo.data.gid, offset: 0, count: COUNT });
+      yield put({ type: 'updateCommentInfo', payload: res });
+    },
+    *getSearchbuymsg(_, { all, call, put, select }) {
+      const { pageInfo } = yield select((state) => state.myvip);
+      const res = yield call(getSearchbuymsg, { gid: pageInfo.data.gid, offset: 0, count: COUNT });
+      yield put({ type: 'updateBuyInfo', payload: res });
+    },
+    *getSearchcc(_, { all, call, put, select }) {
+      const { pageInfo } = yield select((state) => state.myvip);
+      const res = yield call(getSearchcc, { gid: pageInfo.data.gid, offset: 0, count: COUNT });
+      yield put({ type: 'updateCCInfo', payload: res });
+    },
+    *postAddmsg({params}, { all, call, put, select }) {
+      const { pageInfo } = yield select((state) => state.myvip);
+      yield call(postAddmsg, { ...params, gid: pageInfo.data.gid });
+      yield put({ type: 'getSearchmsg'});
+    },
+    *postAddbuymsg({params}, { all, call, put, select }) {
+      const { pageInfo } = yield select((state) => state.myvip);
+      yield call(postAddbuymsg, { ...params, gid: pageInfo.data.gid });
+      yield put({ type: 'getSearchbuymsg'});
     },
   },
 };

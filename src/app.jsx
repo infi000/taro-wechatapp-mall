@@ -47,10 +47,11 @@ class App extends Component {
   }
   config = {
     pages: [
-      'pages/MyVip/index',
+
       'pages/Main/index',
 
-
+      'pages/MyVip/index',
+ 
       'pages/GoodsShow/index',
       'pages/Order/index',
       'pages/Test/index',
@@ -62,7 +63,7 @@ class App extends Component {
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
+      navigationBarTitleText: '爆BAO潮玩好物',
       navigationBarTextStyle: 'black',
     },
     subpackages: [

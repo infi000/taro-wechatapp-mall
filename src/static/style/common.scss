@@ -55,7 +55,6 @@ $mini-fontsize: 24px;
 .page-wrap{
   height: 100vh;
   background-color: $bg-grey-color;
-  overflow: hidden;
   position: relative;
 }
 
@@ -79,4 +78,15 @@ $mini-fontsize: 24px;
 
 .btn {
   @include btn;
+}
+
+.bottom-wrap{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+  padding: 40px 0;
+  border-top: 1px solid #ddd;
+
 }

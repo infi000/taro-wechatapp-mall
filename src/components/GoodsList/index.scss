@@ -2,7 +2,7 @@
 @import "~taro-ui/dist/style/components/divider.scss";
 @import "~taro-ui/dist/style/components/icon.scss";
 @import '../../static/style/common.scss';
-$border-style: 2px solid #dbdada;
+$border-style: 10px solid $bg-grey-color;
 // $border-style: 3px solid #f5f5f5;
 .goods-list-con{
     width: 100%;

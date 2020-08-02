@@ -4,7 +4,7 @@ import '../index.scss';
 
 const LIST_URL_MAP = [
   { name: '收藏', url: '/pages/Collect/index' },
-  { name: '我的藏品', url: '/pages/myCollection/index' },
+  { name: '我的藏品', url: '/pages/MyVip/index' },
   { name: '地址管理', url: '/pages/Address/index' },
   { name: '客服助手', url: '' },
 ];

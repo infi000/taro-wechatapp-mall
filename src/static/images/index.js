@@ -41,3 +41,15 @@ export { default as goodsSelected} from './goods@selected.png';
 
 
 
+
+export { default as jyps} from './jyps.png';
+export { default as sdfh} from './sdfh.png';
+export { default as shwy} from './shwy.png';
+export { default as zpbz} from './zpbz.png';
+
+
+
+
+
+
+

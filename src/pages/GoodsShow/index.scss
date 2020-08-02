@@ -118,11 +118,11 @@
   background-color: #fff;
   border-top:1px solid $bg-grey-color;
   .sale-btn{
-   @include foot-btn(yellow)
+   @include foot-btn($color-brand)
 
   }
   .buy-btn{
-    @include foot-btn(yellow)
+    @include foot-btn($color-brand)
   }
   .love-btn{
     width:60px;

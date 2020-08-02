@@ -5,6 +5,9 @@
 @import '../../static/style/common.scss';
 $border-style: 2px solid #dbdada;
 // $border-style: 3px solid #f5f5f5;
+.vip-page{
+    position: relative;
+}
 .goods-list-con{
   
     width: 100%;
@@ -98,3 +101,87 @@ $border-style: 2px solid #dbdada;
         margin-bottom: 20px;
     }
 }
+
+.common-wrap{
+   padding: 0 20px;
+    height: 594px;
+    box-sizing: border-box;
+}
+
+.talk-wrap{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #fff;
+    padding: 40px 0;
+    border-top: 1px solid #ddd;
+
+}
+.buys-wrap{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+   @include con;
+}
+.cc-box{
+    @include con;
+    border-bottom: 1px solid $bg-grey-color;
+    margin-bottom: 20px;
+    .cc-line{
+        padding-bottom: 10px;
+    }
+    .cc-tag{
+        font-size: $sm-fontsize;
+    }
+    .cc-desc{
+        color:$text-grey-color;
+        font-size: $mini-fontsize;
+    }
+}
+
+.goods-sale-con {
+    font-size: $normal-fontsize;
+    min-height: 200px;
+    box-sizing: border-box;
+    border-bottom: 6px solid $bg-grey-color;
+    .goods-sale-top {
+      padding-bottom: 25px;
+      .goods-sale-count {
+        font-weight: 400;
+      }
+      .goods-sale-all-btn {
+        text-align: right;
+        color: $text-grey-color;
+      }
+    }
+    .goods-sale-mid {
+      font-size: $sm-fontsize;
+      padding-bottom: 0;
+      .goods-sale-record-con {
+        
+        padding-bottom: 10px;
+        .goods-sale-record-l {
+          color: $text-grey-color;
+          @include text2line(1)
+        }
+        .goods-sale-record-m {
+          text-align: center;
+          font-weight: bold;
+        }
+        .goods-sale-record-r {
+          color: $text-grey-color;
+          text-align: right;
+        }
+      }
+    }
+  }
+
+
+  .goodsshow-con {
+    @include con;
+    margin-bottom: 10px;
+  }

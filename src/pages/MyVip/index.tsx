@@ -6,16 +6,23 @@ import GoodsDetail from './modules/GoodsDetail';
 import GoodsChange from './modules/GoodsChange';
 import GoodsAdd from './modules/GoodsAdd';
 import { useSelector, useDispatch } from '@tarojs/redux';
-import { AtList, AtListItem } from 'taro-ui';
-import { useCheckBoxList } from '@/utils/hooks';
 import './index.scss';
 
 const MyVip = () => {
   const { pageInfo } = useSelector((state) => state.myvip);
   const { type } = pageInfo || {};
-  console.log("goodsPageInfo", pageInfo);
+  const dispatch = useDispatch();
+  // useInitialValue('myvip', dispatch);
+  useEffect(() => {
+    return () => {
+      dispatch({ type: 'myvip/updatePageInfo', payload: {
+        type: 'list',
+        data: {},
+      } });
+    };
+  }, []);
   return (
-    <View className='page-wrap'>
+    <View className='vip-page'>
       {type === 'list' && <GoodsList />}
       {type === 'goods' && <GoodsPage />}
       {type === 'detail' && <GoodsDetail />}
