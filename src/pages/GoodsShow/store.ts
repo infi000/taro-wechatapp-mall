@@ -26,9 +26,9 @@ export default {
   namespace: 'goodsShow',
   state: defaultState,
   reducers: {
-    init:(state: IState ) => {
-      state = defaultState;
-    },
+    // init:(state: IState ) => {
+    //   state = defaultState;
+    // },
     updateIsShowBuysPaget: (state: IState, { payload }) => {
       state.isShowBuysPage = payload;
     },
@@ -49,6 +49,14 @@ export default {
     },
   },
   effects: {
+    *init({ }, { all, call, put, select }) {
+      yield put({ type: 'updateIsShowBuysPaget', payload: false });
+      yield put({ type: 'updateGid', payload: '' });
+      yield put({ type: 'updateDetail', payload: {} });
+      yield put({ type: 'updateRelatedGoods', payload: [] });
+      yield put({ type: 'updateBuysRecordList', payload: { buys: [], total: '0', offset: 0 } });
+      yield put({ type: 'updateIsfav', payload: 0 });
+    },
     *getDetail({}: { payload: { gid: string } }, { all, call, put, select }) {
       const { gid } = yield select((state) => state.goodsShow);
       const res = yield call(getDetail, { gid });

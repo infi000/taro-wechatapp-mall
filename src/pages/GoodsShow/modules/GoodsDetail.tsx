@@ -8,14 +8,14 @@ import '../index.scss';
 
 const { useState, useEffect, useMemo } = Taro;
 interface IProps {
-  gid: string | number;
+ 
 }
 /**
  * 商品展示
  */
 const GoodsDetail = (props: IProps) => {
   const { detail, relatedGoods, buysRecordList, isfav } = useSelector((state) => state.goodsShow);
-  const { gid } = props;
+  // const { gid } = props;
   const dispatch = useDispatch();
   const buysList = useMemo(() => {
     const { buys = [] } = buysRecordList;
@@ -28,16 +28,14 @@ const GoodsDetail = (props: IProps) => {
     dispatch({ type: 'goodsShow/updateIsShowBuysPaget', payload: true });
   };
   const handleGetUnfav = () => {
-    console.log('handleGetUnfav');
     dispatch({ type: 'goodsShow/getUnfav'});
   }
   const handleGetFav = () => {
-    console.log('handleGetFav');
     dispatch({ type: 'goodsShow/getFav'});
   }
 
   useEffect(() => {
-    dispatch({ type: 'goodsShow/updateGid', payload: gid });
+    // dispatch({ type: 'goodsShow/updateGid', payload: gid });
     dispatch({ type: 'goodsShow/getDetail' });
     dispatch({ type: 'goodsShow/getPageBuysRecord', payload: { refresh: true } });
     dispatch({ type: 'goodsShow/getRelatedGoods' });

@@ -25,7 +25,7 @@ const TagBar = (props) => {
   const [tabCurrent, SetTabCurrent] = useState(0);
   const { allCtypeList,goodsData } = useSelector((state) => state.goodGoods);
   const dispatch = useDispatch();
-  const formatList = useMemo(() => {
+  const formatList = () => {
     if (allCtypeList && allCtypeList.length > 0) {
       return DEFAULT_TAG.concat(
         allCtypeList.map((item) => {
@@ -36,13 +36,13 @@ const TagBar = (props) => {
       );
     }
     return DEFAULT_TAG;
-  }, [allCtypeList]);
+  };
   const handleClickTab = (index) => {
     SetTabCurrent(index);
   };
   // 根据tab选项调接口
   useEffect(() => {
-    const item = formatList[tabCurrent];
+    const item = formatList()[tabCurrent];
     const { stype, title } = item;
     const payload = stype ? { stype } : { ctype: title };
     dispatch({ type: 'goodGoods/updateGoodsDataParams', payload });
@@ -54,7 +54,7 @@ const TagBar = (props) => {
   }, []);
   return (
     <View className='tagbar-wrap' style={style}>
-      <AtTabs current={tabCurrent} scroll tabList={formatList} onClick={handleClickTab}></AtTabs>
+      <AtTabs current={tabCurrent} scroll tabList={formatList()} onClick={handleClickTab}></AtTabs>
     </View>
   );
 };

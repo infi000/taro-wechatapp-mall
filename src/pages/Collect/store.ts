@@ -29,15 +29,15 @@ export default {
   namespace: 'collect',
   state: defaultState,
   reducers: {
-    init: (state: IState, { payload }) => {
-      state = defaultState;
-    },
     updateFavoriteList: (state: IState, { payload }) => {
       const { total, favgoods } = payload;
       state.favoriteList = { list: favgoods, total: Number(total) };
     },
   },
   effects: {
+    *init(_, { all, call, put }) {
+      yield put({ type: 'updateFavoriteList', payload: { total: 0, list: [] } });
+    },
     *geFavorite(_, { all, call, put }) {
       const res = yield call(getUerFavorite);
       yield put({ type: 'updateFavoriteList', payload: res });

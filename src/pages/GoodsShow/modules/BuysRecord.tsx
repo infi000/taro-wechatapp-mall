@@ -24,7 +24,6 @@ const GoodsDetail = () => {
     dispatch({ type: 'goodsShow/updateIsShowBuysPaget', payload: false });
   };
   const onScrollToLower = (e) =>{
-    console.log("onScrollToLower", e);
     dispatch({type:'goodsShow/getPageBuysRecord'});
   }
   useEffect(() => {

@@ -26,9 +26,9 @@ const Collect = () => {
     handleSelectedAll(false);
   };
   const handleGoto = (item) => {
-    const { gid } = item;
+    const { goodid } = item;
     
-    Taro.navigateTo({ url: '/pages/GoodsShow/index?gid=' + gid });
+    Taro.navigateTo({ url: '/pages/GoodsShow/index?gid=' + goodid });
   };
   useEffect(() => {
     dispatch({ type: 'collect/init' });

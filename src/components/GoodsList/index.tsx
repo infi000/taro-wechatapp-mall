@@ -26,8 +26,8 @@ const GoodsList = (props: IProps) => {
           list.map((item, index) => {
             const { id, title, sale, fpath, price, issale } = item;
             return (
-              <View className='at-col at-col-6 goods-con' key={id}>
-                <View className='goods-con-mid' onClick={() => handleChooseGoods(item)}>
+              <View className='at-col at-col-6 goods-con' key={id+index}>
+                <View className='goods-con-mid' onClick={() => handleChooseGoods({id:id,issale:issale})}>
                   {issale === '-1' && (
                     <View className='soldout-con'>
                       <SoldOut />
@@ -37,9 +37,9 @@ const GoodsList = (props: IProps) => {
                 </View>
                 <View className='at-row at-row__justify--between goods-con-top'>
                   <View className='at-col at-col-5 goods-price'>${price}</View>
-                  <View className='at-col at-col-5 goods-saler'>{sale}购买</View>
+                  <View className='at-col at-col-5 goods-saler'>{sale}购买{id}</View>
                 </View>
-                <View className='goods-con-buttom text2line' onClick={() => handleChooseGoods(item)}>
+                <View className='goods-con-buttom text2line' onClick={() => handleChooseGoods({ id: id, issale: issale })}>
                   {title}
                 </View>
               </View>
