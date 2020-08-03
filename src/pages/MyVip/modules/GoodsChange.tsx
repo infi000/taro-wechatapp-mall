@@ -2,7 +2,8 @@ import Taro, { useState } from '@tarojs/taro';
 import { AtButton, AtInput } from 'taro-ui';
 import { View, Block, Image } from '@tarojs/components';
 import { useSelector, useDispatch } from '@tarojs/redux';
-import {  postChangecc } from '../services';
+import { postChangecc } from '../services';
+import { ccUpload } from '@/config/api';
 
 import '../index.scss';
 
@@ -13,78 +14,90 @@ const GoodsChange = () => {
   const dispatch = useDispatch();
   const [form, setForm] = useState(defaultForm);
   const { data } = pageInfo || {};
-  const handleUpdateForm = (opt:any) => {
+  const handleUpdateForm = (opt: any) => {
     setForm((params) => {
-      return {...params,...opt}
-    })
+      return { ...params, ...opt };
+    });
   };
-  const handleSubmit = () =>{
+  const handleSubmit = () => {
     console.log(form);
-    postChangecc({...form}).then(d => {
+    postChangecc({ ...form }).then((d) => {
       handleCancel();
     });
-    // const formData = new FormData();
-    // formData.append("phone", form.phone);
-    // formData.append("bphone", form.bphone);
-    // formData.append("buid", form.buid);
-    // formData.append("price", form.price);
-
-    
   };
-  const handleCancel = () =>{
+  const handleUpload = () => {
+    Taro.chooseImage({
+      success (res) {
+        const tempFilePaths = res.tempFilePaths
+        Taro.uploadFile({
+          url: 'https://www.tangguostore.com/index.php/MiniApi/CC/upload', //仅为示例，非真实的接口地址
+          filePath: tempFilePaths[0],
+          name: 'file',
+          success (res){
+            const data = res.data
+            //do something
+          }
+        })
+      }
+    })
+  }
+  const handleCancel = () => {
     dispatch({ type: 'myvip/updatePageInfo', payload: { type: 'goods', data: data } });
   };
   return (
     <Block>
-       <View className='myvip-wrap'>
-      <AtInput
-        className='goods-input'
-        required
-        name='phone'
-        title='持有者手机号'
-        type='phone'
-        value={form.phone}
-        onChange={(e) => handleUpdateForm({ phone: e })}
-      />
-      <AtInput
-        className='goods-input'
-        required
-        name='bphone'
-        title='购买者手机号'
-        type='phone'
-        value={data.bphone}
-        onChange={(e) => handleUpdateForm({ bphone: e })}
-      />
-      <AtInput
-        className='goods-input'
-        required
-        name='buid'
-        title='购买者id'
-        value={data.buid}
-        onChange={(e) => handleUpdateForm({ buid: e })}
-      />
-      <AtInput
-        className='goods-input'
-        required
-        name='price'
-        title='交易价格'
-        value={data.price}
-        onChange={(e) => handleUpdateForm({ price: e })}
-      />
-         <View className='edit-btn-wrap'>
-        <View className='btn-submit'>
-          <AtButton type='primary' size='small' onClick={handleSubmit}>
-            提交
+      <View className='myvip-wrap'>
+        <AtInput
+          className='goods-input'
+          required
+          name='phone'
+          title='持有者手机号'
+          type='phone'
+          value={form.phone}
+          onChange={(e) => handleUpdateForm({ phone: e })}
+        />
+        <AtInput
+          className='goods-input'
+          required
+          name='bphone'
+          title='购买者手机号'
+          type='phone'
+          value={data.bphone}
+          onChange={(e) => handleUpdateForm({ bphone: e })}
+        />
+        <AtInput
+          className='goods-input'
+          required
+          name='buid'
+          title='购买者id'
+          value={data.buid}
+          onChange={(e) => handleUpdateForm({ buid: e })}
+        />
+        <AtInput
+          className='goods-input'
+          required
+          name='price'
+          title='交易价格'
+          value={data.price}
+          onChange={(e) => handleUpdateForm({ price: e })}
+        />
+
+        <View className='edit-btn-wrap'>
+          <View className='btn-submit'>
+            {/* <AtButton type='primary' size='small' onClick={handleUpload}>
+              图片
+            </AtButton> */}
+            <AtButton type='primary' size='small' onClick={handleSubmit}>
+              提交
+            </AtButton>
+          </View>
+
+          <AtButton size='small' onClick={handleCancel}>
+            取消
           </AtButton>
         </View>
-        
-        <AtButton size='small' onClick={handleCancel}>
-          取消
-        </AtButton>
-      </View>
       </View>
     </Block>
-
   );
 };
 

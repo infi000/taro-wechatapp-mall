@@ -5,7 +5,7 @@ import { getWindowHeight } from '@/utils/app';
 import Tabbar from '@/components/Tabbar';
 import Me from '@/pages/Me';
 import GoodGoods from '@/pages/GoodGoods';
-import { ROUTER_NAME_MAP } from '@/constants';
+import { ROUTER_NAME_MAP } from '@/constants/index';
 import './index.scss';
 
 const Main = (props) => {

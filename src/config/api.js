@@ -31,4 +31,5 @@ export default {
   postAddmsg:  WxApiRoot + '/CC/addmsg', //		5.	添加留言
   postAddbuymsg:  WxApiRoot + '/CC/addbuymsg', //		8.	添加求购信息
   getSearchcc:  WxApiRoot + '/CC/searchcc', //		10.	商品传承信息接口
+  ccUpload:  WxApiRoot + '/CC/upload', //		10.	商品传承信息接口
 };

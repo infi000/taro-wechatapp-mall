@@ -8,6 +8,7 @@
 export const ROUTER_NAME_MAP = {
     main:'Main',
     goodGoods:'GoodGoods',
+    photowall:'PhotoWall',
     me:'Me'
 };
 

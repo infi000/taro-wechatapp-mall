@@ -1,6 +1,6 @@
 import delay from '@/utils/delay';
 import { goods, goodsSelected, Home, HomeSelected } from '@/static/images';
-import { ROUTER_NAME_MAP } from '@/constants';
+import { ROUTER_NAME_MAP } from '@/constants/index';
 
 export default {
   namespace: 'tabbar',
