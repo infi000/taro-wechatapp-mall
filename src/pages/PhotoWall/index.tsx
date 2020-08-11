@@ -1,58 +1,47 @@
-import Taro, { useState } from '@tarojs/taro';
+import Taro, { useState, useEffect } from '@tarojs/taro';
 import { View, Checkbox, Block, Image, MovableArea, MovableView, Swiper, SwiperItem } from '@tarojs/components';
+import { useSelector, useDispatch } from '@tarojs/redux';
+
+import GoodsBox from './modules/GoodsBox';
+import GoodsImg from './modules/GoodsImg';
 import './index.scss';
+import { isArray } from 'lodash';
 
 const PhotoWall = () => {
-  const [current, setCurrent] = useState(0);
-  const handleNext = () => {
-    setCurrent((num) => {
-      num = num + 1;
-      return num < 3 ? num : 0;
-    });
-  };
-  return (
-  <View className='photo-swiper-wrap'>
-      {current === 0 && (
-        <MovableArea style='height: 100vh; width: 1300px; background: url(https://www.tangguostore.com/Uploads/Picture/2020-07-27/5f1e7ee45c41c.jpg);background-size: cover;background-position: center;background-repeat: no-repeat;'>
-          <MovableView direction='all'>
-            <Image
-              src='https://www.tangguostore.com/Uploads/Picture/2020-07-26/5f1d979f118d0.jpg'
-              mode='heightFix'
-              style='height:150px;box-shadow:1px 1px 1px #000'
-            ></Image>
-          </MovableView>
-        </MovableArea>
-      )}
-      {current === 1 && (
-        <MovableArea style='height: 100vh; width:1300px; background: url(../../static/images/pic2.png);background-size: cover;background-position: center;background-repeat: no-repeat;'>
-          <MovableView direction='all'>
-            <Image
-              src='https://www.tangguostore.com/Uploads/Picture/2020-07-27/5f1e7ee45c41c.jpg'
-              mode='heightFix'
-              style='height:150px;box-shadow:1px 1px 1px #000'
-            ></Image>
-          </MovableView>
-        </MovableArea>
-      )}
-      {current === 2 && (
-        <MovableArea style='height: 100vh; width: 1300px; background: url(../../static/images/pic3.png);background-size: cover;background-position: center;background-repeat: no-repeat;'>
-          <MovableView direction='all'>
-            <Image
-              src='https://www.tangguostore.com/Uploads/Picture/2020-07-27/5f1ee938add10.png'
-              mode='heightFix'
-              style='height:150px;box-shadow:1px 1px 1px #000'
-            ></Image>
-          </MovableView>
-        </MovableArea>
-      )}
+    const [current, setCurrent] = useState(0);
+    const [currentBg, setCurrentBg] = useState({});
+    const [currentGoods, setCurrentGoods] = useState(0);
+  const {formatList } = useSelector((state) => state.photoWall);
+  const dispatch = useDispatch();
+  useEffect(() => {
 
-      <View className='btn-group'>
-        <View className='btn' onClick={handleNext}>
-          下一张
-        </View>
-      </View>
+    dispatch({ type: 'photoWall/getInit' });
+  }, []);
+//   useEffect(() =>{
+//     setCurrentBg(formatList[current])
+//   },[current])
+console.log(formatList);
+  return (
+    <View className='photo-wrap'>
+      <Swiper className='photo-swiper-wrap' indicatorColor='#999' indicatorActiveColor='#333' vertical circular >
+        {isArray(formatList) &&
+          formatList.length > 0 &&
+          formatList.map((item,index) => {
+            const { bgPath } = item;
+            return (
+              <SwiperItem key={index}>
+                <View className='image-wrap' style={'background: url(' + bgPath + ');  background-size: auto 100%;background-position: 0 0;background-repeat: no-repeat;'}>
+                <GoodsBox info={item} />
+                <GoodsImg info={item} /> 
+                </View>
+              </SwiperItem>
+            );
+          })}
+      </Swiper>
     </View>
   );
 };
 
 export default PhotoWall;
+       {/* <GoodsBox current={item} />
+                    <GoodsImg current={item} /> */}

@@ -1,8 +1,10 @@
 import Taro from '@tarojs/taro';
-import { AtButton, AtInput } from 'taro-ui';
+import { AtButton, AtInput, AtNavBar } from 'taro-ui';
 import { View, Block, Image } from '@tarojs/components';
 import { useSelector, useDispatch } from '@tarojs/redux';
 import { postAdddetail } from '../services';
+import Uploader from '../../../components/Uploader';
+
 import '../index.scss';
 
 const { useState } = Taro;
@@ -28,6 +30,7 @@ const GoodsAdd = () => {
   };
   return (
     <Block>
+       <AtNavBar onClickLeftIcon={handleCancel} color='#000' title='添加信息' leftText='返回' border />
       <View className='myvip-wrap'>
         <AtInput
           className='goods-input'
@@ -53,6 +56,10 @@ const GoodsAdd = () => {
           value={data.cstatus}
           onChange={(e) => handleUpdateForm({ cstatus: e })}
         />
+         <View>
+          图片
+          <Uploader length={3} uploadSucc={(e) => handleUpdateForm({pics:e})} />
+        </View>
         <View className='edit-btn-wrap'>
           <View className='btn-submit'>
             <AtButton type='primary' size='small' onClick={handleSubmit}>

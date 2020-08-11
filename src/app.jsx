@@ -50,8 +50,6 @@ class App extends Component {
    
       'pages/Main/index',
       'pages/PhotoWall/index',
-
-
       'pages/MyVip/index',
  
       'pages/GoodsShow/index',

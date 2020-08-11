@@ -1,9 +1,9 @@
 import Taro, { useState } from '@tarojs/taro';
-import { AtButton, AtInput } from 'taro-ui';
+import { AtButton, AtInput, AtNavBar } from 'taro-ui';
 import { View, Block, Image } from '@tarojs/components';
 import { useSelector, useDispatch } from '@tarojs/redux';
 import { postChangecc } from '../services';
-import { ccUpload } from '@/config/api';
+import Uploader from '../../../components/Uploader';
 
 import '../index.scss';
 
@@ -12,7 +12,11 @@ const defaultForm: { [key: string]: any } = {};
 const GoodsChange = () => {
   const { pageInfo } = useSelector((state) => state.myvip);
   const dispatch = useDispatch();
-  const [form, setForm] = useState(defaultForm);
+  const [form, setForm]:[any, any] = useState(()=>{
+    const { data } = pageInfo;
+    const {gid} = data;
+    return {gid}
+  });
   const { data } = pageInfo || {};
   const handleUpdateForm = (opt: any) => {
     setForm((params) => {
@@ -25,27 +29,16 @@ const GoodsChange = () => {
       handleCancel();
     });
   };
-  const handleUpload = () => {
-    Taro.chooseImage({
-      success (res) {
-        const tempFilePaths = res.tempFilePaths
-        Taro.uploadFile({
-          url: 'https://www.tangguostore.com/index.php/MiniApi/CC/upload', //仅为示例，非真实的接口地址
-          filePath: tempFilePaths[0],
-          name: 'file',
-          success (res){
-            const data = res.data
-            //do something
-          }
-        })
-      }
-    })
-  }
+
   const handleCancel = () => {
     dispatch({ type: 'myvip/updatePageInfo', payload: { type: 'goods', data: data } });
   };
+  const handleUpload = (opt) =>{
+
+  }
   return (
     <Block>
+      <AtNavBar onClickLeftIcon={handleCancel} color='#000' title='变更归属' leftText='返回'  border />
       <View className='myvip-wrap'>
         <AtInput
           className='goods-input'
@@ -62,7 +55,7 @@ const GoodsChange = () => {
           name='bphone'
           title='购买者手机号'
           type='phone'
-          value={data.bphone}
+          value={form.bphone}
           onChange={(e) => handleUpdateForm({ bphone: e })}
         />
         <AtInput
@@ -70,7 +63,7 @@ const GoodsChange = () => {
           required
           name='buid'
           title='购买者id'
-          value={data.buid}
+          value={form.buid}
           onChange={(e) => handleUpdateForm({ buid: e })}
         />
         <AtInput
@@ -78,9 +71,30 @@ const GoodsChange = () => {
           required
           name='price'
           title='交易价格'
-          value={data.price}
+          value={form.price}
           onChange={(e) => handleUpdateForm({ price: e })}
         />
+        <AtInput
+          className='goods-input'
+          required
+          name='address'
+          title='地址'
+          value={form.address}
+          onChange={(e) => handleUpdateForm({ address: e })}
+        />
+        <View>
+          发票图片
+          <Uploader length={1} uploadSucc={(e) => handleUpdateForm({billid:e})} />
+        </View>
+        <View>
+          转账图片
+          <Uploader  length={1} uploadSucc={(e) => handleUpdateForm({payid:e})}/>
+        </View>
+        <View>
+          其它图片
+          <Uploader length={5} uploadSucc={(e) => handleUpdateForm({opics:e})} />
+        </View>
+
 
         <View className='edit-btn-wrap'>
           <View className='btn-submit'>

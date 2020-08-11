@@ -24,6 +24,11 @@ export const getBuysRecord = (payload: { gid: string; offset: number; count: num
 export const getIsfav = (payload: { gid: string }) => request.get(Api.isfav, payload);
 export const getFav = (payload: { gid: string }) => request.get(Api.fav, payload);
 export const getUnfav = (payload: { gids: string }) => request.get(Api.unfav, payload);
+export const createOrder = (payload: { gids: string }) => request.post(Api.createOrder, payload);
+
+
+// export const payQuery = (payload: { gids: string }) => request.get(Api.payQuery, payload);
+export const payex = (payload: { gids: string }) => request.post(Api.payex, payload);
 
 
 

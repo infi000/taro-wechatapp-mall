@@ -11,12 +11,13 @@ import '../index.scss';
 import { isArray, slice } from 'lodash';
 
 const { useState } = Taro;
-const tabList = [{ title: '留言信息' }, { title: '求购信息' }];
+// const tabList = [{ title: '留言信息' }, { title: '求购信息' }];
+const tabList = [{ title: '求购信息' }];
 
 const Price = () => {
   const { pageInfo, commentInfo, BuyInfo, pricehistory, buyhistory } = useSelector((state) => state.myvip);
   const dispatch = useDispatch();
-  const [tabCurrent, setTabCurrent] = useState(0);
+  const [tabCurrent, setTabCurrent] = useState(1);
   const [inputModal, setInputModal] = useState(false);
   const [inputBuyModal, setInputBuyModal] = useState(false);
   const [priceModal, setPriceModal] = useState(false);

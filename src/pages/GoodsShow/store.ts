@@ -1,6 +1,6 @@
 import delay from '@/utils/delay';
 import { isArray, toNumber, cloneDeep } from 'lodash';
-import { getDetail, getRelatedGoods, getBuysRecord, getIsfav, getFav, getUnfav } from './services';
+import { getDetail, getRelatedGoods, getBuysRecord, getIsfav, getFav, getUnfav, payQuery, payex,createOrder } from './services';
 
 const PAGE_LEN = 50;
 
@@ -96,5 +96,25 @@ export default {
       yield call(getUnfav, { gids:gid });
       yield put({ type: 'getIsfav' });
     },
+    *createOrder({}, { all, call, put, select }) {
+      const { gid,detail } = yield select((state) => state.goodsShow);
+      const { size, price } =detail;
+      const { orderid } = yield call(createOrder, { "id[]":gid,'sort[]':`1`,'sel[]':`1`,'parameters[]':`size`,'price[]':`0.01` });
+      yield call(payex, { tag:orderid,orderfrom:1, addressid:11,paytype:'miniwxpay'});
+    },
+    // *payQuery({}, { all, call, put, select }) {
+    //   const { gid } = yield select((state) => state.goodsShow);
+    //   yield call(payQuery, { gids:gid });
+    //   yield put({ type: 'getIsfav' });
+    // },
+    *payex({}, { all, call, put, select }) {
+      const { gid } = yield select((state) => state.goodsShow);
+      yield call(payex, { gids:gid });
+      yield put({ type: 'getIsfav' });
+    },
   },
 };
+
+// order: "J8126730434670760780"
+// paytype: "miniwxpay"
+// return: "https://www.tangguostore.com/index.php/MiniApi/Public/miniwxpaynotify/rmethod/return.html"

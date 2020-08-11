@@ -1,5 +1,5 @@
 import Taro, { useEffect } from '@tarojs/taro';
-import { AtButton, AtCard, AtTabs, AtTabsPane } from 'taro-ui';
+import { AtButton, AtCard, AtTabs, AtTabsPane, AtNavBar } from 'taro-ui';
 import { View, Block, Image, Swiper, SwiperItem, ScrollView } from '@tarojs/components';
 import { useSelector, useDispatch } from '@tarojs/redux';
 // import Chuan from '../components/Chuan';

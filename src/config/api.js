@@ -32,4 +32,9 @@ export default {
   postAddbuymsg:  WxApiRoot + '/CC/addbuymsg', //		8.	添加求购信息
   getSearchcc:  WxApiRoot + '/CC/searchcc', //		10.	商品传承信息接口
   ccUpload:  WxApiRoot + '/CC/upload', //		10.	商品传承信息接口
+  searchDynamic:  WxApiRoot + '/DynamicShow/search', //	24.	展示墙产品搜索
+  getBgs:  WxApiRoot + '/DynamicShow/getbgs', //	25.	展示墙背景
+  payQuery:  WxApiRoot + '/Pay/query', //	23.	查询支付状态
+  payex:  WxApiRoot + '/Pay/payex', //	22.	预支付付款
+  createOrder:  WxApiRoot + '/User/createorder', //	21.	添加订单
 };

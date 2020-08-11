@@ -27,7 +27,6 @@ const Others = () => {
                 handleClickItem(url);
               }}
             >
-              {'>'}
             </View>
           </View>
         );

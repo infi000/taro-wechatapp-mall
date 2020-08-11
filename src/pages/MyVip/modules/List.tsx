@@ -1,4 +1,5 @@
 import Taro, { useEffect, useMemo } from '@tarojs/taro';
+import { AtNavBar } from 'taro-ui';
 import { View, Block, Image } from '@tarojs/components';
 import { AtDivider } from 'taro-ui';
 import { useSelector, useDispatch } from '@tarojs/redux';

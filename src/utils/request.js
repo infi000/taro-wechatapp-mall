@@ -21,7 +21,12 @@ function request(url, data = {}, method = 'GET') {
     header = {
       "Content-Type": "application/x-www-form-urlencoded"
     }
-  } else {
+  } else if (method === 'POST') {
+    data = { openid, ...data };
+    header = {
+      "Content-Type": "application/x-www-form-urlencoded"
+    }
+  }else {
     data = { openid, ...data };
   }
   return new Promise(function(resolve, reject) {
@@ -76,6 +81,60 @@ request.post = (url, data) => {
 
 request.form = (url, data) => {
   return request(url, data, 'FORM');
+};
+
+request.formData = (url, data) => {
+  let openid = '';
+  try {
+    var value = Taro.getStorageSync('wxUserInfo');
+    if (value) {
+      openid = value.openid;
+    }
+  } catch (e) {}
+
+  return new Promise(function(resolve, reject) {
+    Taro.uploadFile({
+      url:url,
+      filePath:[],
+      name: 'file',
+      formData: {
+        'openid': openid,
+        ...data
+      },
+      success: function(res) {
+        if (res.statusCode == 200) {
+          if (res.data.errno == 501) {
+            // 清除登录相关内容
+            try {
+              // Taro.removeStorageSync('userInfo');
+              // Taro.removeStorageSync('token');
+            } catch (e) {
+              // Do something when catch error
+            }
+            // 切换到登录页面
+            // Taro.navigateTo({
+            //   url: '/pages/auth/login/login'
+            // });
+          } else if (res.data.res == 'succ') {
+            resolve(res.data.data);
+          } else {
+            // Taro.showModal({
+            //   title: '错误信息',
+            //   content: res.data.errmsg,
+            //   showCancel: false
+            // });
+            showErrorToast(res.data.errdata);
+            reject(res.data.errdata);
+          }
+        } else {
+          reject(res.errdata);
+        }
+      },
+      fail: function(err) {
+        reject(err);
+      },
+    });
+  });
 };
 
 export default request;

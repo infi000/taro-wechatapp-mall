@@ -33,6 +33,9 @@ const GoodsDetail = (props: IProps) => {
   const handleGetFav = () => {
     dispatch({ type: 'goodsShow/getFav'});
   }
+  const handleSaveBuy = () => {
+    dispatch({ type: 'goodsShow/createOrder'});
+  }
 
   useEffect(() => {
     // dispatch({ type: 'goodsShow/updateGid', payload: gid });
@@ -122,7 +125,7 @@ const GoodsDetail = (props: IProps) => {
           <View className='sale-btn'>出售</View>
         </View>
         <View className='at-col at-col-4'>
-          <View className='buy-btn'>购买</View>
+          <View className='buy-btn' onClick={handleSaveBuy}>购买</View>
         </View>
       </View>
     </View>
