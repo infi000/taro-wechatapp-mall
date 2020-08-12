@@ -5,12 +5,19 @@ import {ImgError} from '../static/images/index';
 export function showErrorToast(msg) {
   Taro.showToast({
     title: msg,
-    image:ImgError
+    icon: 'none',
+  })
+}
+export function showSuccessToast(msg) {
+  Taro.showToast({
+    title: msg,
+    icon: 'success',
   })
 }
 export function showToast(msg) {
   Taro.showToast({
     title: msg,
+    icon: 'none',
   })
 }
 

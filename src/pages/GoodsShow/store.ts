@@ -2,7 +2,7 @@ import delay from '@/utils/delay';
 import { isArray, toNumber, cloneDeep } from 'lodash';
 import { getDetail, getRelatedGoods, getBuysRecord, getIsfav, getFav, getUnfav, payQuery, payex,createOrder, getMyAddress } from './services';
 import Taro from '@tarojs/taro';
-import { showToast } from '@/utils/util';
+import { showToast, showSuccessToast } from '@/utils/util';
 const PAGE_LEN = 50;
 
 interface IState {
@@ -102,6 +102,10 @@ export default {
       const { size, price } =detail;
       const {addresses} = yield call(getMyAddress);
       const { orderid } = yield call(createOrder, { "id[]":gid,'sort[]':`1`,'sel[]':`1`,'parameters[]':`${size}`,'price[]':`0.01`,'num[]':'1' });
+      if(addresses){
+        showToast("没有默认收货地址");
+        return 
+      }
       const defalutAddress = addresses.find(item => item.status == 1);
       const { arraydata } = yield call(payex, { tag:orderid,orderfrom:1, addressid:defalutAddress.id,paytype:'miniwxpay'});
       // appId: "wx772ff4b63e617a3a"
@@ -122,7 +126,7 @@ export default {
         signType,
         paySign,
         success: function (res) { 
-          showToast("购买成功")
+          showSuccessToast("购买成功")
         },
         fail: function (res) {
           showToast("购买失败");
