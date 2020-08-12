@@ -1,7 +1,8 @@
 import delay from '@/utils/delay';
 import { isArray, toNumber, cloneDeep } from 'lodash';
-import { getDetail, getRelatedGoods, getBuysRecord, getIsfav, getFav, getUnfav, payQuery, payex,createOrder } from './services';
-
+import { getDetail, getRelatedGoods, getBuysRecord, getIsfav, getFav, getUnfav, payQuery, payex,createOrder, getMyAddress } from './services';
+import Taro from '@tarojs/taro';
+import { showToast } from '@/utils/util';
 const PAGE_LEN = 50;
 
 interface IState {
@@ -99,8 +100,35 @@ export default {
     *createOrder({}, { all, call, put, select }) {
       const { gid,detail } = yield select((state) => state.goodsShow);
       const { size, price } =detail;
-      const { orderid } = yield call(createOrder, { "id[]":gid,'sort[]':`1`,'sel[]':`1`,'parameters[]':`size`,'price[]':`0.01` });
-      yield call(payex, { tag:orderid,orderfrom:1, addressid:11,paytype:'miniwxpay'});
+      const {addresses} = yield call(getMyAddress);
+      const { orderid } = yield call(createOrder, { "id[]":gid,'sort[]':`1`,'sel[]':`1`,'parameters[]':`${size}`,'price[]':`0.01`,'num[]':'1' });
+      const defalutAddress = addresses.find(item => item.status == 1);
+      const { arraydata } = yield call(payex, { tag:orderid,orderfrom:1, addressid:defalutAddress.id,paytype:'miniwxpay'});
+      // appId: "wx772ff4b63e617a3a"
+      // nonceStr: "fmfzyk0tpjl7phshmcp09scbses2xul0"
+      // order: "J8135087831860352251"
+      // package: "prepay_id=wx13004758566883ed0ea8bcbea7a3600000"
+      // paySign: "1AE51EE62371D5BD7D317F095F9CE8AB2FB507A7FC843000C471229229451D61"
+      // paytype: "miniwxpay"
+      // return: "https://www.tangguostore.com/index.php/MiniApi/Public/miniwxpaynotify/rmethod/return.html"
+      // signType: "HMAC-SHA256"
+      // timeStamp: 1597250878
+      const { nonceStr,timeStamp, signType,paySign } = arraydata;
+      const pak = arraydata.package;
+      Taro.requestPayment({
+        timeStamp: timeStamp+"",
+        nonceStr: nonceStr,
+        package: pak,
+        signType,
+        paySign,
+        success: function (res) { 
+          showToast("购买成功")
+        },
+        fail: function (res) {
+          showToast("购买失败");
+          console.log(res)
+         }
+      })
     },
     // *payQuery({}, { all, call, put, select }) {
     //   const { gid } = yield select((state) => state.goodsShow);

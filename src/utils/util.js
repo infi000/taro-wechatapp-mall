@@ -5,9 +5,15 @@ import {ImgError} from '../static/images/index';
 export function showErrorToast(msg) {
   Taro.showToast({
     title: msg,
-    image: '../static/images/icon_error.png'
+    image:ImgError
   })
 }
+export function showToast(msg) {
+  Taro.showToast({
+    title: msg,
+  })
+}
+
 
 export function redirect(url) {
 

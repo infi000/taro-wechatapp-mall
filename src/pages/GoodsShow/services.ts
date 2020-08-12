@@ -30,6 +30,7 @@ export const createOrder = (payload: { gids: string }) => request.post(Api.creat
 // export const payQuery = (payload: { gids: string }) => request.get(Api.payQuery, payload);
 export const payex = (payload: { gids: string }) => request.post(Api.payex, payload);
 
+export const getMyAddress = (payload) => request.get(Api.myAddress, payload);
 
 
 export default {};
