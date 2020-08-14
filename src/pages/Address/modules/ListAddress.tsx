@@ -9,8 +9,7 @@ import '../index.scss';
 const { useEffect, useState } = Taro;
 const ListAddress = () => {
   const { address } = useSelector((state) => state.address);
-  console.log("address", address);
-  const [alertModal, setAlertOpen] = useState({show:false,data:{}});
+  const [alertModal, setAlertOpen]:[any,any] = useState({show:false,data:{}});
   const dispatch = useDispatch();
   /**
    * 添加新地址
@@ -34,7 +33,7 @@ const ListAddress = () => {
    * 删除
    */
   const handleDelAddress = (item) => {
-    const { id } = item;
+      const { id } = alertModal.data || {};
     dispatch({ type: 'address/delMyAddress', params: { id } });
     setAlertOpen({show:false, data:{}})
   };
@@ -42,6 +41,8 @@ const ListAddress = () => {
    * 设为默认地址
    */
   const handleSetDefaultAddr = (item) => {
+    console.log(item);
+
     const { id } = item;
     dispatch({ type: 'address/setDefaultMyAddress', params: { id } });
   };

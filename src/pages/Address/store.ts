@@ -51,10 +51,16 @@ export default {
     },
     *setDefaultMyAddress({params}, { all, call, put }) {
       const { id } = params;
-      yield call(setDefaultMyAddress,{id});
-      yield put({ type: 'getAddress'});
+      try {
+        yield call(setDefaultMyAddress,{id,status:1});
+        yield put({ type: 'getAddress'});
+      } catch (error) {
+        console.log(error);
+      }
+    
     },
     *delMyAddress({params}, { all, call, put }) {
+      console.log(params);
       const { id } = params;
       yield call(delMyAddress,{id});
       yield put({ type: 'getAddress'});

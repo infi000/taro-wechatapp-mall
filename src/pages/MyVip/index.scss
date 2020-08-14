@@ -120,7 +120,7 @@ $border-style: 2px solid #dbdada;
 }
 .buys-wrap{
     position: fixed;
-    top: 0;
+    top: 30px;
     bottom: 0;
     left: 0;
     right: 0;
@@ -180,8 +180,7 @@ $border-style: 2px solid #dbdada;
     }
   }
 
-
-  .goodsshow-con {
+   .goodsshow-con {
     @include con;
     margin-bottom: 10px;
   }

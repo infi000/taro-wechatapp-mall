@@ -1,5 +1,5 @@
 import { getMyowns, goodsDetail, getPricehistory, getBuyhistory,getSearchmsg, getSearchbuymsg,postAddmsg , postAddbuymsg,getSearchcc} from './services';
-const COUNT = 10;
+const COUNT = 50;
 interface IState {
   //   modal: IModal;
   ccowns: {
@@ -81,6 +81,7 @@ export default {
     *getGoodsDetail(_, { all, call, put, select }) {
       const { pageInfo } = yield select((state) => state.myvip);
       const res = yield call(goodsDetail, { gid: pageInfo.data.gid });
+      // const res = yield call(ccDetail, { ccid: pageInfo.data.id });
       yield put({ type: 'updateGoodsDetail', payload: res });
     },
     *getPricehistory(_, { all, call, put, select }) {

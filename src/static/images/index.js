@@ -61,3 +61,11 @@ export { default as pic3} from './pic3.png';
 
 
 
+
+
+
+export { default as liwu} from './liwu.png';
+export {default as liwu_s} from './liwu_s.png';
+
+export { default as wode} from './wode.png';
+export {default as wode_s} from './wode_s.png';

@@ -19,13 +19,15 @@ const Others = () => {
       {LIST_URL_MAP.map((item) => {
         const { name, url } = item;
         return (
-          <View className='at-row me-others-con' key={name}>
+          <View className='at-row me-others-con' key={name}   onClick={() => {
+            handleClickItem(url);
+          }}>
             <View className='at-col-6 textL'>{name}</View>
             <View
               className='at-col-6 textR'
-              onClick={() => {
-                handleClickItem(url);
-              }}
+              // onClick={() => {
+              //   handleClickItem(url);
+              // }}
             >
             </View>
           </View>

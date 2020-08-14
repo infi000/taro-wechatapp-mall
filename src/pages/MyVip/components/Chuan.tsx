@@ -17,7 +17,7 @@ const Chuan = () => {
       {CCInfo.total > 0 &&
         CCInfo.list.map((item) => {
           return (
-            <View className='cc-box'key={item.id} >
+            <View className='cc-box' key={item.id}>
               <View className='at-row cc-line'>
                 <View className='at-col cc-tag'>时间</View>
                 <View className='at-col at-col-1 at-col--auto cc-desc'>{item.ctime || '未知'}</View>
@@ -42,6 +42,18 @@ const Chuan = () => {
                 <View className='at-col cc-tag'>购买价格</View>
                 <View className='at-col at-col-1 at-col--auto cc-desc'>{item.price || '未知'}</View>
               </View>
+              <View className='at-row cc-line'>
+                <View className='at-col cc-tag'>转账图片 </View>
+                <Image  mode='widthFix' lazyLoad style='width: 100%;height: 100%;float:left' src={item.paypic} />
+              </View>
+              <View className='at-row cc-line'>
+                <View className='at-col cc-tag'>发票图片 </View>
+                <Image  mode='widthFix' lazyLoad style='width: 100%;height: 100%;float:left' src={item.billpic} />
+              </View>
+              {/* <View className='at-row cc-line'>
+                <View className='at-col cc-tag'>其它 </View>
+                <Image  mode='widthFix' lazyLoad style='width: 100%;height: 100%;float:left' src={item.billpic} />
+              </View> */}
             </View>
           );
         })}

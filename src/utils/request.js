@@ -65,7 +65,8 @@ function request(url, data = {}, method = 'GET') {
         }
       },
       fail: function(err) {
-        reject(err);
+        console.log(err)
+        // reject(err);
       },
     });
   });

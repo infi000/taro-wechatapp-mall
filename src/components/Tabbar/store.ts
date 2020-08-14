@@ -1,5 +1,5 @@
 import delay from '@/utils/delay';
-import { goods, goodsSelected, Home, HomeSelected } from '@/static/images';
+import { liwu, liwu_s, wode, wode_s } from '@/static/images';
 import { ROUTER_NAME_MAP } from '@/constants/index';
 
 export default {
@@ -9,14 +9,14 @@ export default {
       {
         title: '好物',
         type: ROUTER_NAME_MAP.goodGoods,
-        image: goods,
-        selectedImage: goodsSelected,
+        image: liwu,
+        selectedImage: liwu_s,
       },
       {
         title: '我的',
         type: ROUTER_NAME_MAP.me,
-        image: Home,
-        selectedImage: HomeSelected,
+        image: wode,
+        selectedImage: wode_s,
       },
     ],
     currentNavIndex: 0,

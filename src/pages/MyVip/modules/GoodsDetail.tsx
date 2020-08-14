@@ -44,6 +44,27 @@ const GoodsDetail = () => {
             );
           })}
       </Swiper>
+     
+      {/* 商品属性 */}
+      <View className='goodsshow-con' style={{ paddingBottom: 0 }}>
+        <View className='at-row at-row__justify--between goods-attr-con'>
+          <View className='at-col at-col-5 goods-attr'>品牌</View>
+          <View className='at-col at-col-5  goods-attr-desc'>{goodsDetail.brand}</View>
+        </View>
+        <View className='at-row at-row__justify--between goods-attr-con'>
+          <View className='at-col at-col-5 goods-attr'>尺寸</View>
+          <View className='at-col at-col-5  goods-attr-desc'>{goodsDetail.size}</View>
+        </View>
+      </View>
+     {/* 购买须知 */}
+     <View className='goodsshow-con goods-warning-con'>
+        <View className='at-col at-col-5 goods-warning-title'>购买须知</View>
+        {goodsDetail.detailimgs &&
+          goodsDetail.detailimgs.map((item) => {
+            const { clothcolor, id, fpath } = item;
+            return <Image key={id} mode='widthFix' lazyLoad style='width: 100%;height: 100%;float:left' src={fpath} />;
+          })}
+      </View>
       <View style="height:48px">
       <AtTabs current={tabCurrent} tabList={tabList} onClick={setTabCurrent}></AtTabs>
       </View>

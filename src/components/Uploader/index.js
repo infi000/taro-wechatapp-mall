@@ -20,7 +20,7 @@ export default class Index extends Taro.Component {
     const uploadTask = Taro.uploadFile({
       url: api.ccUpload,
       filePath: files[0].url,
-      name: 'file',
+      name: 'upimg',
       formData: {
         'openid': openid,
       },

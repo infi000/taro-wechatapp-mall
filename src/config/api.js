@@ -16,7 +16,7 @@ export default {
   userFavorite: WxApiRoot + '/User/favorite', // 12.	我的收藏	
   myAddress: WxApiRoot + '/User/address', // 13.	我的地址
   saveAddress: WxApiRoot + '/User/saveAddress', // 14.	添加新地址
-  setDefaultAddress: WxApiRoot + '/User/defulatAddress', // 设置默认地址
+  setDefaultAddress: WxApiRoot + '/User/saveAddress', // 设置默认地址
   delAddress: WxApiRoot + '/User/delAddress', // 删除地址
   delOrder: WxApiRoot + '/Order/del', // 16.	删除订单
   getJscode2session:  WxApiRoot + '/User/jscode2session', //	19.	小程序登录更新session
@@ -32,6 +32,7 @@ export default {
   postAddbuymsg:  WxApiRoot + '/CC/addbuymsg', //		8.	添加求购信息
   getSearchcc:  WxApiRoot + '/CC/searchcc', //		10.	商品传承信息接口
   ccUpload:  WxApiRoot + '/CC/upload', //		10.	商品传承信息接口
+  getCCdetial:  WxApiRoot + '/CC/ccdetail', //		11.	商品传承信息详情接口
   searchDynamic:  WxApiRoot + '/DynamicShow/search', //	24.	展示墙产品搜索
   getBgs:  WxApiRoot + '/DynamicShow/getbgs', //	25.	展示墙背景
   payQuery:  WxApiRoot + '/Pay/query', //	23.	查询支付状态

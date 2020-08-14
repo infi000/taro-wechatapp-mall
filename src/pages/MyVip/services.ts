@@ -9,6 +9,8 @@ export const postAddmsg = (payload) => request.get(Api.postAddmsg, payload);
 export const postAddbuymsg = (payload) => request.get(Api.postAddbuymsg, payload);
 export const postAdddetail = (payload) => request.get(Api.postAdddetail, payload);
 export const goodsDetail = (payload) => request.get(Api.goodsDetail, payload);
+export const ccDetail = (payload) => request.get(Api.getCCdetial, payload);
+
 
 export const getPricehistory = (payload) => request.get(Api.getPricehistory, payload);
 export const getBuyhistory = (payload) => request.get(Api.getBuyhistory, payload);
