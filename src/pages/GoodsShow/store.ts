@@ -102,7 +102,7 @@ export default {
       const { size, price } =detail;
       const {addresses} = yield call(getMyAddress);
       const { orderid } = yield call(createOrder, { "id[]":gid,'sort[]':`1`,'sel[]':`1`,'parameters[]':`${size}`,'price[]':`0.01`,'num[]':'1' });
-      if(addresses){
+      if(!addresses){
         showToast("没有默认收货地址");
         return 
       }
