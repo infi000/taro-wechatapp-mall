@@ -14,8 +14,8 @@ const GoodsChange = () => {
   const dispatch = useDispatch();
   const [form, setForm]:[any, any] = useState(()=>{
     const { data } = pageInfo;
-    const {gid} = data;
-    return {gid}
+    const {gid,cid} = data;
+    return {gid,cid}
   });
   const { data } = pageInfo || {};
   const handleUpdateForm = (opt: any) => {
@@ -24,7 +24,6 @@ const GoodsChange = () => {
     });
   };
   const handleSubmit = () => {
-    console.log(form);
     postChangecc({ ...form }).then((d) => {
       handleCancel();
     });
@@ -42,7 +41,7 @@ const GoodsChange = () => {
       <View className='myvip-wrap'>
         <AtInput
           className='goods-input'
-          required
+          
           name='phone'
           title='持有者手机号'
           type='phone'
@@ -60,7 +59,6 @@ const GoodsChange = () => {
         />
         <AtInput
           className='goods-input'
-          required
           name='buid'
           title='购买者id'
           value={form.buid}

@@ -48,7 +48,9 @@ class App extends Component {
   config = {
     pages: [
    
+      // 'pages/Subscribe/index',
       'pages/Main/index',
+      'pages/Kefu/index',
       'pages/PhotoWall/index',
       'pages/MyVip/index',
  

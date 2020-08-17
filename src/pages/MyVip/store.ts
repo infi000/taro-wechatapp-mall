@@ -1,4 +1,4 @@
-import { getMyowns, goodsDetail, getPricehistory, getBuyhistory,getSearchmsg, getSearchbuymsg,postAddmsg , postAddbuymsg,getSearchcc} from './services';
+import { getMyowns, goodsDetail, getPricehistory, getBuyhistory,getSearchmsg, getSearchbuymsg,postAddmsg , postAddbuymsg,getSearchcc, ccDetail} from './services';
 const COUNT = 50;
 interface IState {
   //   modal: IModal;
@@ -84,6 +84,11 @@ export default {
       // const res = yield call(ccDetail, { ccid: pageInfo.data.id });
       yield put({ type: 'updateGoodsDetail', payload: res });
     },
+    *getCCdetial(_, { all, call, put, select }) {
+      const { pageInfo } = yield select((state) => state.myvip);
+      const res = yield call(ccDetail, { ccid: pageInfo.data.id });
+      yield put({ type: 'updateGoodsDetail', payload: res });
+    },
     *getPricehistory(_, { all, call, put, select }) {
       const { pageInfo } = yield select((state) => state.myvip);
       const res = yield call(getPricehistory, { gid: pageInfo.data.gid, offset: 0, count: COUNT });
@@ -91,27 +96,27 @@ export default {
     },
     *getBuyhistory(_, { all, call, put, select }) {
       const { pageInfo } = yield select((state) => state.myvip);
-      const res = yield call(getBuyhistory, { gid: pageInfo.data.gid, offset: 0, count: COUNT });
+      const res = yield call(getBuyhistory, { cid: pageInfo.data.cid, offset: 0, count: COUNT });
       yield put({ type: 'updateBuyhistory', payload: res });
     },
     *getSearchmsg(_, { all, call, put, select }) {
       const { pageInfo } = yield select((state) => state.myvip);
-      const res = yield call(getSearchmsg, { gid: pageInfo.data.gid, offset: 0, count: COUNT });
+      const res = yield call(getSearchmsg, { cid: pageInfo.data.cid, offset: 0, count: COUNT });
       yield put({ type: 'updateCommentInfo', payload: res });
     },
     *getSearchbuymsg(_, { all, call, put, select }) {
       const { pageInfo } = yield select((state) => state.myvip);
-      const res = yield call(getSearchbuymsg, { gid: pageInfo.data.gid, offset: 0, count: COUNT });
+      const res = yield call(getSearchbuymsg, { cid: pageInfo.data.cid, offset: 0, count: COUNT });
       yield put({ type: 'updateBuyInfo', payload: res });
     },
     *getSearchcc(_, { all, call, put, select }) {
       const { pageInfo } = yield select((state) => state.myvip);
-      const res = yield call(getSearchcc, { gid: pageInfo.data.gid, offset: 0, count: COUNT });
+      const res = yield call(getSearchcc, { cid: pageInfo.data.cid, offset: 0, count: COUNT });
       yield put({ type: 'updateCCInfo', payload: res });
     },
     *postAddmsg({params}, { all, call, put, select }) {
       const { pageInfo } = yield select((state) => state.myvip);
-      yield call(postAddmsg, { ...params, gid: pageInfo.data.gid });
+      yield call(postAddmsg, { ...params, cid: pageInfo.data.cid });
       yield put({ type: 'getSearchmsg'});
     },
     *postAddbuymsg({params}, { all, call, put, select }) {

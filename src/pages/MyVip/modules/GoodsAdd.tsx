@@ -4,6 +4,7 @@ import { View, Block, Image } from '@tarojs/components';
 import { useSelector, useDispatch } from '@tarojs/redux';
 import { postAdddetail } from '../services';
 import Uploader from '../../../components/Uploader';
+import { showSuccessToast } from '@/utils/util';
 
 import '../index.scss';
 
@@ -20,8 +21,10 @@ const GoodsAdd = () => {
     });
   };
   const handleSubmit = () => {
-    console.log(form);
-    postAdddetail({ ...form }).then((d) => {
+    const {data} = pageInfo || {};
+    const {cid} = data || {};
+    postAdddetail({ ...form,ccid: cid }).then((d) => {
+      showSuccessToast("提交成功")
       handleCancel();
     });
   };
@@ -32,14 +35,15 @@ const GoodsAdd = () => {
     <Block>
        <AtNavBar onClickLeftIcon={handleCancel} color='#000' title='添加信息' leftText='返回' border />
       <View className='myvip-wrap'>
-        <AtInput
+        {/* <AtInput
           className='goods-input'
+          // style="display:none"
           required
           name='ccid'
-          title='持有者手机号'
+          title='传承信息id'
           value={form.ccid}
           onChange={(e) => handleUpdateForm({ ccid: e })}
-        />
+        /> */}
         <AtInput
           className='goods-input'
           required
