@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro';
 import { View, Button } from '@tarojs/components';
 import { showSuccessToast } from '@/utils/util';
+import { subMsg } from '../services';
 import '../index.scss';
 
 const LIST_URL_MAP = [
@@ -11,16 +12,25 @@ const LIST_URL_MAP = [
   { name: '客服', url: '/pages/Kefu/index' },
 ];
 
+const tmplIds = ['vqWshHTalxdFaNqhdSWJ8Mkb7HsysV39m1h9Yk-94hY','05mTNKODj3164t8tEgu60oLUyqddSUHtjAOS6i1S0Zs'];
 const Others = () => {
   const handleClickItem = (url) => {
     Taro.navigateTo({ url });
   };
   const handleSubscribe = (url) => {
     Taro.requestSubscribeMessage({
-      tmplIds: ['vqWshHTalxdFaNqhdSWJ8Mkb7HsysV39m1h9Yk-94hY','05mTNKODj3164t8tEgu60oLUyqddSUHtjAOS6i1S0Zs', ],
+      tmplIds:tmplIds,
+      // tmplIds: ['05mTNKODj3164t8tEgu60oLUyqddSUHtjAOS6i1S0Zs', ],
       success: function(res) {
-        console.log(res);
-        showSuccessToast('消息已订阅成功');
+        console.log(res)
+        showSuccessToast('提交成功');
+        const templateids:string[] = [];
+        tmplIds.forEach((id) => {
+          if(res[id] === 'accept'){
+            templateids.push('vqWshHTalxdFaNqhdSWJ8Mkb7HsysV39m1h9Yk-94hY');
+          }
+        })
+        subMsg({templateids:templateids.join(",")})
       },
     });
   };
