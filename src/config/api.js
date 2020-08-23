@@ -39,4 +39,7 @@ export default {
   payex:  WxApiRoot + '/Pay/payex', //	22.	预支付付款
   createOrder:  WxApiRoot + '/User/createorder', //	21.	添加订单
   subMsg:   WxApiRoot + '/User/submsg', //	28.	订阅消息
+  getAllTemplate:   WxApiRoot + '/User/alltemplate', //	31.	获取所有模板信息
+  getClassifySearch:   WxApiRoot + '/Classify/search', //	29.	搜索分类集合
+  getClassifyGoods:   WxApiRoot + '/Classify/getgoods', //	30.	获取分类集合下的商品
 };

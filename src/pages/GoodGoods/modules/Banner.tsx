@@ -1,20 +1,32 @@
-import Taro from '@tarojs/taro';
+import Taro, { useEffect, useState } from '@tarojs/taro';
 import { View, Swiper, SwiperItem, Image } from '@tarojs/components';
-import BANNER_LIST from '@/config/banner';
 import { jyps, sdfh, shwy, zpbz } from '@/static/images/index';
+import {getClassifySearch} from '../services';
+import { isArray } from 'lodash';
 import '../index.scss';
 
+
 const Banner = () => {
+  const handlePageTo = (cid) => {
+    Taro.navigateTo({ url: '/pages/SortPage/index?cid=' + cid });
+  };
+  const [bannerList,setBannerList]:[any[],any] = useState([]);
+  useEffect(()=>{
+    getClassifySearch({ctype:1}).then(d=>{
+      const arr = isArray(d)?d:[];
+      setBannerList(arr);
+    })
+  },[]);
   return (
     <View className='banner-wrap'>
       <View className='banner-con'>
         <Swiper className='swiper-con' indicatorColor='#999' indicatorActiveColor='#333' circular indicatorDots autoplay>
-          {BANNER_LIST &&
-            BANNER_LIST.map((item) => {
-              const { image } = item;
+          {bannerList &&
+            bannerList.map((item) => {
+              const { fpath,id } = item;
               return (
-                <SwiperItem key={image}>
-                  <Image mode='aspectFill' style='width: 100%;height: 100%;border-radius:14px' src={image} />
+                <SwiperItem key={fpath}>
+                  <Image mode='aspectFill' style='width: 100%;height: 100%;border-radius:14px' src={fpath} onClick={()=>handlePageTo(id)} />
                 </SwiperItem>
               );
             })}

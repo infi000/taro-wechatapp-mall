@@ -1,21 +1,27 @@
-import Taro, { useEffect } from '@tarojs/taro';
-import { View, ScrollView, Block } from '@tarojs/components';
-import List from './modules/List';
-
+import Taro from '@tarojs/taro';
+import { View, Block, ScrollView } from '@tarojs/components';
+import GoodsList from '@/components/GoodsList';
 import { useSelector, useDispatch } from '@tarojs/redux';
-import { AtList, AtListItem } from 'taro-ui';
-import { useCheckBoxList } from '@/utils/hooks';
+import { getClassifyGoods } from './services';
 import './index.scss';
-import { isArray } from 'lodash';
+
+const { useRouter, useEffect, useState } = Taro;
 
 const SortPage = () => {
-
-    return (
-        <View className='.page-wrap'>分类页面
- 
-        </View>
-    )
-
-}
+  const router = useRouter();
+  const [formatList, setFormatList] = useState([]);
+  useEffect(() => {
+    const { params } = router;
+    const cid = params.cid;
+    getClassifyGoods({ cid, offset: 50, count: 0 }).then((d) => {
+      console.log(d);
+    });
+  }, []);
+  return (
+    <View className='list-wrap' style={{ 'paddingBottom': '200px' }}>
+      <GoodsList list={formatList} />
+    </View>
+  );
+};
 
 export default SortPage;

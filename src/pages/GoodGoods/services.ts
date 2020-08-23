@@ -10,4 +10,12 @@ export const getAllCtype = () => request.get(Api.goodsAllCtype);
  */
 export const getSearchGoods = (payload: ISearchGoodsParams) => request.get(Api.searchGoods, payload);
 
+
+/**
+ * 	29.	搜索分类集合
+ * @param payload 
+ * @param payload.ctype  显示位置，1顶部显示，2中部显示
+ */
+export const getClassifySearch = (payload: { ctype: 1|2 }) => request.get(Api.getClassifySearch, payload);
+
 export default {};

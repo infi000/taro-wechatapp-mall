@@ -33,4 +33,5 @@ export const payex = (payload: { gids: string }) => request.post(Api.payex, payl
 export const getMyAddress = (payload) => request.get(Api.myAddress, payload);
 
 
+
 export default {};

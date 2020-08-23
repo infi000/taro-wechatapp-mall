@@ -4,7 +4,6 @@ import { View } from '@tarojs/components';
 import { useSelector, useDispatch } from '@tarojs/redux';
 import GoodsDetail from './modules/GoodsDetail';
 import BuysRecord from './modules/BuysRecord';
-import { useInitialValue } from '@/utils/hooks';
 import './index.scss';
 /**
  * 商品展示
@@ -13,7 +12,6 @@ const GoodsShow = () => {
   const goodsShowStore = useSelector((state) => state.goodsShow);
   const { isShowBuysPage } = useSelector((state) => state.goodsShow);
   const dispatch = useDispatch();
-  // useInitialValue('goodsShow', dispatch);
   const router = useRouter();
   useEffect(() => {
     const { params } = router;

@@ -1,8 +1,9 @@
-import Taro from '@tarojs/taro';
+import Taro, { useEffect, useState } from '@tarojs/taro';
 import { View, Button } from '@tarojs/components';
 import { showSuccessToast } from '@/utils/util';
-import { subMsg } from '../services';
+import { subMsg, getAllTemplate } from '../services';
 import '../index.scss';
+import { isArray } from 'lodash';
 
 const LIST_URL_MAP = [
   { name: '照片墙', url: '/pages/PhotoWall/index' },
@@ -14,26 +15,34 @@ const LIST_URL_MAP = [
 
 const tmplIds = ['vqWshHTalxdFaNqhdSWJ8Mkb7HsysV39m1h9Yk-94hY','05mTNKODj3164t8tEgu60oLUyqddSUHtjAOS6i1S0Zs'];
 const Others = () => {
+  const [tmplIds, setTmplIds]:[string[],any] = useState([]);
   const handleClickItem = (url) => {
     Taro.navigateTo({ url });
   };
   const handleSubscribe = (url) => {
     Taro.requestSubscribeMessage({
       tmplIds:tmplIds,
-      // tmplIds: ['05mTNKODj3164t8tEgu60oLUyqddSUHtjAOS6i1S0Zs', ],
       success: function(res) {
-        console.log(res)
-        showSuccessToast('提交成功');
+        console.log(res)    
         const templateids:string[] = [];
         tmplIds.forEach((id) => {
           if(res[id] === 'accept'){
-            templateids.push('vqWshHTalxdFaNqhdSWJ8Mkb7HsysV39m1h9Yk-94hY');
+            templateids.push(id);
           }
-        })
-        subMsg({templateids:templateids.join(",")})
+        });
+        if(templateids.length>0){
+          subMsg({templateids:templateids.join(",")})
+          showSuccessToast('提交成功');
+        }
       },
     });
   };
+  useEffect(() => {
+    getAllTemplate().then(d=>{
+      const temids = isArray(d)?d.map(item=>item.templateid):[];
+      setTmplIds(temids);
+    })
+  },[])
   return (
     <View className='me-other-wrap'>
       {LIST_URL_MAP.map((item) => {

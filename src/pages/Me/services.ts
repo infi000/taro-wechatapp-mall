@@ -8,5 +8,11 @@ import Api from '@/config/api';
  */
 export const subMsg = (payload: { templateids: string }) => request.get(Api.subMsg, payload);
 
+/**
+ * 28.	订阅消息
+ * @param payload
+ */
+export const getAllTemplate = () => request.get(Api.getAllTemplate);
+
 
 export default {};
