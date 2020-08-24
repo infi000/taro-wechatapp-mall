@@ -3,8 +3,9 @@ import Taro from '@tarojs/taro';
 import {ImgError} from '../static/images/index';
 
 export function showErrorToast(msg) {
+  console.log("msg",msg);
   Taro.showToast({
-    title: msg,
+    title: msg||'错误',
     icon: 'none',
   })
 }

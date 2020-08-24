@@ -1,7 +1,7 @@
 import delay from '@/utils/delay';
 import { isArray, toNumber } from 'lodash';
 import { getUerFavorite, getUnfav } from './services';
-const PAGE_LEN = 10; // 每页个数
+const PAGE_LEN = 100; // 每页个数
 
 interface IState {
   favoriteList: {

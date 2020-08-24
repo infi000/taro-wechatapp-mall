@@ -6,15 +6,16 @@ import { getClassifyGoods } from './services';
 import './index.scss';
 
 const { useRouter, useEffect, useState } = Taro;
-
+const PAGE_LEN = 100;
 const SortPage = () => {
   const router = useRouter();
   const [formatList, setFormatList] = useState([]);
   useEffect(() => {
     const { params } = router;
     const cid = params.cid;
-    getClassifyGoods({ cid, offset: 50, count: 0 }).then((d) => {
-      console.log(d);
+    getClassifyGoods({ cid, offset: 0, count: PAGE_LEN }).then((d) => {
+      const goods = d.goods;
+      setFormatList(goods || [])
     });
   }, []);
   return (

@@ -1,5 +1,5 @@
 import { getMyowns, goodsDetail, getPricehistory, getBuyhistory,getSearchmsg, getSearchbuymsg,postAddmsg , postAddbuymsg,getSearchcc, ccDetail} from './services';
-const COUNT = 50;
+const PAGE_LEN = 50;
 interface IState {
   //   modal: IModal;
   ccowns: {
@@ -91,27 +91,27 @@ export default {
     },
     *getPricehistory(_, { all, call, put, select }) {
       const { pageInfo } = yield select((state) => state.myvip);
-      const res = yield call(getPricehistory, { gid: pageInfo.data.gid, offset: 0, count: COUNT });
+      const res = yield call(getPricehistory, { gid: pageInfo.data.gid, offset: 0, count: PAGE_LEN });
       yield put({ type: 'updatePricehistory', payload: res });
     },
     *getBuyhistory(_, { all, call, put, select }) {
       const { pageInfo } = yield select((state) => state.myvip);
-      const res = yield call(getBuyhistory, { cid: pageInfo.data.cid, offset: 0, count: COUNT });
+      const res = yield call(getBuyhistory, { cid: pageInfo.data.cid, offset: 0, count: PAGE_LEN });
       yield put({ type: 'updateBuyhistory', payload: res });
     },
     *getSearchmsg(_, { all, call, put, select }) {
       const { pageInfo } = yield select((state) => state.myvip);
-      const res = yield call(getSearchmsg, { cid: pageInfo.data.cid, offset: 0, count: COUNT });
+      const res = yield call(getSearchmsg, { cid: pageInfo.data.cid, offset: 0, count: PAGE_LEN });
       yield put({ type: 'updateCommentInfo', payload: res });
     },
     *getSearchbuymsg(_, { all, call, put, select }) {
       const { pageInfo } = yield select((state) => state.myvip);
-      const res = yield call(getSearchbuymsg, { cid: pageInfo.data.cid, offset: 0, count: COUNT });
+      const res = yield call(getSearchbuymsg, { cid: pageInfo.data.cid, offset: 0, count: PAGE_LEN });
       yield put({ type: 'updateBuyInfo', payload: res });
     },
     *getSearchcc(_, { all, call, put, select }) {
       const { pageInfo } = yield select((state) => state.myvip);
-      const res = yield call(getSearchcc, { cid: pageInfo.data.cid, offset: 0, count: COUNT });
+      const res = yield call(getSearchcc, { cid: pageInfo.data.cid, offset: 0, count: PAGE_LEN });
       yield put({ type: 'updateCCInfo', payload: res });
     },
     *postAddmsg({params}, { all, call, put, select }) {

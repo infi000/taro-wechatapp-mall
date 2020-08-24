@@ -44,7 +44,6 @@ const Order = () => {
     const status = [...ORDER_OTYPE_MAP.values()][current];
     dispatch({ type: 'order/searchOrder', params: { otype: status } });
   }, [current]);
-  console.log(orderList);
   return (
     <View className='order-wrap'>
       <AtTabs current={current} tabList={tabList} scroll onClick={setCurrent}>

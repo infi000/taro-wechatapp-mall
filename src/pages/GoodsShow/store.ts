@@ -3,7 +3,7 @@ import { isArray, toNumber, cloneDeep } from 'lodash';
 import { getDetail, getRelatedGoods, getBuysRecord, getIsfav, getFav, getUnfav, payQuery, payex,createOrder, getMyAddress } from './services';
 import Taro from '@tarojs/taro';
 import { showToast, showSuccessToast } from '@/utils/util';
-const PAGE_LEN = 50;
+const PAGE_LEN = 100;
 
 interface IState {
   gid?: string;

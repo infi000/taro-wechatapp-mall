@@ -2,7 +2,7 @@ import delay from '@/utils/delay';
 import { isArray, toNumber } from 'lodash';
 import { searchOrder, delOrder } from './services';
 import { ORDER_OTYPE_MAP } from '@/constants/index';
-const PAGE_LEN = 10; // 每页个数
+const PAGE_LEN = 100; // 每页个数
 
 interface IState {
   orderList: { [key: string | number]: { total: number; list: Array<object> } };
@@ -45,7 +45,6 @@ export default {
         yield put({ type: 'updateOrderList', payload: { [otype]: { list: resList, total: Number(resTotal) } } });
         return 
       }
-      console.log("加载完了");
     },
     *delOrder({ params }, { all, call, put }) {
       const { id, otype } = params;

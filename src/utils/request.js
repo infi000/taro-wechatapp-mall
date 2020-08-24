@@ -57,11 +57,14 @@ function request(url, data = {}, method = 'GET') {
             //   content: res.data.errmsg,
             //   showCancel: false
             // });
-            showErrorToast(res.data.errdata);
-            reject(res.data.errdata);
+            console.log("res",res);
+            showErrorToast(res.data.errdata || res.data);
+            // reject(res.data.errdata);
           }
         } else {
-          reject(res.errdata);
+          console.log("res",res);
+          showErrorToast('接口错误')
+          // reject(res.errdata);
         }
       },
       fail: function(err) {
@@ -124,15 +127,19 @@ request.formData = (url, data) => {
             //   content: res.data.errmsg,
             //   showCancel: false
             // });
+            console.log("res",res);
             showErrorToast(res.data.errdata);
-            reject(res.data.errdata);
+            // reject(res.data.errdata);
           }
         } else {
-          reject(res.errdata);
+          console.log("res",res);
+          showErrorToast(res.data.errdata);
         }
       },
       fail: function(err) {
-        reject(err);
+        console.log(err);
+        showErrorToast('接口错误')
+        // reject(err);
       },
     });
   });

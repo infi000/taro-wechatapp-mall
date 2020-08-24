@@ -52,7 +52,6 @@ const Price = () => {
     dispatch({ type: 'myvip/getPricehistory' });
     dispatch({ type: 'myvip/getBuyhistory' });
   }, []);
-  console.log('inputModal', inputModal);
   return (
     <Block>
       <View>

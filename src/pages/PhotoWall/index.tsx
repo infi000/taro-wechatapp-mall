@@ -20,7 +20,6 @@ const PhotoWall = () => {
 //   useEffect(() =>{
 //     setCurrentBg(formatList[current])
 //   },[current])
-console.log(formatList);
   return (
     <View className='photo-wrap'>
       <Swiper className='photo-swiper-wrap' indicatorColor='#999' indicatorActiveColor='#333' vertical circular >

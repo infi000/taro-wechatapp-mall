@@ -23,7 +23,6 @@ const Others = () => {
     Taro.requestSubscribeMessage({
       tmplIds:tmplIds,
       success: function(res) {
-        console.log(res)    
         const templateids:string[] = [];
         tmplIds.forEach((id) => {
           if(res[id] === 'accept'){

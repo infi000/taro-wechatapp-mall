@@ -60,13 +60,11 @@ export default {
     
     },
     *delMyAddress({params}, { all, call, put }) {
-      console.log(params);
       const { id } = params;
       yield call(delMyAddress,{id});
       yield put({ type: 'getAddress'});
     },
     *saveAddress({params}, { all, call, put }) {
-      console.log(params);
       yield call(saveAddress,{...params});
       yield put({type:'updateModal', payload: { type: 'create', show: false, data: {} } });
       yield put({ type: 'getAddress'});

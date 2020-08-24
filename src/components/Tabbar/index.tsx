@@ -11,10 +11,8 @@ export default () => {
   const {nav, currentNavIndex} = useSelector(state => state.tabbar)
   const dispatch = useDispatch();
   const onClick = useCallback((tab) => {
-    console.log('nav', nav, nav.length, tab);
     if (nav && nav.length >= tab) {
       const currTab = nav[tab];
-      console.log(currTab);
       dispatch({type: 'tabbar/updateCurrentNavIndex', payload: tab})
     }
   }, [nav]);

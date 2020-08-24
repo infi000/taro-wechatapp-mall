@@ -48,9 +48,9 @@ export default {
     },
     *getInit(_, { all, call, put, select }) {
       const res = yield call(searchDynamic);
-      const bgList = yield call(getBgs);
-      const goodsList = res.dynamicshows;
-      const total = res.total;
+      const bgList = yield call(getBgs) || [];
+      const goodsList = res.dynamicshows || [];
+      const total = res.total || 0;
       goodsList.map(()=>{})
       const tem =goodsList.map((item) => {
         const { id, title, goodid, fpath, sort, createtime, bgrela } = item;

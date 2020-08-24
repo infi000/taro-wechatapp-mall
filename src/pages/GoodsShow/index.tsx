@@ -9,21 +9,24 @@ import './index.scss';
  * 商品展示
  */
 const GoodsShow = () => {
+
   const goodsShowStore = useSelector((state) => state.goodsShow);
   const { isShowBuysPage } = useSelector((state) => state.goodsShow);
   const dispatch = useDispatch();
   const router = useRouter();
+  const {params} = router || {};
+  const {gid} = params || {};
+  console.log("加载了goodshow",router,gid);
+
   useEffect(() => {
     const { params } = router;
     const gid =  params.gid;
-    console.log("gid", gid);
+    console.log("router",router);
     dispatch({ type: 'goodsShow/updateGid', payload: gid });
     return ()=>{
       dispatch({ type: 'goodsShow/init' });
     }
   }, [])
-  console.log("goodsShowStore", goodsShowStore);
-
   return <View>{isShowBuysPage ? <BuysRecord /> : <GoodsDetail />}</View>;
 };
 
