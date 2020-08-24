@@ -1,5 +1,5 @@
 // import Taro from '@tarojs/taro';
-import Taro from '@tarojs/taro';
+import Taro, { useDidShow } from '@tarojs/taro';
 import { View, Swiper, SwiperItem, Image } from '@tarojs/components';
 import { useSelector, useDispatch } from '@tarojs/redux';
 import GoodsList from '@/components/GoodsList';
@@ -14,7 +14,7 @@ interface IProps {
  * 商品展示
  */
 const GoodsDetail = (props: IProps) => {
-  const { detail, relatedGoods, buysRecordList, isfav } = useSelector((state) => state.goodsShow);
+  const { detail, relatedGoods, buysRecordList, isfav, gid } = useSelector((state) => state.goodsShow);
   // const { gid } = props;
   const dispatch = useDispatch();
   const buysList = useMemo(() => {
@@ -36,14 +36,13 @@ const GoodsDetail = (props: IProps) => {
   const handleSaveBuy = () => {
     dispatch({ type: 'goodsShow/createOrder'});
   }
-
-  useEffect(() => {
-    // dispatch({ type: 'goodsShow/updateGid', payload: gid });
-    dispatch({ type: 'goodsShow/getDetail' });
-    dispatch({ type: 'goodsShow/getPageBuysRecord', payload: { refresh: true } });
-    dispatch({ type: 'goodsShow/getRelatedGoods' });
-    dispatch({ type: 'goodsShow/getIsfav' });
-  }, []);
+  // useEffect(() => {
+  //   // dispatch({ type: 'goodsShow/updateGid', payload: gid });
+  //   dispatch({ type: 'goodsShow/getDetail' });
+  //   dispatch({ type: 'goodsShow/getPageBuysRecord', payload: { refresh: true } });
+  //   dispatch({ type: 'goodsShow/getRelatedGoods' });
+  //   dispatch({ type: 'goodsShow/getIsfav' });
+  // }, [gid]);
   return (
     <View className='goodsshow-wrap'>
       {/* 商品图片价格描述 */}
