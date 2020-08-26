@@ -121,7 +121,7 @@ export default {
     },
     *postAddbuymsg({params}, { all, call, put, select }) {
       const { pageInfo } = yield select((state) => state.myvip);
-      yield call(postAddbuymsg, { ...params, gid: pageInfo.data.gid });
+      yield call(postAddbuymsg, { ...params, cid: pageInfo.data.cid });
       yield put({ type: 'getSearchbuymsg'});
     },
   },

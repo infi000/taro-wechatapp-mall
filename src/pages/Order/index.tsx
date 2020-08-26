@@ -28,11 +28,11 @@ const Order = () => {
     });
   }, []);
   const handleScrollBottom = (status) => {
-    dispatch({type:'order/onPage',params:{ otype:status }});
-  }
-  const handleDelOrder = (id,otype) =>{
-    dispatch({type:'order/delOrder',params: {id,otype}});
-  }
+    dispatch({ type: 'order/onPage', params: { otype: status } });
+  };
+  const handleDelOrder = (id, otype) => {
+    dispatch({ type: 'order/delOrder', params: { id, otype } });
+  };
   useInitialValue('order', dispatch);
   useEffect(() => {
     // 切换tab 请求接口
@@ -48,12 +48,14 @@ const Order = () => {
     <View className='order-wrap'>
       <AtTabs current={current} tabList={tabList} scroll onClick={setCurrent}>
         {[...ORDER_OTYPE_MAP.values()].map((status, index) => {
+          console.log(orderList);
+          const getList = orderList[status].list;
           return (
             <AtTabsPane current={current} index={index} key={status}>
               <ScrollCon onScrollBottom={() => handleScrollBottom(status)}>
                 <View>
                   {orderList[status] && orderList[status].list && orderList[status].list.length > 0 && (
-                    <ListItem status={status} list={orderList[status].list} handleDelOrder={handleDelOrder} />
+                    <ListItem status={status} orderList={orderList} list={getList} handleDelOrder={handleDelOrder} />
                   )}
                   <View style='padding:20px'>
                     <Divider />

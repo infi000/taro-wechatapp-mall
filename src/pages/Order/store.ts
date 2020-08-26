@@ -2,6 +2,7 @@ import delay from '@/utils/delay';
 import { isArray, toNumber } from 'lodash';
 import { searchOrder, delOrder } from './services';
 import { ORDER_OTYPE_MAP } from '@/constants/index';
+import { showSuccessToast } from '@/utils/util';
 const PAGE_LEN = 100; // 每页个数
 
 interface IState {
@@ -49,6 +50,7 @@ export default {
     *delOrder({ params }, { all, call, put }) {
       const { id, otype } = params;
       yield call(delOrder, {id});
+      showSuccessToast('删除成功');
       yield put({ type: 'searchOrder', params: {otype} });
     },
   },

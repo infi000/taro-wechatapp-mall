@@ -53,3 +53,10 @@
    }
   }
 }
+.order-wrap .at-list__item--thumb .item-thumb {
+  width: 100px;
+  height: 160px;
+  .at-list__item--thumb .item-thumb__info {
+    height: 100%;
+  }
+}
