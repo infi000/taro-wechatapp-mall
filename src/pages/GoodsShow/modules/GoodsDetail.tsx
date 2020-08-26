@@ -118,9 +118,17 @@ const GoodsDetail = (props: IProps) => {
       </View>
       {/* 购买出售 */}
       <View className='footer-con at-row'>
-        {isfav == 1 ? <View className='at-col at-col-3 love-btn' onClick={handleGetUnfav}>已收藏</View> : <View className='at-col at-col-3 love-btn' onClick={handleGetFav}>收藏</View>}
+        {/* {isfav == 1 ? <View className='at-col at-col-3 love-btn' onClick={handleGetUnfav}>已收藏</View> : <View className='at-col at-col-3 love-btn' onClick={handleGetFav}>收藏</View>}
 
         <View className='at-col at-col-4 at-col__offset-1'>
+          <View className='sale-btn'>出售</View>
+        </View> */}
+        {/* {isfav == 1 ? <View className='at-col at-col-3 love-btn' onClick={handleGetUnfav}>已收藏</View> : <View className='at-col at-col-3 love-btn' onClick={handleGetFav}>收藏</View>} */}
+
+        <View className='at-col at-col-4 '>
+          {isfav == 1 ? <View className='sale-btn' onClick={handleGetUnfav}>已收藏</View> : <View className='sale-btn' onClick={handleGetFav}>收藏</View>}
+        </View>
+        <View className='at-col at-col-4 '>
           <View className='sale-btn'>出售</View>
         </View>
         <View className='at-col at-col-4'>
