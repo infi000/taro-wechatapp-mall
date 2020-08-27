@@ -77,6 +77,8 @@ class App extends Component {
       'request': 10000,
       'downloadFile': 10000,
     },
+    'enableShareTimeline': true,
+    'enableShareAppMessage': true,
     'enablePullDownRefresh': true,
     'debug': true,
   };

@@ -16,7 +16,11 @@ const GoodsList = (props: IProps) => {
     if (issale === '-1') {
       return;
     }
-    Taro.navigateTo({ url: '/pages/GoodsShow/index?gid=' + id + '&title=' + title });
+    try {
+      Taro.navigateTo({ url: '/pages/GoodsShow/index?gid=' + id + '&title=' + title });
+    } catch (error) {
+      Taro.navigateTo({ url: '/pages/GoodsShow/index?gid=' + id + '&title=糖' });
+    }
   };
   return (
     <View>
@@ -35,8 +39,8 @@ const GoodsList = (props: IProps) => {
                   <Image mode='aspectFit' style='width: 100%;height: 100%;' src={fpath} />
                 </View>
                 <View className='at-row at-row__justify--between goods-con-top'>
-                  <View className='at-col at-col-5 goods-price'>${price}</View>
-                  <View className='at-col at-col-5 goods-saler'>{sale}购买{id}</View>
+                  <View className='at-col at-col-5 goods-price'>¥{price}</View>
+                  <View className='at-col at-col-5 goods-saler'>{sale}购买</View>
                 </View>
                 <View className='goods-con-buttom text2line' onClick={() => handleChooseGoods({ id: id, issale: issale })}>
                   {title}

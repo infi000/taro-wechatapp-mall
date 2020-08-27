@@ -72,3 +72,4 @@ export {default as wode_s} from './wode_s.png';
 
 
 export {default as kefu} from './kefu.png';
+export {default as loglqr} from './logoqr.jpeg';
