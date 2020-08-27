@@ -60,7 +60,6 @@ export default {
         });
         return formatBgRela;
       });
-      console.log("tem",tem)
       const _formatGoodsList = tem.reduce((res,item:{}[] ) => {
             if(isArray(item) && item.length>0){
               item.forEach(ele => {
@@ -69,7 +68,6 @@ export default {
             }
             return res;
       },[])
-      console.log("_formatGoodsList",_formatGoodsList)
       const formatGoodsList = _formatGoodsList.map(item => {
         const ele =  bgList.find(opt => opt.id === item.bgid );
         if(ele){
@@ -78,10 +76,8 @@ export default {
           const  bgHeight = ele.height;
           item = {...item,bgPath,bgWidth,bgHeight }
         }
-        console.log(ele);
         return item;
       })
-      console.log(formatGoodsList);
       yield put({ type: 'updateFormatList', payload: formatGoodsList });
       yield put({ type: 'updateTotal', payload: total });
 

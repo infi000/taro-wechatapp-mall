@@ -38,13 +38,6 @@ const GoodsImg = (props: any) => {
           top,
           left,
         });
-        console.log("rec",rec);
-        console.log("opt",{
-          imgHeight,
-          imgWidth,
-          top,
-          left,
-        });
       })
       .exec();
   }, []);

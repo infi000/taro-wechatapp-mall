@@ -12,11 +12,11 @@ interface IProps {
 const GoodsList = (props: IProps) => {
   const { list = [] } = props;
   const handleChooseGoods = (opt) => {
-    const { id, issale } = opt;
+    const { id, issale, title } = opt;
     if (issale === '-1') {
       return;
     }
-    Taro.navigateTo({ url: '/pages/GoodsShow/index?gid=' + id });
+    Taro.navigateTo({ url: '/pages/GoodsShow/index?gid=' + id + '&title=' + title });
   };
   return (
     <View>
@@ -26,7 +26,7 @@ const GoodsList = (props: IProps) => {
             const { id, title, sale, fpath, price, issale } = item;
             return (
               <View className='at-col at-col-6 goods-con' key={id+index}>
-                <View className='goods-con-mid' onClick={() => handleChooseGoods({id:id,issale:issale})}>
+                <View className='goods-con-mid' onClick={() => handleChooseGoods({id:id,issale:issale,title})}>
                   {issale === '-1' && (
                     <View className='soldout-con'>
                       <SoldOut />

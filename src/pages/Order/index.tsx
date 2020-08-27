@@ -48,7 +48,6 @@ const Order = () => {
     <View className='order-wrap'>
       <AtTabs current={current} tabList={tabList} scroll onClick={setCurrent}>
         {[...ORDER_OTYPE_MAP.values()].map((status, index) => {
-          console.log(orderList);
           const getList = orderList[status].list;
           return (
             <AtTabsPane current={current} index={index} key={status}>

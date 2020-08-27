@@ -1,7 +1,7 @@
 import delay from '@/utils/delay';
 import { isArray, toNumber } from 'lodash';
 import { getAllCtype, getSearchGoods } from './services';
-const PAGE_LEN = 100; // 每页个数
+const PAGE_LEN = 20; // 每页个数
 
 interface IState {
   allCtypeList: Array<{ ctype: string }>;

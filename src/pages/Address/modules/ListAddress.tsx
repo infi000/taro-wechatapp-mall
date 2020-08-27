@@ -41,8 +41,6 @@ const ListAddress = () => {
    * 设为默认地址
    */
   const handleSetDefaultAddr = (item) => {
-    console.log(item);
-
     const { id } = item;
     dispatch({ type: 'address/setDefaultMyAddress', params: { id } });
   };

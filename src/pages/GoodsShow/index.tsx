@@ -14,12 +14,15 @@ const GoodsShow = () => {
   const router = useRouter();
   useDidShow(() => {
     const { params } = router;
-    const gid = params.gid;
+    const {gid,title} = params;
     dispatch({ type: 'goodsShow/updateGid', payload: gid });
     dispatch({ type: 'goodsShow/getDetail' });
     dispatch({ type: 'goodsShow/getPageBuysRecord', payload: { refresh: true } });
     dispatch({ type: 'goodsShow/getRelatedGoods' });
     dispatch({ type: 'goodsShow/getIsfav' });
+    Taro.setNavigationBarTitle({
+      title:title||'糖'
+    });
   });
 
   useEffect(() => {

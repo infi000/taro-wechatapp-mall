@@ -7,8 +7,8 @@ import '../index.scss';
 
 
 const Banner = () => {
-  const handlePageTo = (cid) => {
-    Taro.navigateTo({ url: '/pages/SortPage/index?cid=' + cid });
+  const handlePageTo = ({id,title}) => {
+    Taro.navigateTo({ url: '/pages/SortPage/index?cid=' + id +'&title=' + title});
   };
   const [bannerList,setBannerList]:[any[],any] = useState([]);
   useEffect(()=>{
@@ -26,7 +26,7 @@ const Banner = () => {
               const { fpath,id } = item;
               return (
                 <SwiperItem key={fpath}>
-                  <Image mode='aspectFill' style='width: 100%;height: 100%;border-radius:14px' src={fpath} onClick={()=>handlePageTo(id)} />
+                  <Image mode='aspectFill' style='width: 100%;height: 100%;border-radius:14px' src={fpath} onClick={()=>handlePageTo(item)} />
                 </SwiperItem>
               );
             })}

@@ -12,7 +12,6 @@ const SortPage = () => {
     useEffect(()=>{
         Taro.getSetting({
             success: function (res) {
-              console.log(res.authSetting)
               // res.authSetting = {
               //   "scope.userInfo": true,
               //   "scope.userLocation": true

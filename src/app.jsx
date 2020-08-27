@@ -11,7 +11,6 @@ const dvaApp = dva.createApp({
   initialState: {},
   models: models,
   onError(e, dispatch) {
-    console.log('系统出错了!');
     console.log(e);
     // dispatch(action("sys/error", e));
   },
@@ -27,7 +26,6 @@ class App extends Component {
     Taro.checkSession({
       success(res) {
         //session_key 未过期，并且在本生命周期一直有效
-        console.log('session验证登陆成功', res);
         Taro.getStorage({
           key: 'wxUserInfo',
           success: function(res) {

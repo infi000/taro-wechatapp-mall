@@ -5,8 +5,8 @@ import { isArray } from 'lodash';
 import '../index.scss';
 
 const Area = () => {
-  const handlePageTo = (cid) => {
-    Taro.navigateTo({ url: '/pages/SortPage/index?cid=' + cid });
+  const handlePageTo = ({id,title}) => {
+    Taro.navigateTo({ url: '/pages/SortPage/index?cid=' + id +'&title=' + title});
   };
   const [areaList, setAreaList]: [any[], any] = useState([]);
   useEffect(() => {
@@ -25,7 +25,7 @@ const Area = () => {
               style='width: 100%;height: 100%;'
               src={areaList[0].fpath}
               onClick={() => {
-                handlePageTo(areaList[0].id);
+                handlePageTo(areaList[0]);
               }}
             />
           )}
@@ -39,7 +39,7 @@ const Area = () => {
                   style='width: 100%;height: 100%;'
                   src={areaList[1].fpath}
                   onClick={() => {
-                    handlePageTo(areaList[1].id);
+                    handlePageTo(areaList[1]);
                   }}
                 />
               )}
@@ -51,7 +51,7 @@ const Area = () => {
                   style='width: 100%;height: 100%;'
                   src={areaList[2].fpath}
                   onClick={() => {
-                    handlePageTo(areaList[2].id);
+                    handlePageTo(areaList[2]);
                   }}
                 />
               )}

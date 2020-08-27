@@ -6,7 +6,6 @@ export const logIn = (dispatch) =>
     success: async function(res) {
       if (res.code) {
         //发起网络请求
-        console.log('res登陆信息', res);
         const { code } = res;
         getJscode2session({ jscode: code }).then((d) => {
           const openid = d;
@@ -19,7 +18,6 @@ export const logIn = (dispatch) =>
               var province = userInfo.province;
               var city = userInfo.city;
               var country = userInfo.country;
-              console.log("openid", openid);
               saveUserData({ nickName, avatarUrl, gender, province, country, city, openid }).then(() => {
                 Taro.setStorage({ key: 'wxUserInfo', data: { nickName, avatarUrl, gender, province, country, city, openid } });
                 dispatch({ type: 'main/updateIsLogIn', payload: true });

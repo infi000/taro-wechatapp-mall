@@ -11,6 +11,7 @@ import './index.scss';
 const GoodGoods = () => {
   const { listScroll } = useSelector((state) => state.goodGoods);
   const [tagBarStyle, setTagBarStyle]: [null | object, Function] = useState(null);
+  const dispatch = useDispatch();
   const onScroll = (e) => {
     if (e.target.scrollTop >= 360) {
       if (!tagBarStyle) {
@@ -29,9 +30,12 @@ const GoodGoods = () => {
       }
     }
   };
+  const onScrollToLower = (e) => {
+    dispatch({ type: 'goodGoods/getPageGoods'});
+  }
   return (
     <View className='goodgoods-wrap'>
-      <ScrollView scrollY={true} scrollWithAnimation style={{ height: '100%' }} onScroll={onScroll}>
+      <ScrollView scrollY={true} scrollWithAnimation style={{ height: '100%' }} onScroll={onScroll} onScrollToLower={onScrollToLower}>
         <SearchBar />
         <Banner />
         <Area />
