@@ -100,14 +100,19 @@ export default {
     *createOrder({}, { all, call, put, select }) {
       const { gid,detail } = yield select((state) => state.goodsShow);
       const { size, price } =detail;
-      const {addresses} = yield call(getMyAddress);
+      // const {addresses} = yield call(getMyAddress);
       const { orderid } = yield call(createOrder, { "id[]":gid,'sort[]':`1`,'sel[]':`1`,'parameters[]':`${size}`,'price[]':`0.01`,'num[]':'1' });
-      if(!addresses){
-        showToast("没有默认收货地址");
-        return 
-      }
-      const defalutAddress = addresses.find(item => item.status == 1);
-      const { arraydata } = yield call(payex, { tag:orderid,orderfrom:1, addressid:defalutAddress.id,paytype:'miniwxpay'});
+      Taro.navigateTo({ url:'/pages/BuyPage/index?orderid=' + orderid });
+      // if(!addresses){
+      //   showToast("没有设置收货地址");
+      //   return 
+      // }
+      // const defalutAddress = addresses.find(item => item.status == 1);
+      // if(!defalutAddress){
+      //   showToast("没有默认收货地址");
+      //   return 
+      // }
+      // const { arraydata } = yield call(payex, { tag:orderid,orderfrom:1, addressid:defalutAddress.id,paytype:'miniwxpay'});
       // appId: "wx772ff4b63e617a3a"
       // nonceStr: "fmfzyk0tpjl7phshmcp09scbses2xul0"
       // order: "J8135087831860352251"
@@ -117,22 +122,22 @@ export default {
       // return: "https://www.tangguostore.com/index.php/MiniApi/Public/miniwxpaynotify/rmethod/return.html"
       // signType: "HMAC-SHA256"
       // timeStamp: 1597250878
-      const { nonceStr,timeStamp, signType,paySign } = arraydata;
-      const pak = arraydata.package;
-      Taro.requestPayment({
-        timeStamp: timeStamp+"",
-        nonceStr: nonceStr,
-        package: pak,
-        signType,
-        paySign,
-        success: function (res) { 
-          showSuccessToast("购买成功")
-        },
-        fail: function (res) {
-          showToast("购买失败");
-          console.log(res)
-         }
-      })
+      // const { nonceStr,timeStamp, signType,paySign } = arraydata;
+      // const pak = arraydata.package;
+      // Taro.requestPayment({
+      //   timeStamp: timeStamp+"",
+      //   nonceStr: nonceStr,
+      //   package: pak,
+      //   signType,
+      //   paySign,
+      //   success: function (res) { 
+      //     showSuccessToast("购买成功")
+      //   },
+      //   fail: function (res) {
+      //     showToast("购买失败");
+      //     console.log(res)
+      //    }
+      // })
     },
     // *payQuery({}, { all, call, put, select }) {
     //   const { gid } = yield select((state) => state.goodsShow);

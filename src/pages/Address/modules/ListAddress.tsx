@@ -44,12 +44,38 @@ const ListAddress = () => {
     const { id } = item;
     dispatch({ type: 'address/setDefaultMyAddress', params: { id } });
   };
+  /**
+   * 获取微信默认地址
+   */
+  const handleGetWx = () => {
+    if(Taro.chooseAddress){
+      Taro.chooseAddress({
+       success: function (res) {
+        console.log("成功",res);
+        const params = {
+          uname:res.userName,
+          phone:res.telNumber,
+          province:res.provinceName,
+          city:res.cityName,
+          area:res.countyName,
+          address:res.detailInfo
+        }
+        dispatch({ type: 'address/saveAddress', params });
+       },
+       fail: function(err){
+         console.log("失败",err);
+       }
+      })
+     }else{
+      console.log('当前微信版本不支持chooseAddress');
+     }
+  };
 
   useEffect(() => {
     dispatch({ type: 'address/getAddress' });
   }, [dispatch]);
   return (
-    <View>
+    <View className='address-edit-wrap'>
       <AtModal
         isOpened={alertModal.show}
         title='注意'
@@ -103,8 +129,14 @@ const ListAddress = () => {
         );
       })}
       <View className='addnew-wrap'>
+        <View  className='addnew-btn-top'>
         <AtButton type='primary' size='small' onClick={handleAddAddress}>
           +添加新地址
+        </AtButton>
+        </View>
+
+        <AtButton type='primary' size='small' onClick={handleGetWx}>
+          +选择微信默认地址
         </AtButton>
       </View>
     </View>

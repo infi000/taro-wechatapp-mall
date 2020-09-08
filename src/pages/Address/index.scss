@@ -1,6 +1,10 @@
 @import '~taro-ui/dist/style/components/flex.scss';
 @import '../../static/style/common.scss';
 
+.address-edit-wrap{
+    position: relative;
+    padding-bottom: 200px;
+}
 
 .address-con{
     padding:25px;
@@ -34,10 +38,14 @@
 }
 
 .addnew-wrap{
+    background-color: #fff;
     position: fixed;
-    bottom: 60px;
+    bottom: 20px;
     width: 100%;
     box-sizing: border-box;
+    .addnew-btn-top{
+        margin-bottom: 20px;
+    }
 }
 
 .edit-btn-wrap{

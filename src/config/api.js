@@ -1,7 +1,7 @@
 const MOCK = 'http://gz-cvm-ebuild-ningzhang-dev001.gz.sftcwl.com:7300/mock/5f007cea552f4047ea3d0872/lujia';
 const yjw_test = 'https://dev.tangguostore.com/index.php/MiniApi';
 const yjw = 'https://www.tangguostore.com/index.php/MiniApi';
-const WxApiRoot = yjw_test;
+const WxApiRoot = yjw;
 // https://www.tangguostore.com/index.php/MiniApi/CC/myowns?openid=oKDX35X2NHYdiZdb8ukgFZmqwM8M
 export default {
   searchGoods: WxApiRoot + '/Shop/searchgoods', // 1.	商品搜索（推荐、最热、最新、关键词、分类、页码）
@@ -36,6 +36,7 @@ export default {
   searchDynamic:  WxApiRoot + '/DynamicShow/search', //	24.	展示墙产品搜索
   getBgs:  WxApiRoot + '/DynamicShow/getbgs', //	25.	展示墙背景
   payQuery:  WxApiRoot + '/Pay/query', //	23.	查询支付状态
+  getOderDetail:  WxApiRoot + '/Order/getdetail', //	24.	获取订单详情
   payex:  WxApiRoot + '/Pay/payex', //	22.	预支付付款
   createOrder:  WxApiRoot + '/User/createorder', //	21.	添加订单
   subMsg:   WxApiRoot + '/User/submsg', //	28.	订阅消息

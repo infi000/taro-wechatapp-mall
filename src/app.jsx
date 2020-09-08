@@ -46,17 +46,17 @@ class App extends Component {
   config = {
     pages: [
    
-      // 'pages/Subscribe/index',
+
+     
       'pages/Main/index',
+      'pages/BuyPage/index',
       'pages/Kefu/index',
       'pages/PhotoWall/index',
       'pages/MyVip/index',
- 
+      'pages/Address/index',
       'pages/GoodsShow/index',
       'pages/Order/index',
-      'pages/Test/index',
       'pages/SearchRes/index',
-      'pages/Address/index',
       'pages/Collect/index',
       'pages/SortPage/index',
     ],
