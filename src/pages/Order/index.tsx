@@ -1,4 +1,4 @@
-import Taro from '@tarojs/taro';
+import Taro, { useDidShow } from '@tarojs/taro';
 import { View, Checkbox, Block } from '@tarojs/components';
 import { useSelector, useDispatch } from '@tarojs/redux';
 import { AtTabs, AtTabsPane } from 'taro-ui';
@@ -34,11 +34,11 @@ const Order = () => {
     dispatch({ type: 'order/delOrder', params: { id, otype } });
   };
   useInitialValue('order', dispatch);
-  useEffect(() => {
+  useDidShow(() => {
     // 切换tab 请求接口
     const status = [...ORDER_OTYPE_MAP.values()][current];
     dispatch({ type: 'order/searchOrder', params: { otype: status } });
-  }, []);
+  });
   useEffect(() => {
     // 切换tab 请求接口
     const status = [...ORDER_OTYPE_MAP.values()][current];
