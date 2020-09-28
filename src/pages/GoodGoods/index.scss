@@ -10,6 +10,14 @@
   // height: calc(100vh + 680px);
   height:100vh;
   overflow: hidden;
+
+}
+.listgoods-wrap {
+  // @include con;
+  @include base-con;
+  width: 100%;
+  box-sizing: border-box;
+  // padding:25px 10px;
 }
 .area-wrap {
   @include base-con;
@@ -19,6 +27,22 @@
   .area-r-top,
   .area-r-bottom {
     height: 100px;
+  }
+}
+.area-wrap-2 {
+  @include base-con;
+  background-color: $bg-grey-color;
+  .area-l {
+    height: 280px;
+    padding-bottom:10px;
+  }
+  .area-l:nth-child(2n){
+    padding-left:5px;
+
+  }
+  .area-l:nth-child(2n-1){
+    padding-right:5px;
+   
   }
 }
 .banner-wrap {
@@ -38,13 +62,7 @@
   }
 }
 
-.list-wrap {
-  // @include con;
-  @include base-con;
-  width: 100%;
-  box-sizing: border-box;
-  // padding:25px 10px;
-}
+
 .tagbar-wrap {
   @include base-con;
   .at-tabs__item{

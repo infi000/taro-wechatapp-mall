@@ -1,8 +1,8 @@
-import Taro, { scope, Component, useState } from '@tarojs/taro';
+import Taro, { scope, Component, useState, useDidShow } from '@tarojs/taro';
 import { View, Block, ScrollView } from '@tarojs/components';
 import { useSelector, useDispatch } from '@tarojs/redux';
 import SearchBar from './modules/SearchBar';
-import Area from './modules/Area';
+import Area from './modules/Area2';
 import Banner from './modules/Banner';
 import List from './modules/List';
 import TagBar from './modules/TagBar';
@@ -13,7 +13,8 @@ const GoodGoods = () => {
   const [tagBarStyle, setTagBarStyle]: [null | object, Function] = useState(null);
   const dispatch = useDispatch();
   const onScroll = (e) => {
-    if (e.target.scrollTop >= 360) {
+    console.log(e.target.scrollTop);
+    if (e.target.scrollTop >= 630) {
       if (!tagBarStyle) {
         setTagBarStyle({
           position: 'fixed',
@@ -31,8 +32,10 @@ const GoodGoods = () => {
     }
   };
   const onScrollToLower = (e) => {
+    console.log("onScrollToLoweronScrollToLoweronScrollToLower");
     dispatch({ type: 'goodGoods/getPageGoods'});
   }
+
   return (
     <View className='goodgoods-wrap'>
       <ScrollView scrollY={true} scrollWithAnimation style={{ height: '100%' }} onScroll={onScroll} onScrollToLower={onScrollToLower}>

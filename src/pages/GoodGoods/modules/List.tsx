@@ -14,7 +14,7 @@ const List = () => {
     return goods;
   }, [goodsData.goods]);
   return (
-     <View  className='list-wrap' style={{'paddingBottom':'200px'}}>
+     <View  className='listgoods-wrap' style={{'paddingBottom':'200px'}}>
      <GoodsList list={formatList} />
      </View>
   );

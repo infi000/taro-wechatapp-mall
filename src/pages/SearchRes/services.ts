@@ -2,8 +2,21 @@ import request from '@/utils/request';
 import Api from '@/config/api';
 
 /**
- * 商品搜索 返回商品列表
+ * 	30.	获取分类集合下的商品
+ * @param payload 
+ * @param payload.cid  id
+ * @param payload.offset  
+ * @param payload.count  
  */
-export const getSearchGoods = (payload: ISearchGoodsParams) => request.get(Api.searchGoods, payload);
+export const searchGoods = (payload:{key?:StringNumber,offset:StringNumber,count:StringNumber}) => request.get(Api.searchGoods, payload);
 
-export default {};
+
+/**
+ * 	30.	获取分类集合下的商品
+ * @param payload 
+ * @param payload.cid  id
+ * @param payload.offset  
+ * @param payload.count  
+ */
+export const getClassifyGoods = (payload:{title:StringNumber,cid:StringNumber,offset:StringNumber,count:StringNumber}) => request.get(Api.getClassifyGoods, payload);
+

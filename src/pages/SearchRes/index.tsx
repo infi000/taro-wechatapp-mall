@@ -1,51 +1,48 @@
-import Taro, { useRouter } from '@tarojs/taro';
+import Taro, { useDidShow, useMemo } from '@tarojs/taro';
 import { View, Block, ScrollView } from '@tarojs/components';
 import GoodsList from '@/components/GoodsList';
 import { useSelector, useDispatch } from '@tarojs/redux';
+import { searchGoods,getClassifyGoods } from './services';
 import './index.scss';
 
-const { useMemo, useEffect } = Taro;
-
+const { useRouter, useEffect, useState } = Taro;
+const PAGE_LEN = 1000;
 const SearchRes = () => {
-  const { goodsData, goodsDataParams } = useSelector((state) => state.searchRes);
-  const { windowHeight } = useSelector((state) => state.main);
-  const dispatch = useDispatch();
   const router = useRouter();
-  const formatList = useMemo(() => {
-    const { goods } = goodsData;
-    return goods;
-  }, [goodsData.goods]);
-  const onScrollToLower = () => {
-    dispatch({type:'searchRes/getPageGoods'});
-  }
-  const onScroll = (e) => {
-  
-  }
-  const scrollHeight = useMemo(() => {
-    return windowHeight-50
-  },[windowHeight])
-
-  useEffect(() => {
+  const [formatList, setFormatList] = useState([]);
+  // const [offset, setOffset] = useState(0);
+  useDidShow(() => {
     const { params } = router;
-    dispatch({ type: 'searchRes/getSearchGoods', params: {key: params.key}});
-  }, []);
+    const { from } = params;
+    if(from === 'sortpage'){
+      const { cid ,key } = params;
+      getClassifyGoods({title:key, cid, offset: 0, count: PAGE_LEN }).then((d) => {
+        const goods = d.goods;
+        setFormatList(goods || []);
+      });
+      Taro.setNavigationBarTitle({
+        title: key || '糖',
+      });
+    }else{
+      const { key,title } = params;
+      searchGoods({ key, offset: 0, count: PAGE_LEN }).then((d) => {
+        const goods = d.goods;
+        setFormatList(goods || []);
+      });
+      Taro.setNavigationBarTitle({
+        title: title || '糖',
+      });
+    }
+   
+
+  });
+  const onScrollToLower = (e) => {
+    console.log('触底了');
+    // dispatch({ type: 'goodGoods/getPageGoods'});
+  };
   return (
-    <View className='searchres-wrap'>
-      {' '}
-      <ScrollView
-        className='list-wrap'
-        scrollY
-        scrollWithAnimation
-        scrollTop={0}
-        style={{ height:`${scrollHeight}px`}}
-        lowerThreshold={50}
-        upperThreshold={100}
-        refresherEnabled
-        refresherThreshold={20}
-        // onScrollToUpper={onScrollToUpper}
-        onScrollToLower={onScrollToLower}
-        onScroll={onScroll}
-      >
+    <View className='list-wrap' >
+      <ScrollView scrollY={true} scrollWithAnimation style={{ height: '100%' }} onScrollToLower={onScrollToLower}> 
         <GoodsList list={formatList} />
       </ScrollView>
     </View>

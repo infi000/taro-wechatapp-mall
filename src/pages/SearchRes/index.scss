@@ -1,10 +1,7 @@
 @import '../../static/style/common.scss';
-
-.searchres-wrap{
-    background-color: $bg-grey-color;
-    @include con;
-    height: 100%;
+.list-wrap {
+    background-color: #fff;
+    height:100vh;
     overflow: hidden;
-    // margin-bottom: 10px;
-    
-}
+    padding-bottom: 150px;
+  }

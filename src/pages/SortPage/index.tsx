@@ -3,10 +3,12 @@ import { View, Block, ScrollView } from '@tarojs/components';
 import GoodsList from '@/components/GoodsList';
 import { useSelector, useDispatch } from '@tarojs/redux';
 import { getClassifyGoods } from './services';
+import SearchBar from './modules/SearchBar';
+
 import './index.scss';
 
 const { useRouter, useEffect, useState } = Taro;
-const PAGE_LEN = 100;
+const PAGE_LEN = 1000;
 const SortPage = () => {
   const router = useRouter();
   const [formatList, setFormatList] = useState([]);
@@ -26,19 +28,8 @@ const SortPage = () => {
     console.log('触底了');
     // dispatch({ type: 'goodGoods/getPageGoods'});
   };
-  // const list = useEffect(()=>{
-  //   const { cid } = router.params;
-  //   getClassifyGoods({ cid, offset: offset, count: PAGE_LEN }).then((d) => {
-  //     const goods = d.goods || [];
-  //     setFormatList((arr)=>{
-  //         arr.concat(goods);
-  //         return arr;
-  //     });
-      
-  //   });
-  // },[offset]);
   return (
-    <View className='list-wrap' >
+    <View className='list-wrap' ><SearchBar />
       <ScrollView scrollY={true} scrollWithAnimation style={{ height: '100%' }} onScrollToLower={onScrollToLower}> 
         <GoodsList list={formatList} />
       </ScrollView>
