@@ -22,11 +22,11 @@ const Banner = () => {
       <View className='banner-con'>
         <Swiper className='swiper-con' indicatorColor='#999' indicatorActiveColor='#333' circular indicatorDots autoplay>
           {bannerList &&
-            bannerList.map((item) => {
+            bannerList.map((item,index) => {
               const { fpath,id } = item;
               return (
                 <SwiperItem key={fpath}>
-                  <Image mode='aspectFill' style='width: 100%;height: 100%;border-radius:14px' src={fpath} onClick={()=>handlePageTo(item)} />
+                  <Image mode='aspectFill' style='width: 100%;height: 100%;border-radius:14px' src={fpath} onClick={()=>{ index!==0 && handlePageTo(item)}} />
                 </SwiperItem>
               );
             })}

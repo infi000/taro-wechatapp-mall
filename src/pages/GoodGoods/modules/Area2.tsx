@@ -10,7 +10,7 @@ const Area = () => {
   };
   const [areaList, setAreaList]: [any[], any] = useState([]);
   useEffect(() => {
-    getClassifySearch({ ctype: 1 }).then((d) => {
+    getClassifySearch({ ctype: 2 }).then((d) => {
       const arr = isArray(d) ? d : [];
       setAreaList(arr);
     });

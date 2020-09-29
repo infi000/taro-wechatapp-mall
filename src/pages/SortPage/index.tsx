@@ -11,11 +11,11 @@ const { useRouter, useEffect, useState } = Taro;
 const PAGE_LEN = 1000;
 const SortPage = () => {
   const router = useRouter();
+  const { params } = router;
+  const { cid, title } = params;
   const [formatList, setFormatList] = useState([]);
   // const [offset, setOffset] = useState(0);
   useDidShow(() => {
-    const { params } = router;
-    const { cid, title } = params;
     getClassifyGoods({ cid, offset: 0, count: PAGE_LEN }).then((d) => {
       const goods = d.goods;
       setFormatList(goods || []);
@@ -29,7 +29,7 @@ const SortPage = () => {
     // dispatch({ type: 'goodGoods/getPageGoods'});
   };
   return (
-    <View className='list-wrap' ><SearchBar />
+    <View className='list-wrap' ><SearchBar cid={cid} />
       <ScrollView scrollY={true} scrollWithAnimation style={{ height: '100%' }} onScrollToLower={onScrollToLower}> 
         <GoodsList list={formatList} />
       </ScrollView>

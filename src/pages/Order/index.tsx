@@ -48,17 +48,16 @@ const Order = () => {
     <View className='order-wrap'>
       <AtTabs current={current} tabList={tabList} scroll onClick={setCurrent}>
         {[...ORDER_OTYPE_MAP.values()].map((status, index) => {
-          const getList = orderList[status].list;
           return (
             <AtTabsPane current={current} index={index} key={status}>
               <ScrollCon onScrollBottom={() => handleScrollBottom(status)}>
                 <View>
                   {orderList[status] && orderList[status].list && orderList[status].list.length > 0 && (
-                    <ListItem status={status} orderList={orderList} list={getList} handleDelOrder={handleDelOrder} />
+                    <ListItem status={status} orderList={orderList} list={orderList[status].list} handleDelOrder={handleDelOrder} />
                   )}
                   <View style='padding:20px'>
                     <Divider />
-                  </View>
+                  </View>``
                 </View>
               </ScrollCon>
             </AtTabsPane>
