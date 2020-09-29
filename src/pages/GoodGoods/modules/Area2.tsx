@@ -19,8 +19,8 @@ const Area = () => {
     <View className='area-wrap-2'>
       <View className='at-row at-row--wrap'>
         {areaList &&
-          areaList.length > 1 &&
-          [...areaList].slice(1,7).map((item) => {
+          isArray(areaList) &&
+          areaList.map((item) => {
             return (
               <View className='at-col at-col-6 area-l'>
                   <Image
