@@ -6,7 +6,7 @@ import './index.scss';
 const Kefu = () => {
   return (
     <View className="photo-wrap">
-      <Image src={kefu} style={{ 'width': '100%','marginTop':'10%' }} mode="aspectFit" />
+      <Image src={kefu} style={{ 'width': '100%','marginTop':'20%' }} mode="aspectFit" />
     </View>
   );
 };

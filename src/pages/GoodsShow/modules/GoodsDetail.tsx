@@ -129,7 +129,7 @@ const GoodsDetail = (props: IProps) => {
           {isfav == 1 ? <View className='sale-btn' onClick={handleGetUnfav}>已收藏</View> : <View className='sale-btn' onClick={handleGetFav}>收藏</View>}
         </View>
         <View className='at-col at-col-4 '>
-          <View className='sale-btn'>出售</View>
+          {/* <View className='sale-btn' >出售</View> */}
         </View>
         <View className='at-col at-col-4'>
           <View className='buy-btn' onClick={handleSaveBuy}>购买</View>

@@ -1,6 +1,6 @@
 import delay from '@/utils/delay';
 import { isArray, toNumber } from 'lodash';
-import { searchOrder, delOrder } from './services';
+import { searchOrder, delOrder,orderComplete } from './services';
 import { ORDER_OTYPE_MAP } from '@/constants/index';
 import { showSuccessToast } from '@/utils/util';
 const PAGE_LEN = 100; // 每页个数
@@ -51,6 +51,12 @@ export default {
       const { id, otype } = params;
       yield call(delOrder, {id});
       showSuccessToast('删除成功');
+      yield put({ type: 'searchOrder', params: {otype} });
+    },
+    *orderComplete({ params }, { all, call, put }) {
+      const { id, otype } = params;
+      yield call(orderComplete, {id});
+      showSuccessToast('确认成功');
       yield put({ type: 'searchOrder', params: {otype} });
     },
   },

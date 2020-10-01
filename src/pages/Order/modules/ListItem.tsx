@@ -16,14 +16,15 @@ interface IProps {
   orderList?: any;
   status: string | number;
   handleDelOrder: (id: StringNumber, status: StringNumber) => any;
+  handleCompletelOrder: (id: StringNumber, status: StringNumber) => any;
 }
 
 const ListItem = (props: IProps) => {
-  const { status, orderList, handleDelOrder } = props;
+  const { status, orderList, handleDelOrder, handleCompletelOrder } = props;
   const { list } = orderList[status] || {};
   const handlePageTo = (orderid) => {
     Taro.navigateTo({ url: '/pages/BuyPage/index?orderid=' + orderid });
-  }
+  };
   return (
     <View className='list-group-wrap'>
       {(!list || !list[0]) && <View> 暂无信息</View>}
@@ -42,6 +43,13 @@ const ListItem = (props: IProps) => {
                     </View>
                     <View className='btn-default' onClick={() => handleDelOrder(orderid, status)}>
                       删除订单
+                    </View>
+                  </View>
+                )}
+                {orderStatus == '2' && (
+                  <View className='list-item-btn-con'>
+                    <View className='btn-default' style='margin-right:10px' onClick={() => handleCompletelOrder(orderid, status)}>
+                      确认收获
                     </View>
                   </View>
                 )}

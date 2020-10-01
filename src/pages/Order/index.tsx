@@ -33,6 +33,9 @@ const Order = () => {
   const handleDelOrder = (id, otype) => {
     dispatch({ type: 'order/delOrder', params: { id, otype } });
   };
+  const handleCompletelOrder = (id, otype) => {
+    dispatch({ type: 'order/orderComplete', params: { id, otype } });
+  };
   useInitialValue('order', dispatch);
   useDidShow(() => {
     // 切换tab 请求接口
@@ -53,11 +56,11 @@ const Order = () => {
               <ScrollCon onScrollBottom={() => handleScrollBottom(status)}>
                 <View>
                   {orderList[status] && orderList[status].list && orderList[status].list.length > 0 && (
-                    <ListItem status={status} orderList={orderList} list={orderList[status].list} handleDelOrder={handleDelOrder} />
+                    <ListItem status={status} orderList={orderList} list={orderList[status].list} handleDelOrder={handleDelOrder} handleCompletelOrder={handleCompletelOrder} />
                   )}
                   <View style='padding:20px'>
                     <Divider />
-                  </View>``
+                  </View>
                 </View>
               </ScrollCon>
             </AtTabsPane>

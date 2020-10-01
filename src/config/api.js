@@ -43,4 +43,5 @@ export default {
   getAllTemplate:   WxApiRoot + '/User/alltemplate', //	31.	获取所有模板信息
   getClassifySearch:   WxApiRoot + '/Classify/search', //	29.	搜索分类集合
   getClassifyGoods:   WxApiRoot + '/Classify/getgoods', //	30.	获取分类集合下的商品
+  orderComplete:   WxApiRoot + '/Order/complete', //	30.	获取分类集合下的商品
 };

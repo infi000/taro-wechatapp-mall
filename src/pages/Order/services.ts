@@ -9,5 +9,6 @@ export const searchOrder = (payload) => request.get(Api.searchOrder, payload);
  * id:订单的orderid
  */
 export const delOrder = (payload) => request.get(Api.delOrder, payload);
+export const orderComplete = (payload) => request.get(Api.orderComplete, payload);
 
 export default {};
