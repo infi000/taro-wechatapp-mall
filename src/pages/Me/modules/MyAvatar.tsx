@@ -35,7 +35,7 @@ const MyAvatar = () => {
           </Button>
         )}
       </View>
-      <View className='at-row at-row--wrap  my-avatar-bottom'>
+      {/* <View className='at-row at-row--wrap  my-avatar-bottom'>
         <View className='at-col at-col-6'>
           <View>¥0.00</View>
           <View className='my-avatar-desc'>我的钱包</View>
@@ -44,7 +44,7 @@ const MyAvatar = () => {
           <View>0个寄存中</View>
           <View className='my-avatar-desc'>我的仓库</View>
         </View>
-      </View>
+      </View> */}
     </View>
   );
 };

@@ -12,7 +12,7 @@ const Me = () => {
       <MyAvatar />
       <View className='order-sales-con'>
         <MyOrder />
-        <MySales />
+        {/* <MySales /> */}
       </View>
       <Others />
     </View>

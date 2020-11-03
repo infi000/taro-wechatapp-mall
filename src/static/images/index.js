@@ -1,8 +1,8 @@
 
 
 
-export { default as Home} from './home.png';
-export {default as HomeSelected} from './home@selected.png';
+// export { default as Home} from './home.png';
+// export {default as HomeSelected} from './home@selected.png';
 export { default as Category} from './category.png';
 export {default as CategorySelected} from './category@selected.png';
 export { default as Cart} from './cart.png';
@@ -35,8 +35,13 @@ export { default as address} from './address.png';
 export { default as coupon} from './coupon.png';
 
 
-export { default as goods} from './goods.png';
-export { default as goodsSelected} from './goods@selected.png';
+// export { default as goods} from './goods.png';
+// export { default as goodsSelected} from './goods@selected.png';
+
+export { default as Home} from './ntof_home.png';
+export {default as HomeSelected} from './ntof_home@selected.png';
+export { default as goods} from './ntof_goods.png';
+export { default as goodsSelected} from './ntof_goods@selected.png';
 
 
 

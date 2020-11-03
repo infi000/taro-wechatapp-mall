@@ -32,7 +32,7 @@ const Banner = () => {
             })}
         </Swiper>
       </View>
-      <View className='at-row at-row__justify--between banner-grid' style='margin-top:20px'>
+      {/* <View className='at-row at-row__justify--between banner-grid' style='margin-top:20px'>
         <View className='at-col at-col-3'>
           <View className='icon-box'>
             <Image style='width:100%;height:100%;' src={zpbz} />
@@ -48,7 +48,7 @@ const Banner = () => {
         <View className='at-col at-col-3'>     <View className='icon-box'>
             <Image style='width:100%;height:100%;' src={shwy} />
           </View>售后无忧</View>
-      </View>
+      </View> */}
     </View>
   );
 };

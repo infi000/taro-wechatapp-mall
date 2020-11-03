@@ -1,6 +1,6 @@
 const MOCK = 'http://gz-cvm-ebuild-ningzhang-dev001.gz.sftcwl.com:7300/mock/5f007cea552f4047ea3d0872/lujia';
 const yjw_test = 'https://dev.tangguostore.com/index.php/MiniApi';
-const yjw = 'https://www.tangguostore.com/index.php/MiniApi';
+const yjw = 'https://xiaochengxu.ntof.com/index.php/MiniApi';
 const WxApiRoot = yjw;
 // https://www.tangguostore.com/index.php/MiniApi/CC/myowns?openid=oKDX35X2NHYdiZdb8ukgFZmqwM8M
 export default {

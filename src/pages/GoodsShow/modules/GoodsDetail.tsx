@@ -80,7 +80,7 @@ const GoodsDetail = (props: IProps) => {
       </View>
 
       {/* 购买记录 */}
-      <View className='goodsshow-con goods-sale-con'>
+      {/* <View className='goodsshow-con goods-sale-con'>
         <View className='at-row at-row__justify--between goods-sale-top'>
           <View className='at-col at-col-5 goods-sale-count'>购买记录({buysRecordList.total})</View>
           <View className='at-col at-col-5 goods-sale-all-btn' onClick={handleShowBuysPage}>
@@ -101,7 +101,7 @@ const GoodsDetail = (props: IProps) => {
               );
             })}
         </View>
-      </View>
+      </View> */}
       {/* 购买须知 */}
       <View className='goodsshow-con goods-warning-con'>
         <View className='at-col at-col-5 goods-warning-title'>购买须知</View>
@@ -124,15 +124,18 @@ const GoodsDetail = (props: IProps) => {
           <View className='sale-btn'>出售</View>
         </View> */}
         {/* {isfav == 1 ? <View className='at-col at-col-3 love-btn' onClick={handleGetUnfav}>已收藏</View> : <View className='at-col at-col-3 love-btn' onClick={handleGetFav}>收藏</View>} */}
-
+        <View className='at-col at-col-2 '>
+          {/* <View className='sale-btn' >出售</View> */}
+        </View>
         <View className='at-col at-col-4 '>
           {isfav == 1 ? <View className='sale-btn' onClick={handleGetUnfav}>已收藏</View> : <View className='sale-btn' onClick={handleGetFav}>收藏</View>}
         </View>
-        <View className='at-col at-col-4 '>
-          {/* <View className='sale-btn' >出售</View> */}
-        </View>
+    
         <View className='at-col at-col-4'>
           <View className='buy-btn' onClick={handleSaveBuy}>购买</View>
+        </View>
+        <View className='at-col at-col-2 '>
+          {/* <View className='sale-btn' >出售</View> */}
         </View>
       </View>
     </View>
