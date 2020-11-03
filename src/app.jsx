@@ -63,7 +63,7 @@ class App extends Component {
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: '糖',
+      navigationBarTitleText: 'NTOF',
       navigationBarTextStyle: 'black',
     },
     subpackages: [

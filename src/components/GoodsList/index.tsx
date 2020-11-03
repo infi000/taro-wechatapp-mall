@@ -19,7 +19,7 @@ const GoodsList = (props: IProps) => {
     try {
       Taro.navigateTo({ url: '/pages/GoodsShow/index?gid=' + id + '&title=' + title });
     } catch (error) {
-      Taro.navigateTo({ url: '/pages/GoodsShow/index?gid=' + id + '&title=糖' });
+      Taro.navigateTo({ url: '/pages/GoodsShow/index?gid=' + id + '&title=NTOF' });
     }
   };
   return (

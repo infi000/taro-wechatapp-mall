@@ -24,7 +24,7 @@ const GoodsShow = () => {
     dispatch({ type: 'goodsShow/getRelatedGoods' });
     dispatch({ type: 'goodsShow/getIsfav' });
     Taro.setNavigationBarTitle({
-      title:title||'糖'
+      title:title||'NTOF'
     });
   });
   useShareAppMessage(res => {
@@ -35,7 +35,7 @@ const GoodsShow = () => {
     //   imageUrl = detail.fpath;
     // }
     return {
-      title: title || '糖',
+      title: title || 'NTOF',
       path: '/pages/GoodsShow/index?gid=' + gid + '&title=' + title ,
       // imageUrl
     }

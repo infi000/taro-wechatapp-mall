@@ -16,7 +16,7 @@ const Main = (props) => {
     //   console.log(res.target)
     // }
     return {
-      title: '糖',
+      title: 'NTOF',
       path: '/pages/Main/index'
     }
   })

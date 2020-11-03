@@ -21,7 +21,7 @@ const SortPage = () => {
       setFormatList(goods || []);
     });
     Taro.setNavigationBarTitle({
-      title: title || '糖',
+      title: title || 'NTOF',
     });
   });
   const onScrollToLower = (e) => {

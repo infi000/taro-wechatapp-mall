@@ -21,7 +21,7 @@ const SearchRes = () => {
         setFormatList(goods || []);
       });
       Taro.setNavigationBarTitle({
-        title: key || '糖',
+        title: key || 'NTOF',
       });
     }else{
       const { key,title } = params;
@@ -30,7 +30,7 @@ const SearchRes = () => {
         setFormatList(goods || []);
       });
       Taro.setNavigationBarTitle({
-        title: title || '糖',
+        title: title || 'NTOF',
       });
     }
    
