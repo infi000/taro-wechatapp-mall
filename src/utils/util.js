@@ -37,3 +37,16 @@ export function redirect(url) {
     });
   }
 }
+
+export function isEmpty(params) {
+  if(params === ''){
+    return true
+  }
+  if(params === undefined){
+    return true
+  }
+  if(params === null){
+    return true
+  }
+  return false;
+}

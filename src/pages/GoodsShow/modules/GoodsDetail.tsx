@@ -3,18 +3,26 @@ import Taro, { useDidShow } from '@tarojs/taro';
 import { View, Swiper, SwiperItem, Image } from '@tarojs/components';
 import { useSelector, useDispatch } from '@tarojs/redux';
 import GoodsList from '@/components/GoodsList';
-import { isArray, toNumber, slice } from 'lodash';
+import SelecotModall from './SelecotModal';
+import { isArray, toNumber, slice, isString } from 'lodash';
 import '../index.scss';
 
 const { useState, useEffect, useMemo } = Taro;
-interface IProps {
- 
-}
+const defaultChooseModal = {
+  show: false,
+  data: {
+    color: [],
+    groupprice: [],
+    size: [],
+  },
+};
+interface IProps {}
 /**
  * 商品展示
  */
 const GoodsDetail = (props: IProps) => {
   const { detail, relatedGoods, buysRecordList, isfav, gid } = useSelector((state) => state.goodsShow);
+  const [chooseModal, setChooseModal] = useState(defaultChooseModal);
   // const { gid } = props;
   const dispatch = useDispatch();
   const buysList = useMemo(() => {
@@ -28,13 +36,33 @@ const GoodsDetail = (props: IProps) => {
     dispatch({ type: 'goodsShow/updateIsShowBuysPaget', payload: true });
   };
   const handleGetUnfav = () => {
-    dispatch({ type: 'goodsShow/getUnfav'});
-  }
+    dispatch({ type: 'goodsShow/getUnfav' });
+  };
   const handleGetFav = () => {
-    dispatch({ type: 'goodsShow/getFav'});
-  }
+    dispatch({ type: 'goodsShow/getFav' });
+  };
   const handleSaveBuy = () => {
-    dispatch({ type: 'goodsShow/createOrder'});
+    dispatch({ type: 'goodsShow/createOrder' });
+  };
+  const handleToChoose = () => {
+    let { color, groupprice, size } = detail || {};
+    color = isString(color) ? color.split('、') : [];
+    groupprice = isString(groupprice) ? groupprice.split('、') : [];
+    size = isString(size) ? size.split('、') : [];
+    const params = {
+      show: true,
+      data: {
+        color,
+        groupprice,
+        size,
+      },
+    };
+    setChooseModal(params);
+  };
+  const handleSelecotModalSubmit = (params:{price:string;size:string;color:string;num:number}) =>{
+    setChooseModal(defaultChooseModal);
+    console.log("params",params);
+    dispatch({ type: 'goodsShow/createOrder',params });
   }
   // useEffect(() => {
   //   // dispatch({ type: 'goodsShow/updateGid', payload: gid });
@@ -70,12 +98,12 @@ const GoodsDetail = (props: IProps) => {
       {/* 商品属性 */}
       <View className='goodsshow-con' style={{ paddingBottom: 0 }}>
         <View className='at-row at-row__justify--between goods-attr-con'>
-          <View className='at-col at-col-5 goods-attr'>品牌</View>
-          <View className='at-col at-col-5  goods-attr-desc'>{detail.brand}</View>
+          <View className='at-col at-col-2 goods-attr'>品牌</View>
+          <View className='at-col at-col-10  goods-attr-desc'>{detail.brand}</View>
         </View>
         <View className='at-row at-row__justify--between goods-attr-con'>
-          <View className='at-col at-col-5 goods-attr'>尺寸</View>
-          <View className='at-col at-col-5  goods-attr-desc'>{detail.size}</View>
+          <View className='at-col at-col-2 goods-attr'>尺寸</View>
+          <View className='at-col at-col-10  goods-attr-desc'>{detail.size}</View>
         </View>
       </View>
 
@@ -124,20 +152,38 @@ const GoodsDetail = (props: IProps) => {
           <View className='sale-btn'>出售</View>
         </View> */}
         {/* {isfav == 1 ? <View className='at-col at-col-3 love-btn' onClick={handleGetUnfav}>已收藏</View> : <View className='at-col at-col-3 love-btn' onClick={handleGetFav}>收藏</View>} */}
-        <View className='at-col at-col-2 '>
-          {/* <View className='sale-btn' >出售</View> */}
-        </View>
+        <View className='at-col at-col-2 '>{/* <View className='sale-btn' >出售</View> */}</View>
         <View className='at-col at-col-4 '>
-          {isfav == 1 ? <View className='sale-btn' onClick={handleGetUnfav}>已收藏</View> : <View className='sale-btn' onClick={handleGetFav}>收藏</View>}
+          {isfav == 1 ? (
+            <View className='sale-btn' onClick={handleGetUnfav}>
+              已收藏
+            </View>
+          ) : (
+            <View className='sale-btn' onClick={handleGetFav}>
+              收藏
+            </View>
+          )}
         </View>
-    
+
         <View className='at-col at-col-4'>
-          <View className='buy-btn' onClick={handleSaveBuy}>购买</View>
+          {/* <View className='buy-btn' onClick={handleSaveBuy}>购买</View> */}
+          <View className='buy-btn' onClick={handleToChoose}>
+            购买
+          </View>
         </View>
-        <View className='at-col at-col-2 '>
-          {/* <View className='sale-btn' >出售</View> */}
-        </View>
+        <View className='at-col at-col-2 '>{/* <View className='sale-btn' >出售</View> */}</View>
       </View>
+      {chooseModal.show && (
+        <SelecotModall
+          color={chooseModal.data.color}
+          groupprice={chooseModal.data.groupprice}
+          size={chooseModal.data.size}
+          handleAdd={handleSelecotModalSubmit}
+          handleCancel={() => {
+            setChooseModal(defaultChooseModal);
+          }}
+        />
+      )}
     </View>
   );
 };

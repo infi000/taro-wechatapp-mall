@@ -97,11 +97,12 @@ export default {
       yield call(getUnfav, { gids:gid });
       yield put({ type: 'getIsfav' });
     },
-    *createOrder({}, { all, call, put, select }) {
+    *createOrder({params}:{params:{price:string;size:string;color:string; num:number}}, { all, call, put, select }) {
       const { gid,detail } = yield select((state) => state.goodsShow);
-      const { size, price } =detail;
+      const { size, price, color, num } = params;
+      console.log(params);
       // const {addresses} = yield call(getMyAddress);
-      const { orderid } = yield call(createOrder, { "id[]":gid,'sort[]':`1`,'sel[]':`1`,'parameters[]':`${size}`,'price[]':price,'num[]':'1' });
+      const { orderid } = yield call(createOrder, { "id[]":gid,'sort[]':`1`,'sel[]':`1`,'parameters[]':`${size}_${color}`,'price[]':price,'num[]':num });
       Taro.navigateTo({ url:'/pages/BuyPage/index?orderid=' + orderid });
       // if(!addresses){
       //   showToast("没有设置收货地址");

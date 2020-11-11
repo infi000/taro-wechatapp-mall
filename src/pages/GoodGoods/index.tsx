@@ -14,7 +14,7 @@ const GoodGoods = () => {
   const dispatch = useDispatch();
   const onScroll = (e) => {
     console.log(e.target.scrollTop);
-    if (e.target.scrollTop >= 630) {
+    if (e.target.scrollTop >= 340) {
       if (!tagBarStyle) {
         setTagBarStyle({
           position: 'fixed',

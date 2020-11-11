@@ -64,10 +64,10 @@ const Others = () => {
           </View>
         );
       })}
-      <View className='at-row me-others-con' onClick={handleSubscribe}>
+      {/* <View className='at-row me-others-con' onClick={handleSubscribe}>
         <View className='at-col-6 textL'>消息订阅</View>
         <View className='at-col-6 textR'></View>
-      </View>
+      </View> */}
     </View>
   );
 };

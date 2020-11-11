@@ -47,7 +47,7 @@ class App extends Component {
     pages: [
    
 
-     
+
       'pages/Main/index',
       'pages/BuyPage/index',
       'pages/Kefu/index',
