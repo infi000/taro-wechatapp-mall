@@ -1,20 +1,21 @@
 // import Taro from '@tarojs/taro';
 import Taro, { useDidShow } from '@tarojs/taro';
-import { View, Swiper, SwiperItem, Image } from '@tarojs/components';
+import { View, Swiper, SwiperItem, Image, Button } from '@tarojs/components';
 import { useSelector, useDispatch } from '@tarojs/redux';
 import GoodsList from '@/components/GoodsList';
 import { isArray, toNumber, slice } from 'lodash';
+import { logIn } from '@/utils/auth';
+
 import '../index.scss';
 
 const { useState, useEffect, useMemo } = Taro;
-interface IProps {
- 
-}
+interface IProps {}
 /**
  * 商品展示
  */
 const GoodsDetail = (props: IProps) => {
   const { detail, relatedGoods, buysRecordList, isfav, gid } = useSelector((state) => state.goodsShow);
+  const { isLogIn } = useSelector((state) => state.main);
   // const { gid } = props;
   const dispatch = useDispatch();
   const buysList = useMemo(() => {
@@ -28,14 +29,14 @@ const GoodsDetail = (props: IProps) => {
     dispatch({ type: 'goodsShow/updateIsShowBuysPaget', payload: true });
   };
   const handleGetUnfav = () => {
-    dispatch({ type: 'goodsShow/getUnfav'});
-  }
+    dispatch({ type: 'goodsShow/getUnfav' });
+  };
   const handleGetFav = () => {
-    dispatch({ type: 'goodsShow/getFav'});
-  }
+    dispatch({ type: 'goodsShow/getFav' });
+  };
   const handleSaveBuy = () => {
-    dispatch({ type: 'goodsShow/createOrder'});
-  }
+    dispatch({ type: 'goodsShow/createOrder' });
+  };
   // useEffect(() => {
   //   // dispatch({ type: 'goodsShow/updateGid', payload: gid });
   //   dispatch({ type: 'goodsShow/getDetail' });
@@ -54,7 +55,7 @@ const GoodsDetail = (props: IProps) => {
             return (
               <SwiperItem key={id}>
                 <View className='swiper-img-con'>
-                  <Image mode='heightFix' lazyLoad style='width: 100%;height: 100%' src={fpath} />
+                  <Image  lazyLoad style='width: 100%;height: 100%' src={fpath} />
                 </View>
               </SwiperItem>
             );
@@ -126,13 +127,33 @@ const GoodsDetail = (props: IProps) => {
         {/* {isfav == 1 ? <View className='at-col at-col-3 love-btn' onClick={handleGetUnfav}>已收藏</View> : <View className='at-col at-col-3 love-btn' onClick={handleGetFav}>收藏</View>} */}
 
         <View className='at-col at-col-4 '>
-          {isfav == 1 ? <View className='sale-btn' onClick={handleGetUnfav}>已收藏</View> : <View className='sale-btn' onClick={handleGetFav}>收藏</View>}
+          {isfav == 1 ? (
+            <View className='sale-btn' onClick={handleGetUnfav}>
+              已收藏
+            </View>
+          ) : (
+            <View className='sale-btn' onClick={handleGetFav}>
+              收藏
+            </View>
+          )}
         </View>
-        <View className='at-col at-col-4 '>
-          {/* <View className='sale-btn' >出售</View> */}
-        </View>
+        <View className='at-col at-col-4 '>{/* <View className='sale-btn' >出售</View> */}</View>
         <View className='at-col at-col-4'>
-          <View className='buy-btn' onClick={handleSaveBuy}>购买</View>
+          {isLogIn ? (
+            <View className='buy-btn' onClick={handleSaveBuy}>
+              购买
+            </View>
+          ) : (
+            <Button
+              className='buy-btn'
+              open-type='getUserInfo'
+              onGetUserInfo={(e) => {
+                logIn(dispatch,handleSaveBuy);
+              }}
+            >
+              购买
+            </Button>
+          )}
         </View>
       </View>
     </View>

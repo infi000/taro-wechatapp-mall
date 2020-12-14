@@ -17,7 +17,7 @@ interface IProp {
 const Addr = (props: IProp) => {
   const { defaultAddr } = props;
   const handleGoTo = () => {
-    Taro.navigateTo({ url: '/pages/Address/index' });
+    Taro.navigateTo({ url: '/pages/Address/index?from=buyPage' });
   };
   return (
     <View>

@@ -16,6 +16,7 @@ const GoodsShow = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   useDidShow(() => {
+    dispatch({ type: 'goodsShow/init' });
     const { params } = router;
     const {gid,title} = params;
     dispatch({ type: 'goodsShow/updateGid', payload: gid });

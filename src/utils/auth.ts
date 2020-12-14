@@ -1,7 +1,7 @@
 import Taro from '@tarojs/taro';
 import { getJscode2session, saveUserData } from '@/services/user';
 
-export const logIn = (dispatch) =>
+export const logIn = (dispatch,SuccessCb?:Function,errorCb?:Function) =>
   Taro.login({
     success: async function(res) {
       if (res.code) {
@@ -23,12 +23,15 @@ export const logIn = (dispatch) =>
                 dispatch({ type: 'main/updateIsLogIn', payload: true });
                 dispatch({ type: 'main/updateWxUserInfo', payload: { nickName, avatarUrl, gender, province, country, city, openid } });
                 dispatch({ type: 'main/updateOpenid', payload: openid });
-              });
+              }).then(()=>{
+                SuccessCb && setTimeout(SuccessCb,0);
+              })
             },
           });
         });
       } else {
         console.log('登录失败！' + res.errMsg);
+        errorCb && errorCb();
       }
     },
   });

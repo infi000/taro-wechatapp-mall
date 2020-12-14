@@ -39,9 +39,10 @@ class App extends Component {
       fail() {
         console.log('session验证未登陆！');
         Taro.removeStorageSync('wxUserInfo');
+        Taro.login()
       },
     });
-    this.update();
+    this.update();  
   }
   config = {
     pages: [

@@ -1,5 +1,5 @@
 // import Taro from '@tarojs/taro';
-import Taro, { useRouter } from '@tarojs/taro';
+import Taro, { useDidShow, useRouter } from '@tarojs/taro';
 import { AtNavBar } from 'taro-ui';
 import { View, ScrollView } from '@tarojs/components';
 import { useSelector, useDispatch } from '@tarojs/redux';
@@ -12,6 +12,7 @@ const { useState, useEffect, useMemo } = Taro;
  */
 const GoodsDetail = () => {
   const { buysRecordList } = useSelector((state) => state.goodsShow);
+  console.log("buysRecordList",JSON.stringify(buysRecordList))
   const dispatch = useDispatch();
   const buysList = useMemo(() => {
     const { buys = [] } = buysRecordList;
@@ -26,9 +27,10 @@ const GoodsDetail = () => {
   const onScrollToLower = (e) =>{
     dispatch({type:'goodsShow/getPageBuysRecord'});
   }
-  useEffect(() => {
+  
+  useDidShow(() => {
     dispatch({ type: 'goodsShow/getPageBuysRecord', payload: { refresh: true } });
-  }, []);
+  });
   return (
     <View className='buys-wrap'>
       <AtNavBar onClickLeftIcon={handleClose} color='#000' title='购买记录' leftText='返回' fixed border />

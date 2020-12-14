@@ -1,4 +1,4 @@
-import Taro from '@tarojs/taro';
+import Taro, { useRouter } from '@tarojs/taro';
 import { View, Block, Text } from '@tarojs/components';
 import { AtButton, AtModal } from 'taro-ui';
 import { useSelector, useDispatch } from '@tarojs/redux';
@@ -7,7 +7,8 @@ import '../index.scss';
 
 
 const { useEffect, useState } = Taro;
-const ListAddress = () => {
+const ListAddress = (props:{from:string}) => {
+  const { from } = props;
   const { address } = useSelector((state) => state.address);
   const [alertModal, setAlertOpen]:[any,any] = useState({show:false,data:{}});
   const dispatch = useDispatch();
@@ -43,6 +44,9 @@ const ListAddress = () => {
   const handleSetDefaultAddr = (item) => {
     const { id } = item;
     dispatch({ type: 'address/setDefaultMyAddress', params: { id } });
+    if(from === 'buyPage'){
+      Taro.navigateBack();
+    }
   };
   /**
    * 获取微信默认地址
