@@ -23,6 +23,10 @@ const store = dvaApp.getStore();
 class App extends Component {
   componentWillMount() {
     const { dispatch } = this.props;
+    Taro.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline']
+    })
     Taro.checkSession({
       success(res) {
         //session_key 未过期，并且在本生命周期一直有效
@@ -44,6 +48,16 @@ class App extends Component {
     });
     this.update();  
   }
+  // onShareTimeline(res) {
+  //   let { detail, user_info, is_myRep, work_pos } = this.state;
+  //   return {
+  //     // // 这是我创作的第3幅作品，获得了5星评价，快来给我点赞吧
+  //     // title: `这是我创作的第3幅作品，获得了5星评价，快来给我点赞吧`,
+  //     // // query: `is_fromShare=true&id=${detail.id}`,
+  //     // query: {is_fromShare: true, id: '123'},
+  //     // imageUrl: 'asdf'
+  //   };
+  // }
   config = {
     pages: [
    

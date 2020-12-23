@@ -27,6 +27,10 @@ const GoodsShow = () => {
     Taro.setNavigationBarTitle({
       title:title||'糖'
     });
+    (Taro as any).showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline']
+    })
   });
   useShareAppMessage(res => {
     const { params } = router;
@@ -36,6 +40,7 @@ const GoodsShow = () => {
     //   imageUrl = detail.fpath;
     // }
     return {
+      showShareItems: ['wechatFriends', 'wechatMoment'],
       title: title || '糖',
       path: '/pages/GoodsShow/index?gid=' + gid + '&title=' + title ,
       // imageUrl

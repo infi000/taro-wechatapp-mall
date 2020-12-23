@@ -50,6 +50,9 @@
 }
 
 .goods-sale-con {
+  padding: 25px 0;
+  background-color: #fff;
+  margin-bottom: 10px;
   font-size: $normal-fontsize;
   .goods-sale-top {
     padding-bottom: 25px;
@@ -125,8 +128,13 @@
     color:#fff;
   }
   .buy-btn{
-       display: inline-block;
+    display: inline-block;
     @include foot-btn($color-brand);
+    color:#fff;
+  }
+  .buy-btn-issaled{
+    display: inline-block;
+    @include foot-btn(#ddd);
     color:#fff;
   }
   .love-btn{

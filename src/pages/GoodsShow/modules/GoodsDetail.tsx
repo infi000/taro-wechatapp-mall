@@ -55,7 +55,7 @@ const GoodsDetail = (props: IProps) => {
             return (
               <SwiperItem key={id}>
                 <View className='swiper-img-con'>
-                  <Image  lazyLoad style='width: 100%;height: 100%' src={fpath} />
+                  <Image lazyLoad style='width: 100%;height: 100%' src={fpath} />
                 </View>
               </SwiperItem>
             );
@@ -92,12 +92,11 @@ const GoodsDetail = (props: IProps) => {
           {buysList.length > 0 &&
             buysList.map((item, index) => {
               const { create_time, id, price, title } = item;
-              const formatCt = toNumber(create_time + '000');
               return (
                 <View key={id} className='at-row at-row__justify--between goods-sale-record-con'>
                   <View className='at-col at-col-4 goods-sale-record-l'>{title}</View>
                   <View className='at-col at-col-4 goods-sale-record-m '>¥{price}</View>
-                  <View className='at-col at-col-4 goods-sale-record-r'>{new Date(formatCt).toLocaleDateString()}</View>
+                  <View className='at-col at-col-4 goods-sale-record-r'>{create_time}</View>
                 </View>
               );
             })}
@@ -139,7 +138,11 @@ const GoodsDetail = (props: IProps) => {
         </View>
         <View className='at-col at-col-4 '>{/* <View className='sale-btn' >出售</View> */}</View>
         <View className='at-col at-col-4'>
-          {isLogIn ? (
+          {detail.issale == '-1' ? (
+            <View className='buy-btn-issaled' >
+              购买
+            </View>
+          ) : isLogIn ? (
             <View className='buy-btn' onClick={handleSaveBuy}>
               购买
             </View>
@@ -148,7 +151,7 @@ const GoodsDetail = (props: IProps) => {
               className='buy-btn'
               open-type='getUserInfo'
               onGetUserInfo={(e) => {
-                logIn(dispatch,handleSaveBuy);
+                logIn(dispatch, handleSaveBuy);
               }}
             >
               购买

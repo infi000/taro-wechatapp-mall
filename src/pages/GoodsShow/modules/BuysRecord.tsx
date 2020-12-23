@@ -35,7 +35,7 @@ const GoodsDetail = () => {
     <View className='buys-wrap'>
       <AtNavBar onClickLeftIcon={handleClose} color='#000' title='购买记录' leftText='返回' fixed border />
 
-      <View className='goodsshow-con goods-sale-con'>
+      <View className='goods-sale-con'>
         <ScrollView
           scrollY
           scrollWithAnimation
@@ -50,12 +50,11 @@ const GoodsDetail = () => {
             {buysList.length > 0 &&
               buysList.map((item) => {
                 const { create_time, id, price, title } = item;
-                const formatCt = toNumber(create_time + '000');
                 return (
                   <View key={id} className='at-row at-row__justify--between goods-sale-record-con'>
                     <View className='at-col at-col-4 goods-sale-record-l'>{title}</View>
-                    <View className='at-col at-col-4 goods-sale-record-m '>¥{price}</View>
-                    <View className='at-col at-col-4 goods-sale-record-r'>{new Date(formatCt).toLocaleDateString()}</View>
+                    <View className='at-col at-col-3 goods-sale-record-m '>¥{price}</View>
+                    <View className='at-col at-col-5 goods-sale-record-r'>{create_time}</View>
                   </View>
                 );
               })}
