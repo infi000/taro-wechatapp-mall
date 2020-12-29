@@ -13,9 +13,9 @@ const GoodsList = (props: IProps) => {
   const { list = [] } = props;
   const handleChooseGoods = (opt) => {
     const { id, issale, title } = opt;
-    if (issale === '-1') {
-      return;
-    }
+    // if (issale === '-1') {
+    //   return;
+    // }
     try {
       Taro.navigateTo({ url: '/pages/GoodsShow/index?gid=' + id + '&title=' + title });
     } catch (error) {
