@@ -1,20 +1,20 @@
 import Taro, { useState, useEffect } from '@tarojs/taro';
 import { View, Block, Image } from '@tarojs/components';
-import { getClassifySearch } from '../services';
 import { isArray } from 'lodash';
 import '../index.scss';
 
-const Area = () => {
+const Area = (props:any) => {
   const handlePageTo = ({ id, title }) => {
     Taro.navigateTo({ url: '/pages/SortPage/index?cid=' + id + '&title=' + title });
   };
-  const [areaList, setAreaList]: [any[], any] = useState([]);
-  useEffect(() => {
-    getClassifySearch({ ctype: 2 }).then((d) => {
-      const arr = isArray(d) ? d : [];
-      setAreaList(arr);
-    });
-  }, []);
+  const { areaList } = props;
+  // const [areaList, setAreaList]: [any[], any] = useState([]);
+  // useEffect(() => {
+  //   getClassifySearch({ ctype: 2 }).then((d) => {
+  //     const arr = isArray(d) ? d : [];
+  //     setAreaList(arr);
+  //   });
+  // }, []);
   return (
     <View className='area-wrap-2'>
       <View className='at-row at-row--wrap'>

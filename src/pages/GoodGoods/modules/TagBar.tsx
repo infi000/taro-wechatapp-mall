@@ -28,7 +28,7 @@ const TagBar = (props) => {
   const formatList = () => {
     if (allCtypeList && allCtypeList.length > 0) {
       return DEFAULT_TAG.concat(
-        allCtypeList.map((item) => {
+        allCtypeList.filter(item=> item.c_type).map((item) => {
           const { c_type: title } = item;
           item.title = title;
           return item;
