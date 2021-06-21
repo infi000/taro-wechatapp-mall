@@ -1,4 +1,5 @@
-const MOCK = 'http://gz-cvm-ebuild-ningzhang-dev001.gz.sftcwl.com:7300/mock/5f007cea552f4047ea3d0872/lujia';
+const MOCK = 'http://easy-mock.sftcwl.com/mock/5f6a20a67266ef5678785185/wxschool';
+const MOCK2 = 'http://easy-mock.sftcwl.com/mock/5f1a8bf410c3f359faddc7df/test';
 const yjw_test = 'https://dev.tangguostore.com/index.php/MiniApi';
 const yjw = 'https://www.tangguostore.com/index.php/MiniApi';
 const WxApiRoot = yjw;
@@ -44,4 +45,6 @@ export default {
   getClassifySearch:   WxApiRoot + '/Classify/search', //	29.	搜索分类集合
   getClassifyGoods:   WxApiRoot + '/Classify/getgoods', //	30.	获取分类集合下的商品
   orderComplete:   WxApiRoot + '/Order/complete', //	30.	获取分类集合下的商品
+  picketSearch:   WxApiRoot + '/Picket/search', //	获取我的票
+  picketCheck:   WxApiRoot + '/Picket/check', //	验票
 };

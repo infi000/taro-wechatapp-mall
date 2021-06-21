@@ -1,14 +1,23 @@
+/* eslint-disable @typescript-eslint/camelcase */
 // import Taro from '@tarojs/taro';
 import Taro, { useDidShow } from '@tarojs/taro';
 import { View, Swiper, SwiperItem, Image, Button } from '@tarojs/components';
 import { useSelector, useDispatch } from '@tarojs/redux';
 import GoodsList from '@/components/GoodsList';
-import { isArray, toNumber, slice } from 'lodash';
+import { isArray, toNumber, slice, isString } from 'lodash';
 import { logIn } from '@/utils/auth';
 
 import '../index.scss';
+import SelecotModall from './SelecotModall';
 
 const { useState, useEffect, useMemo } = Taro;
+const defaultChooseModal = {
+  show: false,
+  data: {
+    price: '',
+    pickets: [],
+  },
+};
 interface IProps {}
 /**
  * 商品展示
@@ -16,6 +25,8 @@ interface IProps {}
 const GoodsDetail = (props: IProps) => {
   const { detail, relatedGoods, buysRecordList, isfav, gid } = useSelector((state) => state.goodsShow);
   const { isLogIn } = useSelector((state) => state.main);
+  const [chooseModal, setChooseModal] = useState(defaultChooseModal);
+
   // const { gid } = props;
   const dispatch = useDispatch();
   const buysList = useMemo(() => {
@@ -37,6 +48,36 @@ const GoodsDetail = (props: IProps) => {
   const handleSaveBuy = () => {
     dispatch({ type: 'goodsShow/createOrder' });
   };
+  const handleLogIn = () => {
+    // eslint-disable-next-line no-undef
+    wx.getUserProfile({
+      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        console.log(res);
+        logIn({dispatch,userInfo: res.userInfo});
+      }
+    })
+  };
+  const handleToChoose = () => {
+    const {price, ispicket, dates } = detail || {};
+    if(ispicket !== '1'){
+      handleSaveBuy();
+      return;
+    }
+    const params = {
+      show: true,
+      data: {
+        price,
+        pickets:dates.pickets
+      },
+    };
+    setChooseModal(params);
+  };
+  const handleSelecotModalSubmit = (params: {price: string;times: string;dates: string;num: number}) =>{
+    setChooseModal(defaultChooseModal);
+    console.log("params",params);
+    dispatch({ type: 'goodsShow/createPicketOrder',params });
+  }
   // useEffect(() => {
   //   // dispatch({ type: 'goodsShow/updateGid', payload: gid });
   //   dispatch({ type: 'goodsShow/getDetail' });
@@ -143,22 +184,33 @@ const GoodsDetail = (props: IProps) => {
               购买
             </View>
           ) : isLogIn ? (
-            <View className='buy-btn' onClick={handleSaveBuy}>
+            <View className='buy-btn' onClick={handleToChoose}>
               购买
             </View>
           ) : (
             <Button
               className='buy-btn'
-              open-type='getUserInfo'
-              onGetUserInfo={(e) => {
-                logIn(dispatch, handleSaveBuy);
-              }}
+              // open-type='getUserInfo'
+              // onGetUserInfo={(e) => {
+              //   logIn(dispatch, handleToChoose);
+              // }}
+              onClick={handleLogIn}
             >
               购买
             </Button>
           )}
         </View>
       </View>
+      {chooseModal.show && (
+        <SelecotModall
+          price={chooseModal.data.price}
+          pickets={chooseModal.data.pickets}
+          handleAdd={handleSelecotModalSubmit}
+          handleCancel={() => {
+            setChooseModal(defaultChooseModal);
+          }}
+        />
+      )}
     </View>
   );
 };

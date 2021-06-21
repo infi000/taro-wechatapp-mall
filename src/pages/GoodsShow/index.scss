@@ -148,3 +148,79 @@
     background-color:yellowgreen;
   }
 }
+
+
+
+@mixin baseSelecotBtn {
+  @include btn;
+  float: left;
+  margin-right: 16px;
+  margin-bottom: 16px;
+  border: 1px solid black;
+  border-radius: 8px;
+  min-width: 100px;
+}
+
+.selecotModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index:1000;
+  .selecotTag{
+    font-size: $normal-fontsize;
+  }
+  .selecotCon {
+    @include con;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-height: 40%;
+    max-height: 80%;
+    background-color: #fff!important;
+    overflow-y: scroll;
+  }
+  .selecotBtn {
+    @include baseSelecotBtn;
+    color: #000;
+    background-color: #fff!important;
+  }
+  .disabled {
+    @include baseSelecotBtn;
+    color: #000;
+    background-color: #ddd!important;
+  }
+  .selecotBtnChoose {
+    @include baseSelecotBtn;
+    color: #fff;
+  }
+  .selecotBtnBuy{
+    @include baseSelecotBtn;
+    color: #fff;
+    float: none;
+    height: 100%;
+    width: 50%;
+    box-sizing: border-box;
+  }
+  .selecotBtnBack{
+    @include baseSelecotBtn;
+    color: #000;
+    background-color: #fff!important;
+    float: none;
+    height: 100%;
+    width: 30%;
+    box-sizing: border-box;
+  }
+  .selecotItem{
+    margin-bottom: 25px;
+  }
+  .selecotItemBuy{
+    margin-top: 80px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+  }
+}

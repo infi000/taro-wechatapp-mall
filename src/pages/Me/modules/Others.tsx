@@ -4,6 +4,7 @@ import { showSuccessToast } from '@/utils/util';
 import { subMsg, getAllTemplate } from '../services';
 import '../index.scss';
 import { isArray } from 'lodash';
+import { useSelector } from '@tarojs/redux';
 
 const LIST_URL_MAP = [
   { name: '照片墙', url: '/pages/PhotoWall/index' },
@@ -16,6 +17,8 @@ const LIST_URL_MAP = [
 const tmplIds = ['vqWshHTalxdFaNqhdSWJ8Mkb7HsysV39m1h9Yk-94hY','05mTNKODj3164t8tEgu60oLUyqddSUHtjAOS6i1S0Zs'];
 const Others = () => {
   const [tmplIds, setTmplIds]:[string[],any] = useState([]);
+  const { wxUserInfo } = useSelector((state) => state.main);
+
   const handleClickItem = (url) => {
     Taro.navigateTo({ url });
   };
@@ -36,6 +39,16 @@ const Others = () => {
       },
     });
   };
+  const handleCarm = () => {
+    // eslint-disable-next-line no-undef
+    wx.scanCode({
+      onlyFromCamera: true,
+      success (res) {
+        console.log("扫码结果：", res);
+        Taro.navigateTo({ url: res.result});
+      }
+    })
+  }
   useEffect(() => {
     getAllTemplate().then(d=>{
       const temids = isArray(d)?d.map(item=>item.templateid):[];
@@ -68,6 +81,12 @@ const Others = () => {
         <View className='at-col-6 textL'>消息订阅</View>
         <View className='at-col-6 textR'></View>
       </View>
+      {
+        wxUserInfo.ut == '2' &&  <View className='at-row me-others-con' onClick={handleCarm}>
+        <View className='at-col-6 textL'>扫码</View>
+        <View className='at-col-6 textR'></View>
+      </View>
+      }
     </View>
   );
 };

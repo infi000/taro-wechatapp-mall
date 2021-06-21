@@ -45,6 +45,7 @@
     "@tarojs/taro-tt": "2.2.9",
     "@tarojs/taro-weapp": "2.2.9",
     "@types/lodash": "^4.14.157",
+    "@types/wechat-miniprogram": "^3.3.0",
     "babel-runtime": "^6.26.0",
     "dva-core": "^2.0.2",
     "dva-immer": "^0.4.19",

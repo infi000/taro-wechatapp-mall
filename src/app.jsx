@@ -4,7 +4,6 @@ import dva from './dva';
 import models from './store';
 import { set as setGlobalData, get as getGlobalData } from './global_data';
 import Index from './pages/index';
-import { getJscode2session, saveUserData } from '@/services/user';
 import './app.scss';
 
 const dvaApp = dva.createApp({
@@ -61,9 +60,12 @@ class App extends Component {
   config = {
     pages: [
    
-
-     
+      // 'pages/PicketQr/index',
       'pages/Main/index',
+
+      // 'pages/ZcyTest/index',
+      'pages/PicketResult/index',
+      'pages/PicketQr/index',
       'pages/BuyPage/index',
       'pages/Kefu/index',
       'pages/PhotoWall/index',

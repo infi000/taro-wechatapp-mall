@@ -22,8 +22,11 @@ interface IProps {
 const ListItem = (props: IProps) => {
   const { status, orderList, handleDelOrder, handleCompletelOrder } = props;
   const { list } = orderList[status] || {};
-  const handlePageTo = (orderid) => {
+  const handlePageToPay = (orderid) => {
     Taro.navigateTo({ url: '/pages/BuyPage/index?orderid=' + orderid });
+  };
+  const handlePageToQr = (orderid) => {
+    Taro.navigateTo({ url: '/pages/PicketQr/index?orderid=' + orderid });
   };
   return (
     <View className='list-group-wrap'>
@@ -31,14 +34,14 @@ const ListItem = (props: IProps) => {
       <AtList hasBorder={false}>
         {isArray(list) &&
           list.map((item, index) => {
-            const { id: ids, total, orderid, status: orderStatus } = item;
-            const { title, fpath } = ids[0];
+            const { id: ids, total, orderid, status: orderStatus, } = item;
+            const { title, fpath, ispicket = ''  } = ids[0];
             return (
               <View className='list-item-wrap' key={index}>
                 <AtListItem title={title || '-'} note={`¥${total}`} thumb={fpath || ImgError}></AtListItem>
                 {orderStatus == '0' && (
                   <View className='list-item-btn-con'>
-                    <View className='btn-default' style='margin-right:10px' onClick={() => handlePageTo(orderid)}>
+                    <View className='btn-default' style='margin-right:10px' onClick={() => handlePageToPay(orderid)}>
                       支付
                     </View>
                     <View className='btn-default' onClick={() => handleDelOrder(orderid, status)}>
@@ -50,6 +53,13 @@ const ListItem = (props: IProps) => {
                   <View className='list-item-btn-con'>
                     <View className='btn-default' style='margin-right:10px' onClick={() => handleCompletelOrder(orderid, status)}>
                       确认收获
+                    </View>
+                  </View>
+                )}
+                {ispicket == '1' && (
+                  <View className='list-item-btn-con'>
+                    <View className='btn-default' style='margin-right:10px' onClick={() => handlePageToQr(orderid)}>
+                      查看
                     </View>
                   </View>
                 )}
