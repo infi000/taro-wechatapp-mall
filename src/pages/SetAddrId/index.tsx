@@ -4,15 +4,18 @@ import { useSelector, useDispatch } from '@tarojs/redux';
 import Addr from './modules/Addr';
 import { AtListItem } from 'taro-ui';
 import { ImgError } from '../../static/images/index';
-import { getMyAddress, getOderDetail, payex } from './services';
+import { getMyAddress, getOderDetail, postSetAddress } from './services';
 import { showToast, showSuccessToast } from '@/utils/util';
 import './index.scss';
 import { get } from 'lodash';
 
-const BuyPage = () => {
+const SetAddrId = () => {
   const [addrList, setAddrList] = useState([]);
+  const { openid } = useSelector((state) => state.main);
+
   const [orderData, setOrderData] = useState({});
   const [defaultAddr, setDefaultAddt]: [false | any, Function] = useState(false);
+
   const router = useRouter();
   useDidShow(() => {
     const { params } = router;
@@ -38,7 +41,7 @@ const BuyPage = () => {
       d && setOrderData(d);
     })
   });
-  const handlePay = () => {
+  const handleSetAddrId = () => {
     if (!defaultAddr) {
       showToast("没有设置收货地址");
       return;
@@ -50,58 +53,26 @@ const BuyPage = () => {
       return;
     }
     const addressid = defaultAddr.id;
-    const tag = orderid;
-    payex({ addressid, tag, orderfrom: 1, paytype: 'miniwxpay' }).then(d => {
-      if (d == '1') {
-        Taro.navigateBack({
-          delta: 1 , success: function (res) {
-            Taro.showToast({
-              title: '购买成功',
-              icon: 'success',
-              duration: 2000
-            })
-          }
-        });
-        return;
-      }
-      const { arraydata } = d || {};
-      const { nonceStr, timeStamp, signType, paySign } = arraydata || {};
-      const pak = arraydata.package;
-      Taro.requestPayment({
-        timeStamp: timeStamp + "",
-        nonceStr: nonceStr,
-        package: pak,
-        signType,
-        paySign,
-        success: function (res) {
-          Taro.showToast({
-            title: '购买成功',
-            icon: 'success',
-            duration: 2000
-          })
-          // 返回上一级页面。
-          setTimeout(() => {
-            Taro.navigateBack({ delta: 1 });
-          }, 2000);
-        },
-        fail: function (res) {
-          showToast("购买失败");
-          console.log(res)
+    postSetAddress({ addressid, orderid, openId: openid }).then(d => {
+
+      Taro.navigateBack({
+        delta: 1 , success: function (res) {
+          showToast("设置成功");
         }
-      })
+      });
     })
   }
   return (
-    <View className='buypage-wrap'>
+    <View className='SetAddrId-wrap'>
       <Addr defaultAddr={defaultAddr} />
       <AtListItem title={get(orderData, ['gdata', 0, 'title'], '未知')} note={`¥${get(orderData, ['total'], '-')}`} thumb={get(orderData, ['gdata', 0, 'fpath'], ImgError)}></AtListItem>
-      <View className='buypage-btn-wrap'>
-        <View className='buypage-info'>实付款： {`¥${get(orderData, ['total'], '-')}`}</View>
+      <View className='SetAddrId-btn-wrap'>
+        <View className='SetAddrId-info'></View>
 
-        <View className='buypage-btn-pay' onClick={handlePay}>立即支付</View>
+        <View className='SetAddrId-btn-pay' onClick={handleSetAddrId}>立即修改</View>
       </View>
     </View>
   );
 };
 
-export default BuyPage;
+export default SetAddrId;

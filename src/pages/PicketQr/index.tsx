@@ -59,7 +59,7 @@ const PicketQe = () => {
         <View className='qr-line2'>开始时间：{info.starttime}</View>
         <View className='qr-line2'>结束时间：{info.endtime}</View>
         <View className='qr-buttom'>
-        <View className='qr-line'>参展时间：2021年6月25日 ～ 2021年7月25日</View>
+        <View className='qr-line'></View>
         <View className='qr-line'>地址：北京市海淀区复兴路69号凯迪拉克中心M空间(原五棵松体育馆)</View>
         <View className='qr-line3'>本展览最终解释权归主办方所有</View>
         </View>

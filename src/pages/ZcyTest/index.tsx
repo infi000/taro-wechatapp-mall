@@ -1,12 +1,15 @@
 import Taro, { useDidShow } from '@tarojs/taro';
-import { View, Checkbox, Block, Button } from '@tarojs/components';
+import { View, Checkbox, Block, Button, WebView } from '@tarojs/components';
 import { AtList, AtListItem } from 'taro-ui';
 import { useCheckBoxList } from '@/utils/hooks';
 import QRCode from '../../utils/weapp-qrcode.js';
+import { useSelector } from '@tarojs/redux';
 
 
 
 const ZcyTest = () => {
+  const main = useSelector((state) => state.main);
+  console.log('main', main);
   const handleGet = () => {
     if(Taro.chooseAddress){
       Taro.chooseAddress({
@@ -21,23 +24,23 @@ const ZcyTest = () => {
       console.log('当前微信版本不支持chooseAddress');
      }
   };
-  useDidShow(() => {
-    // 切换tab 请求接口
-    const qrcode = new QRCode('canvas', {
-      // usingIn: this,
-      text: "/pages/BuyPage/index",
-      width: 150,
-      height: 150,
-      padding: 12,
-      colorDark: "#000000",
-      colorLight: "#ffffff",
-      correctLevel: QRCode.CorrectLevel.H,
-      callback: (res) => {
-          // 生成二维码的临时文件
-          console.log(res.path)
-      }
-    });
-  });
+  // useDidShow(() => {
+  //   // 切换tab 请求接口
+  //   const qrcode = new QRCode('canvas', {
+  //     // usingIn: this,
+  //     text: "/pages/BuyPage/index",
+  //     width: 150,
+  //     height: 150,
+  //     padding: 12,
+  //     colorDark: "#000000",
+  //     colorLight: "#ffffff",
+  //     correctLevel: QRCode.CorrectLevel.H,
+  //     callback: (res) => {
+  //         // 生成二维码的临时文件
+  //         console.log(res.path)
+  //     }
+  //   });
+  // });
   const handleCarm = () => {
     // eslint-disable-next-line no-undef
     wx.scanCode({
@@ -51,10 +54,7 @@ const ZcyTest = () => {
   }
   return (
     <View>
-          <Button onClick={handleGet}>获取</Button>
-          <Button onClick={handleCarm}>扫码</Button>
-          <canvas class='canvas' canvas-id='canvas' bindlongtap='save'></canvas>
-
+          <WebView src='https://www.tangguostore.com/index.php/MiniApi/User/lottery/openid/o7xPG5K4SBeJ4kCPl2D8H078nKRc.html'></WebView>
     </View>
   );
 };

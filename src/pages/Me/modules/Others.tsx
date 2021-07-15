@@ -7,6 +7,7 @@ import { isArray } from 'lodash';
 import { useSelector } from '@tarojs/redux';
 
 const LIST_URL_MAP = [
+  { name: '抽奖', url: '/pages/Choujiang/index' },
   { name: '照片墙', url: '/pages/PhotoWall/index' },
   { name: '收藏', url: '/pages/Collect/index' },
   { name: '我的藏品', url: '/pages/MyVip/index' },

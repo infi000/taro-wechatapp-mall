@@ -47,4 +47,6 @@ export default {
   orderComplete:   WxApiRoot + '/Order/complete', //	30.	获取分类集合下的商品
   picketSearch:   WxApiRoot + '/Picket/search', //	获取我的票
   picketCheck:   WxApiRoot + '/Picket/check', //	验票
+  modifyAddress:   WxApiRoot + '/Order/modifyaddress', //	修改订单地址
+  choujiangId:   WxApiRoot + '/Category/cj', //	获取需要跳转抽奖页面的id
 };

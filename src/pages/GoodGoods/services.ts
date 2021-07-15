@@ -18,4 +18,10 @@ export const getSearchGoods = (payload: ISearchGoodsParams) => request.get(Api.s
  */
 export const getClassifySearch = (payload: { ctype: 1|2 }) => request.get(Api.getClassifySearch, payload);
 
+
+/**
+ * 	获取需要跳转抽奖页面的id
+ */
+export const getChoujiangId = () => request.get(Api.choujiangId);
+
 export default {};

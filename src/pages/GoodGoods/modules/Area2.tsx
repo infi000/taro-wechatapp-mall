@@ -1,13 +1,19 @@
-import Taro, { useState, useEffect } from '@tarojs/taro';
+import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro';
 import { View, Block, Image } from '@tarojs/components';
 import { isArray } from 'lodash';
 import '../index.scss';
+import { getChoujiangId } from '../services';
 
 const Area = (props:any) => {
+  const [cjId, setCjId] = useState('');
+  const { areaList } = props;
   const handlePageTo = ({ id, title }) => {
+    if(id == cjId){
+      Taro.navigateTo({ url:'/pages/Choujiang/index' });
+      return 
+    }
     Taro.navigateTo({ url: '/pages/SortPage/index?cid=' + id + '&title=' + title });
   };
-  const { areaList } = props;
   // const [areaList, setAreaList]: [any[], any] = useState([]);
   // useEffect(() => {
   //   getClassifySearch({ ctype: 2 }).then((d) => {
@@ -15,6 +21,9 @@ const Area = (props:any) => {
   //     setAreaList(arr);
   //   });
   // }, []);
+  useEffect(() => {
+    getChoujiangId().then(d => setCjId(d))
+  },[])
   return (
     <View className='area-wrap-2'>
       <View className='at-row at-row--wrap'>

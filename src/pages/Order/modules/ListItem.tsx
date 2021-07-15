@@ -28,13 +28,16 @@ const ListItem = (props: IProps) => {
   const handlePageToQr = (orderid) => {
     Taro.navigateTo({ url: '/pages/PicketQr/index?orderid=' + orderid });
   };
+  const handlePageToChangeAddrId = (orderid) => {
+    Taro.navigateTo({ url: '/pages/SetAddrId/index?orderid=' + orderid });
+  };
   return (
     <View className='list-group-wrap'>
       {(!list || !list[0]) && <View> 暂无信息</View>}
       <AtList hasBorder={false}>
         {isArray(list) &&
           list.map((item, index) => {
-            const { id: ids, total, orderid, status: orderStatus, } = item;
+            const { id: ids, total, orderid, status: orderStatus,ischoujiang } = item;
             const { title, fpath, ispicket = ''  } = ids[0];
             return (
               <View className='list-item-wrap' key={index}>
@@ -46,6 +49,13 @@ const ListItem = (props: IProps) => {
                     </View>
                     <View className='btn-default' onClick={() => handleDelOrder(orderid, status)}>
                       删除订单
+                    </View>
+                  </View>
+                )}
+                {orderStatus == '1' && ischoujiang == '1' && (
+                  <View className='list-item-btn-con'>
+                    <View className='btn-default' style='margin-right:10px' onClick={() => handlePageToChangeAddrId(orderid)}>
+                      修改地址
                     </View>
                   </View>
                 )}
