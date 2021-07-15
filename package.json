@@ -49,7 +49,7 @@
     "babel-runtime": "^6.26.0",
     "dva-core": "^2.0.2",
     "dva-immer": "^0.4.19",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "nerv-devtools": "^1.5.5",
     "nervjs": "^1.5.5",
     "redux": "^4.0.0",
