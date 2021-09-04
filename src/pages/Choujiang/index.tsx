@@ -12,7 +12,7 @@ const Choujiang = () => {
   return (
     <View>
       {
-        weburl ?   <WebView src={weburl}></WebView>  : <View style={{padding:'130px 0 ',textAlign:'center'}}>未获取到用户信息，请确认是否登陆</View>
+        weburl ?   <WebView src={weburl}></WebView>  : <View style={{padding:'130px 0 ',textAlign:'center'}}>未获取到用户信息，请登陆后参与抽奖</View>
       }
     </View>
   );

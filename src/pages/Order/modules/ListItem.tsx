@@ -62,7 +62,7 @@ const ListItem = (props: IProps) => {
                 {orderStatus == '2' && (
                   <View className='list-item-btn-con'>
                     <View className='btn-default' style='margin-right:10px' onClick={() => handleCompletelOrder(orderid, status)}>
-                      确认收获
+                      确认收货
                     </View>
                   </View>
                 )}
