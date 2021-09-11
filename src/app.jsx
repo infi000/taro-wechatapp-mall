@@ -59,7 +59,7 @@ class App extends Component {
   // }
   config = {
     pages: [
-        //  'pages/ZcyTest/index',
+         'pages/ZcyTest/index',
 
       // 'pages/PicketQr/index',
       'pages/Main/index',
@@ -99,6 +99,11 @@ class App extends Component {
     'enableShareAppMessage': true,
     'enablePullDownRefresh': true,
     'debug': true,
+    "permission":{
+      "scope.userLocation":{
+        "desc":"你的位置信息将用于小程序位置接口的效果展示"
+      }
+    }
   };
   update = () => {
     if (process.env.TARO_ENV === 'weapp') {
