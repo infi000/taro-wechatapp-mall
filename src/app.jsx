@@ -59,7 +59,7 @@ class App extends Component {
   // }
   config = {
     pages: [
-         'pages/ZcyTest/index',
+        //  'pages/ZcyTest/index',
 
       // 'pages/PicketQr/index',
       'pages/Main/index',
